@@ -83,9 +83,9 @@ $db['testing']['swap_pre'] = '';
 $db['testing']['autoinit'] = TRUE;
 $db['testing']['stricton'] = FALSE;
 
-$db['production']['hostname'] = '127.0.0.1';
-$db['production']['username'] = 'galatea';
-$db['production']['password'] = 'xsMks0hC1678Nt8x5rQYP4kpX24Fcl344ohP76G0Z578ud81bn5gd7OFY98hXuML';
+$db['production']['hostname'] = '54.232.115.8';
+$db['production']['username'] = '017622141p5uL3F9';
+$db['production']['password'] = 'ygwe9fi2l3hg3ZUG78Sqgbo6fI8hDdyfzOq64D0x4Q5M1KTNL3x1GuBTRsJ3q2tm';
 $db['production']['database'] = 'galatea_production';
 $db['production']['dbdriver'] = 'mysql';
 $db['production']['dbprefix'] = '';
