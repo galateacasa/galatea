@@ -1,0 +1,46 @@
+<section class="container_12 extra-top-space">
+    <section class="grid_12">
+        <ng-include src="'/views/institutional/menu.html'"></ng-include>
+        <section class="grid_8 omega product-top">
+            <div class="block space-container">
+                <section class="about-contact">
+                    <h2>Atendimento</h2>
+                    <aside>
+                        <i class="imp">&nbsp;</i>
+                        = Campos obrigatórios
+                    </aside>
+
+                    <p>D&uacute;vidas, sugest&otilde;es, cr&iacute;ticas, elogios? Fale conosco, adorar&iacute;amos ouvir de voc&ecirc;.</p>
+                    <br />
+                    <p>Atendimento por telefone</p>
+                    <p>Ligue pra gente: (019) 3112-0316. Nosso atendimento telef&#244;nico funciona de segunda a sexta das 9h &#224;s 17h.</p>
+                    <br />
+                    <p>D&#250;vidas frequentes</p>
+                    <p>Se preferir, voc&#234; pode acessar o nosso <a href="#/institucional/duvidas-frequentes">FAQ</a>. L&#225; voc&#234; encontra respostas para as perguntas que recebemos com maior frequ&#234;ncia.</p>
+                    <br />
+                    <p>Atendimento online</p>
+                    <p>Preencha os campos abaixo ou escreva pra gente: <?php echo  safe_mailto(EMAIL_GALATEA, EMAIL_GALATEA); ?></p>
+
+                    <form>
+                    <fieldset>
+                        <i class="imp name">&nbsp;</i>
+                        <input type="text" ng-model="contact.name" placeholder="nome" required>
+                        <i class="imp email">&nbsp;</i>
+                        <input type="text" ng-model="contact.email" placeholder="email" required>
+                        <input type="text" ng-model="contact.ddd" placeholder="ddd" class="ddd">
+                        <input type="text" ng-model="contact.phone" placeholder="telefone" class="phone">
+                        <input type="text" ng-model="contact.subject" placeholder="assunto">
+                        <input type="text" ng-model="contact.order" placeholder="número do pedido (se houver)">
+                        <textarea ng-model="contact.message" placeholder="escreva o assunto com o qual podemos ajudar você">
+                        </textarea>
+                    </fieldset>
+
+                    <hr>
+                    <input type="submit" class="button float-r" value="enviar">
+
+                    </form>
+                </section>
+            </section>
+        </div>
+    </section>
+</section>

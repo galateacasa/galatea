@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" ng-app="galatea">
+    <head>
+        <meta charset="utf-8" />
+        <title>Galatea Casa</title>
+
+        <script src="/angular.min.js"></script>
+        <script src="/cookies.min.js"></script>
+        <script src="/route.min.js"></script>
+        <script src="/resource.min.js"></script>
+        <script src="/controllers/institutional.js"></script>
+        <script src="/controllers/user.js"></script>
+        <script src="/index.js"></script>
+
+        <link type="text/css" rel="stylesheet" href="/css/main.css">
+        <link type="text/css" rel="stylesheet" href="/css/mess.css">
+        <link type="text/css" rel="stylesheet" href="/css/pages.css">
+        <link type="image/ico" rel="shortcut icon" href="http://www.galateacasa.com.br/assets/images/favicon.ico">
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic,200,300,600italic,400italic,300italic,200italic">
+    </head>
+    <body class="product-page">
+        <section class="header-main">
+            <header class="container_12">
+                <section class="grid_12">
+                    <nav class="grid_6 prefix_6">
+                        <ul>
+                            <li>
+                                <a href="#/institucional/sobre">Sobre a Galatea</a>
+                            </li>
+                            <li>
+                                <a href="#/atendimento">Atendimento</a>
+                            </li>
+                            <li>
+                                (19) 3112-0316
+                            </li>
+                        </ul>
+                        <small class="inspire-me">
+                            <a href="#/inspire-me">inspire-me</a>
+                        </small>
+                    </nav>
+                </section>
+                <section class="grid_12 header-mid">
+                    <div class="grid_6 alpha">
+                        <h1 class="logo">
+                            <a title="Página inicial" href="#/">
+                                <img width="461" height="41" pagespeed_url_hash="3380151981" alt="Galatea" src="/images/logo.jpg">
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="grid_6 omega">
+                        <ul>
+                            <li>
+                                <a class="padd-new" href="#/login">Entrar</a>
+                            </li>
+                        </ul>
+                        <div class="compras">
+                            <dfn>COMPRAS</dfn>
+                            <span>0</span>
+                        </div>
+                    </div>
+                </section>
+            </header>
+        </section>
+        <section class="container_12" ng-view>
+        </section>
+        <footer class="footer-main">
+            <section class="container_12">
+                <section class="grid_12">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#/institucional/cuidados-com-a-mobilia">Cuidados com a mobília</a>
+                            </li>
+                            <li>
+                                <a href="#/institucional/trocas-e-devolucoes">Trocas e Devoluções</a>
+                            </li>
+                            <li>
+                                <a href="#/institucional/termos-e-condicoes">Termos e Condições</a>
+                            </li>
+                            <li>
+                                <a href="#/institucional/formas-de-pagamento">Pagamento e Entrega</a>
+                            </li>
+                            <li>
+                                <a href="#/institucional/termos-e-condicoes">Política de Privacidade</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <section class="footer-mid">
+                        <h4>Siga em outras redes:</h4>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="http://pinterest.com/galateacasa/">pinterest</a>
+                            </li>
+                            <li>
+                                <a class="facebook" target="_blank" href="https://www.facebook.com/GalateaCasa">facebook</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <aside>
+                        <h4>NewsLetter</h4>
+                        <div class="inpt-out">
+                            <form accept-charset="utf-8" method="post" action="http://www.galateacasa.com.br/site/home/newsletter">
+                                <input class="button-newsletter float-l" type="text" name="email" placeholder="e-mail">
+                                <input class="button float-r" type="submit" value="OK">
+                            </form>
+                            <a class="back-top-top" href="#top"> </a>
+                        </div>
+                        <em>Galatea Casa © Todos os direitos reservados.</em>
+                    </aside>
+                </section>
+            </section>
+        </footer>
+    </body>
+</html>

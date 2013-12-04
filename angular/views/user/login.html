@@ -1,0 +1,197 @@
+<div class="container_12 content">
+    <section class="grid_11 float-r">
+        <section class="login-fields">
+            <form>
+                <div class="block" style="display: block;">
+                    <h2>Login</h2>
+                    <input type="text" class="search-area email" placeholder="email" name="email" value="" >
+                </div>
+                <div class="block" style="display: block;">
+                    <input type="password" class="search-area pwd float-l" placeholder="senha" name="password" value="" >
+                    <input class="button float-r" type="submit" value="login">
+                </div>
+                <div class="grid_4">
+                    <a href="#/esqueci-minha-senha">esqueceu sua senha?</a>
+                    <div class="custom-checkbox">
+                        <input type="checkbox" name="keep_logged" id="check-1" value="1">
+                        <label for="check-1" class="">manter logado</label>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <div class="grid_4 connect-fb">
+            <h2>Login via Facebook</h2>
+            <a href="">
+                <img src="images/icon-fb.jpg"  title="fb-login">
+            </a>
+        </div>
+    </section>
+</div>
+<div class="login-division">
+    <section class="container_12">
+        <section class="grid_11 tabbing float-r">
+            <form autocomplete="off">
+                <nav>
+                    <ul id="click">
+                        <li>
+                            <h2>
+                                <a>Ou Cadastre-se!</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <a class="s-designer active">SOU DESIGNER</a>
+                        </li>
+                        <li>
+                            <a class="s-client">SOU CLIENTE</a>
+                        </li>
+                        <li>
+                            <a class="s-supplier">SOU FORNECEDOR</a>
+                        </li>
+                        <li>
+                            <a class="s-decorator">SOU DECORADOR</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="tabbing-content" id="tabbin-a">
+                    <div class="up-image-box">
+                        <figure class="upload-frame">
+                            <figcaption>foto</figcaption>
+                            <span id="user_drop_image" class="frame">
+                                Arraste a imagem para esta área
+                            </span>
+                            <small id="user_drop_image_response">&nbsp;</small>
+                        </figure>
+                        <div class="file-submit file-upload-inline">
+                            <input type="file" name="file" id="user_image" class="file-upload-styled" />
+                        </div>
+                    </div>
+                    <div class=" login-forms grid_6 omega">
+                        <div class="blocks">
+                            <span>
+                                <em class="imp">&nbsp;</em>
+                                <input type="text" class="search-area float-l no-bg-img name-text" placeholder="nome" value="" id="name" name="name">
+                            </span>
+                            <span  class=" omega">
+                                <em class="imp">&nbsp;</em>
+                                <input type="text" class="search-area float-l no-bg-img sur-name" placeholder="sobrenome" value=""  name="surname" id="surname">
+                            </span>
+                        </div>
+                        <div class="blocks">
+                            <span>
+                                <em class="imp">&nbsp;</em>
+                                <input type="text" class="search-area float-l no-bg-img equal-text" placeholder="email" value="" id="email" name="email">
+                            </span>
+                            <span  class=" omega">
+                                <em class="imp">&nbsp;</em>
+                                <input type="text" class="search-area float-l no-bg-img equal-text" placeholder="confirmar email" id="confirm_email" value=""  name="confirm_email">
+                            </span>
+                        </div>
+                        <div class="blocks">
+                            <span>
+                                <em class="imp">&nbsp;</em>
+                                <input type="password" class="search-area float-l no-bg-img equal-text" placeholder="senha" value="" id="pass" name="pass">
+                            </span>
+                            <span class=" omega">
+                                <em class="imp">&nbsp;</em>
+                                <input type="password" class="search-area float-l no-bg-img equal-text" placeholder="confirmar senha" id="confirm_pass" value="" name="confirm_pass">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="msg-box" style="display: none;">
+                        <textarea rows="5" name="description" placeholder="escreva algums palavras sobre você (esse texto aparecerá no seu perfil público)"  class="msg">
+                        </textarea>
+                    </div>
+                    <div id="enterprise" class="ignore" style="display: none;">
+                        <section class="grid_10 alpha login-forms border-hrz">
+                            <h2>Dados da empresa</h2>
+                            <div class="blocks no-pad-left">
+                                <span class=" omega">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" placeholder="razão social" value="" id="company_name" name="company_name" class="search-area float-l no-bg-img sur-name grid_6 alpha">
+                                </span>
+                            </div>
+                            <div class="blocks no-pad-left">
+                                <span class=" omega">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" placeholder="cnpj" name="cnpj" id="cnpj" value="" class="search-area float-l no-bg-img sur-name grid_3 alpha cnpj">
+                                </span>
+                            </div>
+                        </section>
+                        <section class="grid_10 alpha login-forms extra-btm-space ">
+                            <div class="blocks no-pad-left">
+                                <label class="chose">Dados da empresa</label>
+                                <div class="report-box custom-select no-margin">
+                                    <select class="styled" id="selector" name="selector">
+                                        <option value="">Selecione a sua área de atuação</option>
+                                        <option value="<?php echo  $expertise->id; ?>">
+                                            <?php echo  $expertise->name; ?>
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="blocks no-pad slector-con"  id="toshow" style="display:none;">
+                                <span class="note float-l extra-top-space extra-btm-space">Clique uma vez para selecionar e outra para cancelar a seleção das funções que você desempenha</span>
+                                <ul class="field-links" id="field-links">
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="grid_10 alpha login-forms border-top extra-top-space addr">
+                            <h2>endereço</h2>
+                            <div class="blocks no-pad-left">
+                                <span class=" omega">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" name="zip" id="zip" class="search-area float-l no-bg-img grid_3 omega alpha cep" placeholder="cep" value="">
+                                </span>
+
+                                <span class=" omega">
+                                    <label class="float-l">
+                                        <a href="http://www.buscacep.correios.com.br/servicos/dnec/index.do">Não sabe seu CEP?</a>
+                                    </label>
+                                    <input type="text" class="search-area name-text float-l no-bg-img  grid_2 omega areaCode" name="areaCode" id="areaCode" placeholder="DDD" value="">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" class="search-area float-l no-bg-img  grid_2 omega phone" name="phone" id="phone" placeholder="telefone" value="">
+                                </span>
+                            </div>
+                            <div class="blocks no-pad-left">
+                                <span class="">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" name="street" id="street" value="" placeholder="rua/avenida" class="search-area float-l no-bg-img grid_4 alpha">
+                                </span>
+                                <span class="">
+                                    <em class="imp">&nbsp;</em>
+                                    <input type="text" class="search-area float-l no-bg-img  name-text" id="number" name="number" placeholder="número" value="">
+                                </span>
+                                <span class="">
+                                    <input type="text" class="search-area float-l no-bg-img  name-text alpha" name="complement" placeholder="complemento" value="">
+                                </span>
+                            </div>
+                            <div class="blocks no-pad-left">
+                                <span class="omega">
+                                    <select class="styled" id="state" name="state">
+                                    </select>
+                                </span>
+
+                                <span class="omega">
+                                    <select class="styled" id="city" name="city">
+                                    </select>
+                                </span>
+                            </div>
+                            <div class="blocks no-pad-left">
+                                <span class="">
+                                    <input type="text" class="search-area float-l no-bg-img  name-text alpha" name="country" placeholder="país" value="">
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+            <section class="grid_7 float-r accept-terms omega" style="margin-right:40px;">
+                <button type="submit" class="button float-r">CADASTRAR</button>
+                <span class="grid_4 terms-con alpha float-r">
+                    Clicando em CADASTRAR, você estará concordando com os <?php echo  anchor('institucional/termos-e-condicoes', 'Termos do site', 'target="_blank"') ?> e que você leu nossa <?php echo  anchor('institucional/termos-e-condicoes#privacidade', 'política de uso de informações', 'target="_blank"') ?>, incluindo o relacionado a Cookies.
+                </span>
+            </section>
+        </form>
+    </section>
+</section>
+</div>

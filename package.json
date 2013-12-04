@@ -1,0 +1,21 @@
+{
+  "name": "galatea",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_ENV=test mocha"
+  },
+  "subdomain": "dashboard",
+  "engines": {
+    "node": "0.10.21"
+  },
+  "dependencies": {
+    "express": "3.4.x",
+    "mongoose": "3.8.0",
+    "mongoose-schema-extend": "0.1.4",
+    "mongoose-json-select": "0.2.1",
+    "redis":"0.9.1",
+    "forky": "0.0.2"
+  }
+}
