@@ -7,7 +7,7 @@ redis = require('redis');
 
 if (!client) {
     if (config.redis.uri) {
-        uri = url.parse(config.authRedis.uri) || null;
+        uri = url.parse(config.redis.uri) || null;
         client = redis.createClient(uri.port, uri.hostname);
 
         if (uri.auth) {
