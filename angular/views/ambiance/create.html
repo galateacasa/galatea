@@ -1,0 +1,37 @@
+<form ng-submit="save()">
+    <h2>
+        Enviar Ambiente
+    </h2>
+    <div>
+        <div>
+            <input type="file" ng-file-select>
+        </div>
+    </div>
+    <div>
+        <span>
+            <label>Título</label>
+            <input type="text" ng-model="ambiance.name">
+        </span>
+    </div>
+    <div>
+        <span>
+            <label>Categoria</label>
+            <select ng-model="ambiance.category" ng-options="category.categoryId as category.name for category in categories">
+            </select>
+        </span>
+    </div>
+    <h2>
+        Produtos
+    </h2>
+    <div ng-repeat="product in ambiance.products">
+        <span>
+            <label>Produto</label>
+            <select ng-model="product" ng-options="product.productId as product.name for product in products">
+            </select>
+        </span>
+    </div>
+    <div ng-click="addProduct()">
+        Adicionar produto
+    </div>
+    <input type="submit" value="enviar">
+</form>

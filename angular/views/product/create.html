@@ -1,0 +1,70 @@
+<form ng-submit="save()">
+    <h2>
+        Enviar Projeto
+    </h2>
+    <div>
+        <div>
+            <input type="file" ng-file-select multiple>
+        </div>
+    </div>
+    <div>
+        <span>
+            <label>Título</label>
+            <input type="text" ng-model="product.name">
+        </span>
+    </div>
+    <h2>
+        Categorias
+    </h2>
+    <div ng-repeat="productCategory in product.categories">
+        <span>
+            <label>Categoria</label>
+            <select ng-model="productCategory" ng-options="category.categoryId as category.name for category in categories">
+            </select>
+        </span>
+    </div>
+    <div ng-click="addCategory()">
+        Adicionar categoria
+    </div>
+    <h2>
+        Medidas
+    </h2>
+    <div ng-repeat="measure in product.measures">
+        <div>
+            <span>
+                <label>Largura</label>
+                <input type="text" ng-model="measure.width">
+            </span>
+        </div>
+        <div>
+            <span>
+                <label>Profundidade</label>
+                <input type="text" ng-model="measure.depth">
+            </span>
+        </div>
+        <div>
+            <span>
+                <label>Altura</label>
+                <input type="text" ng-model="measure.height">
+            </span>
+        </div>
+    </div>
+    <div ng-click="addMeasure()">
+        Adicionar medida
+    </div>
+    <h2>
+        Materiais
+    </h2>
+    <div ng-repeat="material in product.materials">
+        <div>
+            <span>
+                <label>Material</label>
+                <input type="text" ng-model="material.material">
+            </span>
+        </div>
+    </div>
+    <div ng-click="addMaterial()">
+        Adicionar material
+    </div>
+    <input type="submit" value="enviar">
+</form>

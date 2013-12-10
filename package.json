@@ -6,7 +6,6 @@
     "start": "node index.js",
     "test": "NODE_ENV=test mocha"
   },
-  "subdomain": "dashboard",
   "engines": {
     "node": "0.10.21"
   },
@@ -16,6 +15,10 @@
     "mongoose-schema-extend": "0.1.4",
     "mongoose-json-select": "0.2.1",
     "redis":"0.9.1",
-    "forky": "0.0.2"
+    "forky": "0.0.2",
+    "ng-resource": "0.0.2",
+    "node-mandrill": "1.0.1",
+    "cloudinary": "1.0.6",
+    "handlebars": "1.1.2"
   }
 }

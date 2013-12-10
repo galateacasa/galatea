@@ -19,15 +19,14 @@
                     <p>Se preferir, voc&#234; pode acessar o nosso <a href="#/institucional/duvidas-frequentes">FAQ</a>. L&#225; voc&#234; encontra respostas para as perguntas que recebemos com maior frequ&#234;ncia.</p>
                     <br />
                     <p>Atendimento online</p>
-                    <p>Preencha os campos abaixo ou escreva pra gente: <?php echo  safe_mailto(EMAIL_GALATEA, EMAIL_GALATEA); ?></p>
-
-                    <form>
+                    <p>Preencha os campos abaixo ou escreva pra gente: <a href="mailto:contato@galateacasa.com.br">contato@galateacasa.com.br</a></p>
+                    <form ng-submit="save()">
                     <fieldset>
                         <i class="imp name">&nbsp;</i>
                         <input type="text" ng-model="contact.name" placeholder="nome" required>
                         <i class="imp email">&nbsp;</i>
                         <input type="text" ng-model="contact.email" placeholder="email" required>
-                        <input type="text" ng-model="contact.ddd" placeholder="ddd" class="ddd">
+                        <input type="text" ng-model="contact.areaCode" placeholder="ddd" class="ddd">
                         <input type="text" ng-model="contact.phone" placeholder="telefone" class="phone">
                         <input type="text" ng-model="contact.subject" placeholder="assunto">
                         <input type="text" ng-model="contact.order" placeholder="número do pedido (se houver)">

@@ -1,0 +1,53 @@
+<h2>
+    Produto
+</h2>
+<img ng-src="{{image}}" ng-repeat="image in product.images">
+<div>
+    <span>
+        <span>Título</span>
+        {{product.name}}
+    </span>
+</div>
+<h2>
+    Categorias
+</h2>
+<div ng-repeat="category in product.categories">
+    <span>
+        <span>Categoria</span>
+        {{category.name}}
+    </span>
+</div>
+<h2>
+    Medidas
+</h2>
+<div ng-repeat="measure in product.measures">
+    <div>
+        <span>
+            <span>Largura</span>
+            {{measure.width}}
+        </span>
+    </div>
+    <div>
+        <span>
+            <span>Profundidade</span>
+            {{measure.depth}}
+        </span>
+    </div>
+    <div>
+        <span>
+            <span>Altura</span>
+            {{measure.height}}
+        </span>
+    </div>
+</div>
+<h2>
+    Materiais
+</h2>
+<div ng-repeat="material in product.materials">
+    <div>
+        <span>
+            <span>Material</span>
+            {{material.material}}
+        </span>
+    </div>
+</div>

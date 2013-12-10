@@ -229,7 +229,7 @@ button:active, .button:active, input[type=submit]:active {
   line-height: 35px;
   display: block;
   height: 35px;
-  background: #e1e5e1 url(../../images/four-button.png) no-repeat;
+  background: #e1e5e1 url(/images/four-button.png) no-repeat;
 }
 
 .four-icons li a:hover {
@@ -264,11 +264,11 @@ button:active, .button:active, input[type=submit]:active {
   height: 18px;
   width: 18px;
   text-indent: -999999px;
-  background: url('../../images/star.png') left top no-repeat;
+  background: url('/images/star.png') left top no-repeat;
 }
 
-.star a:hover { background: url('../../images/star-hov.png') left top no-repeat; }
-.star a.active { background: url('../../images/star-hov.png') left top no-repeat; }
+.star a:hover { background: url('/images/star-hov.png') left top no-repeat; }
+.star a.active { background: url('/images/star-hov.png') left top no-repeat; }
 
 .star-big {
   width: 20px;
@@ -280,7 +280,7 @@ button:active, .button:active, input[type=submit]:active {
 }
 
 .star-big a {
-  background: url('/assets/images/star-big.png') center center no-repeat;
+  background: url('/images/star-big.png') center center no-repeat;
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -290,18 +290,18 @@ button:active, .button:active, input[type=submit]:active {
 }
 
 .star-big a.active,
-.star-big:hover a { background-image: url('/assets/images/star-big-h.png'); }
+.star-big:hover a { background-image: url('/images/star-big-h.png'); }
 
 .star_blu {
   width: 22px;
   height: 20px;
-  background: url('../../images/star_gray.png') no-repeat 0 center;
+  background: url('/images/star_gray.png') no-repeat 0 center;
   position: absolute;
   right: 0;
   top: 20px;
 }
 
-.star_blu:hover, .star_blu.select { background-image: url('../../images/star_blu.png'); }
+.star_blu:hover, .star_blu.select { background-image: url('/images/star_blu.png'); }
 
 /* @end */
 
@@ -325,7 +325,7 @@ button:active, .button:active, input[type=submit]:active {
 }
 
 .social-icon li a {
-  background: url('../../images/social-icons.png') no-repeat left top;
+  background: url('/images/social-icons.png') no-repeat left top;
   cursor: pointer;
   display: block;
   height: 20px;
@@ -402,7 +402,7 @@ button:active, .button:active, input[type=submit]:active {
 .denounce a {
   display: block;
   text-indent: -999999px;
-  background: url('../../images/denounce.png') left top no-repeat;
+  background: url('/images/denounce.png') left top no-repeat;
 }
 
 
@@ -479,7 +479,7 @@ button:active, .button:active, input[type=submit]:active {
   color: #fff;
 }
 .header-mid ul li a span {
-  background: url(../../images/arrow-down.png) right 30px no-repeat;
+  background: url(/images/arrow-down.png) right 30px no-repeat;
   display: block;
   text-align: right;
 }
@@ -489,7 +489,7 @@ button:active, .button:active, input[type=submit]:active {
   padding: 25px;
 }
 .header-mid ul li:hover span {
-  background: url(../../images/arrow-down-hov.png) right 31px no-repeat;
+  background: url(/images/arrow-down-hov.png) right 31px no-repeat;
 }
 
 .header-mid ul > li:hover {
@@ -537,7 +537,7 @@ button:active, .button:active, input[type=submit]:active {
 }
 
 .icon-desig {
-  background: url(../../images/icon-designer.png) 10px 50% no-repeat;
+  background: url(/images/icon-designer.png) 10px 50% no-repeat;
 }
 
 icon-desig:hover {
@@ -563,7 +563,7 @@ icon-desig:hover {
 }
 
 .compras span {
-  background: url(../../images/icon-shopping-cart.png) left top no-repeat;
+  background: url(/images/icon-shopping-cart.png) left top no-repeat;
 
   display: block;
 
@@ -606,7 +606,7 @@ icon-desig:hover {
     width: 421px;
     padding-right: 65px;
     margin: 80px 0;
-    background: url(../../images/login-bor.jpg) 100% 50% no-repeat;
+    background: url(/images/login-bor.jpg) 100% 50% no-repeat;
   }
   .login-fields .block {
     margin-bottom: 12px;
@@ -670,7 +670,7 @@ icon-desig:hover {
     width: 100%;
   }
   .tabbing nav li + li a {
-    background: #dee0db url(../../images/four-button-n.png) 0 -2px no-repeat;
+    background: #dee0db url(/images/four-button-n.png) 0 -2px no-repeat;
     display: block;
     padding: 7px 10px 7px 45px;
   }
@@ -682,7 +682,7 @@ icon-desig:hover {
   .tabbing nav .tabbing li + li .active,
   .tabbing li > a:hover,
   .tabbing li > a.active {
-    background: #dee0db url(../../images/four-button-hov.png) -2px -2px no-repeat;
+    background: #dee0db url(/images/four-button-hov.png) -2px -2px no-repeat;
     color: #23adf4;
   }
 
@@ -799,7 +799,7 @@ icon-desig:hover {
     position: absolute;
     width: 11px;
     height: 10px;
-    background: url(../../images/icon-imp.png) no-repeat;
+    background: url(/images/icon-imp.png) no-repeat;
     right: 0;
     top: 7px;
   }
@@ -877,7 +877,7 @@ icon-desig:hover {
   height: 20px;
   margin: 2px 0 0;
   float: right;
-  background: #fff url(../../images/search.png) no-repeat 95% center;
+  background: #fff url(/images/search.png) no-repeat 95% center;
 }
 
 .nav-main #search:focus {}
@@ -1029,7 +1029,7 @@ icon-desig:hover {
 }
 .footer-mid ul li a {
   text-indent: -999999px;
-  background: url('../../images/footer_social.png') left top no-repeat;
+  background: url('/images/footer_social.png') left top no-repeat;
   height: 26px;
   display: block;
   width: 75px;
@@ -1091,7 +1091,7 @@ footer input[type=submit] {
   width: 421px;
   padding-right: 65px;
   margin: 80px 0;
-  background: url(../../images/login-bor.jpg) 100% 50% no-repeat;
+  background: url(/images/login-bor.jpg) 100% 50% no-repeat;
 }
 .login-fields .block {
   margin-bottom: 12px;
@@ -1141,13 +1141,13 @@ footer input[type=submit] {
 .tabbing h2 a { line-height: 1.6; }
 .tabbing li { float: left; margin-right: 12px; }
 .tabbing nav { float: left; width: 100%; }
-.tabbing nav li + li a { background: #dee0db url(../../images/four-button-n.png) 0 -2px no-repeat; display: block; padding: 7px 10px 7px 45px; }
+.tabbing nav li + li a { background: #dee0db url(/images/four-button-n.png) 0 -2px no-repeat; display: block; padding: 7px 10px 7px 45px; }
 .tabbing li > a { background: #fff; }
 
 .tabbing nav li + li a:hover,
 .tabbing nav .tabbing li + li .active,
 .tabbing li > a:hover,
-.tabbing li > a.active { background: #dee0db url(../../images/four-button-hov.png) -2px -2px no-repeat; color: #23adf4; }
+.tabbing li > a.active { background: #dee0db url(/images/four-button-hov.png) -2px -2px no-repeat; color: #23adf4; }
 
 .tabbing .s-design { background-position: 0 -2px; }
 .tabbing .s-design:hover,
@@ -1220,7 +1220,7 @@ footer input[type=submit] {
   position: absolute;
   width: 11px;
   height: 10px;
-  background: url(../../images/icon-imp.png) no-repeat;
+  background: url(/images/icon-imp.png) no-repeat;
   right: 0;
   top: 7px;
 }
@@ -1318,22 +1318,22 @@ input[type=submit]:active { color: #fff; background: #555; }
   height: 18px;
   width: 18px;
   text-indent: -999999px;
-  background: url('../../images/star.png') left top no-repeat;
+  background: url('/images/star.png') left top no-repeat;
 }
 
-.star a:hover { background: url('../../images/star-hov.png') left top no-repeat; }
-.star a.active { background: url('../../images/star-hov.png') left top no-repeat; }
+.star a:hover { background: url('/images/star-hov.png') left top no-repeat; }
+.star a.active { background: url('/images/star-hov.png') left top no-repeat; }
 
 .star_blu {
   width: 22px;
   height: 20px;
-  background: url('../../images/star_gray.png') no-repeat 0 center;
+  background: url('/images/star_gray.png') no-repeat 0 center;
   position: absolute;
   right: 0;
   top: 20px;
 }
 
-.star_blu:hover, .star_blu.select { background-image: url('../../images/star_blu.png'); }
+.star_blu:hover, .star_blu.select { background-image: url('/images/star_blu.png'); }
 
 /* @end */
 
@@ -1346,7 +1346,7 @@ input[type=submit]:active { color: #fff; background: #555; }
   top: 5px;
 }
 
-.denounce a { display: block; text-indent: -999999px; background: url('../../images/denounce.png') left top no-repeat; }
+.denounce a { display: block; text-indent: -999999px; background: url('/images/denounce.png') left top no-repeat; }
 
 /* @group social */
 
@@ -1368,7 +1368,7 @@ input[type=submit]:active { color: #fff; background: #555; }
 }
 
 .social-icon li a {
-  background: url('../../images/social-icons.png') no-repeat left top;
+  background: url('/images/social-icons.png') no-repeat left top;
   cursor: pointer;
   display: block;
   height: 20px;
