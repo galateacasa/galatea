@@ -46,7 +46,7 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
     $scope.user = new users({type : 'designer'});
     $scope.uploader = $fileUploader.create({'method' : 'put'});
     $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'users/' + $scope.user._id + '/photo';
+        item.url = 'users/' + $scope.user.userId + '/photo';
     });
     $scope.uploader.bind('completeall', function () {
         $scope.success = 'Obrigado! Para finalizar o cadastro, verifique o email de confirmação que enviamos para você.';
