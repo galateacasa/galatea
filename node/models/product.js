@@ -9,6 +9,9 @@ schema = new mongoose.Schema({
         'type' : String,
         'required' : true
     },
+    'slug' : {
+        'type' : String
+    },
     'user' : {
         'type' : objectId,
         'ref' : 'User',
@@ -18,6 +21,12 @@ schema = new mongoose.Schema({
         'type' : objectId,
         'ref' : 'Category'
     }],
+    'price' : {
+        'type' : Number
+    },
+    'deadline' : {
+        'type' : Number
+    },
     'images' : [{
         'type' : String
     }],
@@ -35,11 +44,17 @@ schema = new mongoose.Schema({
         },
         'depth' : {
             'type' : Number
+        },
+        'priceIncrease' : {
+            'type' : Number
         }
     }],
     'materials' : [{
         'material' : {
             'type' : String
+        },
+        'priceIncrease' : {
+            'type' : Number
         }
     }],
     'votes' : [{

@@ -1,6 +1,15 @@
-<h2>Produtos</h2>
+<ul>
+    <li ng-repeat="subcategory in category.subcategories">
+        <a ng-href="#/categoria/{{subcategory.categoryId}}">{{subcategory.name}}</a>
+    </li>
+</ul>
+
 <ul>
     <li ng-repeat="product in products">
-        <a ng-href="#/produto/{{product.productId}}">{{product.name}}</a>
+        <a ng-href="#/produto/{{product.productId}}">
+            <img ng-src="{{product.images[0]}}" />
+            {{product.name}}
+            {{product.price}} | 10 x R${{product.price/10}}
+        </a>
     </li>
 </ul>

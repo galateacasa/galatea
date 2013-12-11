@@ -12,3 +12,12 @@ server.get('/categories', function (request, response, next) {
         response.send(200, categories);
     });
 });
+
+server.get('/categories/:categoryId', function (request, response, next) {
+    'use strict';
+
+    Category.findById(request.params.categoryId, function (error, categories) {
+        if (error) { return next(error); }
+        response.send(200, categories);
+    });
+});

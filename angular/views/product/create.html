@@ -16,11 +16,10 @@
     <h2>
         Categorias
     </h2>
-    <div ng-repeat="productCategory in product.categories">
+    <div ng-repeat="category in product.categories">
         <span>
             <label>Categoria</label>
-            <select ng-model="productCategory" ng-options="category.categoryId as category.name for category in categories">
-            </select>
+            <select ng-model="category" ng-options="subcategory as subcategory.name for subcategory in categories"></select>
         </span>
     </div>
     <div ng-click="addCategory()">
