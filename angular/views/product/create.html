@@ -19,7 +19,7 @@
     <div ng-repeat="category in product.categories">
         <span>
             <label>Categoria</label>
-            <select ng-model="category" ng-options="subcategory as subcategory.name for subcategory in categories"></select>
+            <select ng-model="category._id" ng-options="subcategory._id as subcategory.name for subcategory in categories"></select>
         </span>
     </div>
     <div ng-click="addCategory()">

@@ -20,9 +20,9 @@ angular.module('galatea.controllers.institutional', ['ngRoute', 'ngResource', 'r
     $routeProvider.when('/institucional/termos-e-condicoes', {'templateUrl' : 'views/institutional/terms.html'});
     $routeProvider.when('/institucional/condicoes-de-upload', {'templateUrl' : 'views/institutional/upload.html'});
     $routeProvider.when('/mapa-do-site', {'templateUrl' : 'views/institutional/sitemap.html'});
-}).controller('InstitutionalContactController', function ($scope, toaster, contact) {
+}).controller('InstitutionalContactController', function ($scope) {
     'use strict';
-
+/*
     $scope.contact = new contact();
 
     $scope.save = function () {
@@ -31,4 +31,5 @@ angular.module('galatea.controllers.institutional', ['ngRoute', 'ngResource', 'r
             $scope.contact = new contact();
         });
     };
+    */
 });

@@ -9,7 +9,7 @@ if (!server) {
     server.use(Express.compress());
     server.use(Express.urlencoded());
     server.use(Express.json());
-    server.use(Express.multipart());
+    server.use(Express.cookieParser());
     server.use(server.router);
     server.get('/', function (request, response) {
         'use strict';

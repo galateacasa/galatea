@@ -1,17 +1,17 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
     'use strict';
 
     $routeProvider.when('/criar-projeto', {'templateUrl' : 'views/product/create.html', 'controller' : 'ProductCreateController'});
     $routeProvider.when('/categoria/:categoryId', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
     $routeProvider.when('/projeto/:projectId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
     $routeProvider.when('/produto/:productId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
-}).controller('ProductCreateController', function ($rootScope, $scope, $location, $cookieStore, $fileUploader, products, categories) {
+}).controller('ProductCreateController', function ($rootScope, $scope, $location, $fileUploader, product, category) {
     'use strict';
 
-    $scope.product = new products({categories : [], measures : [], materials : []});
-    categories.query(function (categories) {
+    $scope.product = new product({categories : [], measures : [], materials : []});
+    category.query(function (categories) {
         var i, j;
 
         $scope.categories = [];
@@ -21,9 +21,9 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
             }
         }
     });
-    $scope.uploader = $fileUploader.create({'method' : 'post', 'headers' : {'x-xsrf-token' : $cookieStore.get('XSRF-TOKEN')}});
+    $scope.uploader = $fileUploader.create({'method' : 'post'});
     $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'products/' + $scope.product.productId + '/images';
+        item.url = 'products/' + $scope.product._id + '/images';
     });
     $scope.uploader.bind('completeall', function () {
         $scope.success = 'Produto enviado com sucesso';
@@ -43,17 +43,20 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
     };
 
     $scope.save = function () {
+        $scope.product.categories = $scope.product.categories.map(function (category) {
+            return category._id;
+        });
         $scope.product.$save(function () {
             $scope.uploader.uploadAll();
         });
     };
-}).controller('ProductListController', function ($scope, $routeParams, products, categories) {
+}).controller('ProductListController', function ($scope, $routeParams, product, category) {
     'use strict';
 
-    $scope.category = categories.get({'categoryId' : $routeParams.categoryId});
-    $scope.products = products.query({'categoryId' : $routeParams.categoryId});
-}).controller('ProductDetailsController', function ($scope, $routeParams, products) {
+    $scope.category = category.get({'categoryId' : $routeParams.categoryId});
+    $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+}).controller('ProductDetailsController', function ($scope, $routeParams, product) {
     'use strict';
 
-    $scope.product = products.get({'productId' : $routeParams.productId});
+    $scope.product = product.get({'productId' : $routeParams.productId});
 });

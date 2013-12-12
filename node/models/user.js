@@ -82,15 +82,7 @@ schema = new mongoose.Schema({
         }
     }
 },{
-    'collection' : 'users',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('userId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'users'
 });
 
 schema.pre('save', function (next) {
@@ -101,8 +93,7 @@ schema.pre('save', function (next) {
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'userId' : 1,
+    '_id' : 1,
     'name' : 1,
     'surname' : 1,
     'email' : 1,

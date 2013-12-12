@@ -1,17 +1,17 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.ambiance', ['ngRoute', 'ngCookies', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
     'use strict';
 
     $routeProvider.when('/criar-ambiente', {'templateUrl' : 'views/ambiance/create.html', 'controller' : 'AmbianceCreateController'});
     $routeProvider.when('/inspire-me', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
     $routeProvider.when('/inspire-me/:ambianceId', {'templateUrl' : 'views/ambiance/details.html', 'controller' : 'AmbianceDetailsController'});
-}).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $cookieStore, $fileUploader, ambiances, categories) {
+}).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $fileUploader, ambiance, category) {
     'use strict';
 
-    $scope.ambiance = new ambiances({products : []});
-    $scope.categories = categories.query();
-    $scope.uploader = $fileUploader.create({'method' : 'put', 'headers' : {'x-xsrf-token' : $cookieStore.get('XSRF-TOKEN')}});
+    $scope.ambiance = new ambiance({products : []});
+    $scope.categories = category.query();
+    $scope.uploader = $fileUploader.create({'method' : 'put'});
     $scope.uploader.bind('beforeupload', function (event, item) {
         item.url = 'ambiances/' + $scope.ambiance.ambianceId + '/images';
     });
@@ -29,12 +29,12 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'ngCookies', 'angular
             $scope.uploader.uploadAll();
         });
     };
-}).controller('AmbianceListController', function ($scope, $routeParams, ambiances) {
+}).controller('AmbianceListController', function ($scope, $routeParams, ambiance) {
     'use strict';
 
-    $scope.ambiances = ambiances.query();
-}).controller('AmbianceDetailsController', function ($scope, $routeParams, ambiances) {
+    $scope.ambiances = ambiance.query();
+}).controller('AmbianceDetailsController', function ($scope, $routeParams, ambiance) {
     'use strict';
 
-    $scope.ambiance = ambiances.get({'ambianceId' : $routeParams.ambianceId});
+    $scope.ambiance = ambiance.get({'ambianceId' : $routeParams.ambianceId});
 });

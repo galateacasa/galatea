@@ -12,3 +12,12 @@ server.get('/countries', function (request, response, next) {
         response.send(200, countries);
     });
 });
+
+server.get('/countries/:countryId', function (request, response, next) {
+    'use strict';
+
+    Country.findById(request.params.countryId, function (error, country) {
+        if (error) { return next(error); }
+        response.send(200, country);
+    });
+});

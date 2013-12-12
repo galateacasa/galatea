@@ -9,20 +9,11 @@ schema = new mongoose.Schema({
         'required' : true
     }
 },{
-    'collection' : 'contries',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('countryId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'contries'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'countryId' : 1,
+    '_id' : 1,
     'name' : 1
 });
 

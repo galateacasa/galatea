@@ -24,7 +24,7 @@ exports.login = function (id, cb) {
 exports.authenticate = function (request, response, next) {
     'use strict';
 
-    redis.get('token:' + (request.headers['x-xsrf-token'] || '').replace(/\"/g, ''), function (error, id) {
+    redis.get('token:' + (request.cookies['XSRF-TOKEN'] || '').replace(/\"/g, ''), function (error, id) {
         if (error) { return next(error); }
         if (id === null) {
             response.send(401, {'error' : 'invalid token'});

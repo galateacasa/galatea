@@ -28,20 +28,11 @@ schema = new mongoose.Schema({
         'type' : String
     }
 },{
-    'collection' : 'contacts',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('contactId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'contacts'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'contactId' : 1,
+    '_id' : 1,
     'name' : 1,
     'email' : 1,
     'areaCode' : 1,

@@ -9,12 +9,12 @@ angular.module('galatea', ['ngCookies', 'galatea.controllers.institutional', 'ga
         cookie : true,
         xfbml : true
     });
-}).run(function ($rootScope, $cookieStore, $location, users, categories) {
+}).run(function ($rootScope, $cookieStore, $location, user, category) {
     'use strict';
 
     if ($location.search().token) {
         $cookieStore.put('XSRF-TOKEN', $location.search().token);
     }
-    $rootScope.categories = categories.query();
-    $rootScope.user = users.get({'userId' : 'me'});
+    $rootScope.categories = category.query();
+    $rootScope.user = user.get({'userId' : 'me'});
 });
