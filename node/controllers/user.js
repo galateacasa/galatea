@@ -17,7 +17,7 @@ server.post('/users', function (request, response) {
         'surname' : request.param('surname'),
         'password' : request.param('password'),
         'type' : request.param('type'),
-        'address' : request.param('address'),
+        'addresses' : request.param('addresses'),
         'company' : request.param('company'),
         'phone' : request.param('phone')
     });

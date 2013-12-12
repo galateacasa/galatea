@@ -43,7 +43,7 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
 }).controller('UserSignupController', function ($scope, $location, $fileUploader, user, country, state, city, expertise) {
     'use strict';
 
-    $scope.user = new user({type : 'designer'});
+    $scope.user = new user({type : 'designer', addresses : [{}]});
     $scope.uploader = $fileUploader.create({'method' : 'put'});
     $scope.uploader.bind('beforeupload', function (event, item) {
         item.url = 'users/' + $scope.user.userId + '/photo';

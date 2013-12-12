@@ -47,7 +47,7 @@ schema = new mongoose.Schema({
             'ref' : 'Expertise'
         }
     },
-    'address' : {
+    'addresses' : [{
         'zipcode' : {
             'type' : String
         },
@@ -72,7 +72,7 @@ schema = new mongoose.Schema({
             'type' : objectId,
             'ref' : 'City'
         }
-    },
+    }],
     'phone' : {
         'areaCode' : {
             'type' : Number
@@ -101,7 +101,7 @@ schema.plugin(require('mongoose-json-select'), {
     'photo' : 1,
     'type' : 1,
     'company' : 1,
-    'address' : 1,
+    'addresses' : 1,
     'phone' : 1
 });
 
