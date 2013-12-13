@@ -43,7 +43,7 @@ server.get('/products/:productId', function (request, response, next) {
     });
 });
 
-server.post('/products/:productId/images', auth.authenticate, require('connect-multiparty'), function (request, response) {
+server.post('/products/:productId/images', auth.authenticate, require('connect-multiparty')(), function (request, response) {
     'use strict';
 
     Product.findById(request.params.productId, function (error, product) {

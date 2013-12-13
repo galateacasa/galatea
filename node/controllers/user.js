@@ -27,7 +27,7 @@ server.post('/users', function (request, response) {
     });
 });
 
-server.put('/users/:userId/photo', require('connect-multiparty'), function (request, response) {
+server.put('/users/:userId/photo', require('connect-multiparty')(), function (request, response) {
     'use strict';
 
     User.findById(request.params.userId, function (error, user) {

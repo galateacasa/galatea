@@ -44,7 +44,7 @@ server.get('/ambiances/:ambianceId', function (request, response, next) {
     });
 });
 
-server.put('/ambiances/:ambianceId/images', auth.authenticate, require('connect-multiparty'), function (request, response) {
+server.put('/ambiances/:ambianceId/images', auth.authenticate, require('connect-multiparty')(), function (request, response) {
     'use strict';
 
     Ambiance.findById(request.params.ambianceId, function (error, ambiance) {
