@@ -1,5 +1,5 @@
 /*global angular:false*/
-angular.module('galatea', ['ngCookies', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'resources', 'facebook']).config(function ($facebookProvider) {
+angular.module('galatea', ['galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider) {
     'use strict';
 
     $facebookProvider.init({
@@ -9,12 +9,9 @@ angular.module('galatea', ['ngCookies', 'galatea.controllers.institutional', 'ga
         cookie : true,
         xfbml : true
     });
-}).run(function ($rootScope, $cookieStore, $location, user, category) {
+}).run(function ($rootScope, user, category) {
     'use strict';
 
-    if ($location.search().token) {
-        $cookieStore.put('XSRF-TOKEN', $location.search().token);
-    }
     $rootScope.categories = category.query();
     $rootScope.user = user.get({'userId' : 'me'});
 });

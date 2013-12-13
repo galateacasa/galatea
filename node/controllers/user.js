@@ -62,14 +62,14 @@ server.put('/users/:userId/email-confirmation', auth.authenticate, function (req
 server.get('/users/:userId', auth.authenticate, function (request, response) {
     'use strict';
 
-    User.findById(request.params.userId === 'me' ? request.userId : request.params.userId, function (error, user) {
+    User.findById(request.params.userId === 'me' ? request.userId : request.params.userId).populate('addresses.country').populate('addresses.state').populate('addresses.city').populate('cart.product').exec(function (error, user) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(404, new Error('user not found')); }
         response.send(200, user);
     });
 });
 
-server.post('/sessions', function (request, response) {
+server.post('/users/me/login', function (request, response) {
     'use strict';
 
     User.findOne({email : request.param('email'), password : request.param('password')}, function (error, user) {

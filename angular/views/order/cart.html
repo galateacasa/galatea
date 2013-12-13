@@ -1,0 +1,9 @@
+<select ng-model="order.address" ng-options="address._id as address.zipCode for address in user.addresses"></select>
+<a href="#/minha-conta">novo endereço</a>
+
+<ul>
+    <li ng-repeat="item in cart">
+        {{item.product.name}}
+        <input type="text" ng-model="item.quantity">
+    </li>
+</ul>

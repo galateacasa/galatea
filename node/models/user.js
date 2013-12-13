@@ -84,7 +84,7 @@ schema = new mongoose.Schema({
     'cart' : [{
         'product' : {
             'type' : objectId,
-            'ref' : 'Category',
+            'ref' : 'Product',
             'required' : true
         },
         'material' : {
@@ -121,7 +121,8 @@ schema.plugin(require('mongoose-json-select'), {
     'type' : 1,
     'company' : 1,
     'addresses' : 1,
-    'phone' : 1
+    'phone' : 1,
+    'cart' : 1
 });
 
 mongoose.model('User', schema);

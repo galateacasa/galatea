@@ -5,19 +5,27 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
 
     $routeProvider.when('/entrar', {'templateUrl' : 'views/user/login.html'});
     $routeProvider.when('/sair', {'templateUrl' : 'views/user/logout.html', 'controller' : 'UserLogoutController'});
-    $routeProvider.when('/confirmar-email', {'templateUrl' : 'views/home/home.html', 'controller' : 'UserEmailConfirmationController'});
-}).controller('UserEmailConfirmationController', function ($rootScope, $scope, $location, $http) {
+    $routeProvider.when('/confirmar-email', {'templateUrl' : 'views/user/account.html', 'controller' : 'UserEmailConfirmationController'});
+    $routeProvider.when('/minha-conta', {'templateUrl' : 'views/user/account.html', 'controller' : 'UserAccountController'});
+}).controller('UserEmailConfirmationController', function ($rootScope, $scope, $cookies, $location, user) {
     'use strict';
 
-    $http.put('/users/' + $location.search().userId + '/email-confirmation').success(function (user) {
-        $rootScope.user = user;
-        $scope.success = 'Email confirmado com sucesso!';
-    });
+    if ($location.search().token) {
+        $cookies['XSRF-TOKEN'] = $location.search().token;
+    }
+
+    setTimeout(function () {
+        $rootScope.user = user.get({'userId' : 'me'}, function () {
+            $rootScope.user.$emailConfirmation(function () {
+                $scope.success = 'Email confirmado com sucesso!';
+                $location.path('/');
+            });
+        });
+    }, 1000);
 }).controller('UserLogoutController', function ($rootScope, $cookieStore) {
     'use strict';
 
     $cookieStore.remove('XSRF-TOKEN');
-    $cookieStore.remove('userId');
     delete $rootScope.user;
 }).controller('UserFacebookLoginController', function ($rootScope, $scope, $facebook, user) {
     'use strict';
@@ -27,17 +35,15 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
     $scope.save = function () {
         $facebook.login();
     };
-}).controller('UserLoginController', function ($rootScope, $scope, $location, $http, user) {
+}).controller('UserLoginController', function ($rootScope, $scope, $location, user) {
     'use strict';
 
     $scope.user = new user();
 
     $scope.save = function () {
-        $http.post('/sessions', $scope.user).success(function (user) {
+        $scope.user.$login(function (user) {
             $rootScope.user = user;
             $location.path('/');
-        }).error(function () {
-            $scope.error = 'Senha inválida';
         });
     };
 }).controller('UserSignupController', function ($scope, $location, $fileUploader, user, country, state, city, expertise) {
@@ -68,5 +74,17 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
         $scope.user.$save(function () {
             $scope.uploader.uploadAll();
         });
+    };
+}).controller('UserAccountController', function ($rootScope, $scope, user) {
+    'use strict';
+
+    $scope.user = user.get({'userId' : 'me'});
+
+    $scope.addAddress = function () {
+        $scope.user.addresses.push({});
+    };
+
+    $scope.save = function () {
+        $scope.user.$save();
     };
 });

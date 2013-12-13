@@ -1,0 +1,99 @@
+<form ng-submit="save()" novalidate>
+    <h2>Seus dados</h2>
+    <div>
+        <span>
+            <em>&nbsp;</em>
+            <input type="text" placeholder="nome" ng-model="user.name">
+        </span>
+        <span>
+            <em>&nbsp;</em>
+            <input type="text" placeholder="sobrenome" ng-model="user.surname">
+        </span>
+    </div>
+    <h2>Endereços</h2>
+    <div ng-repeat="address in user.addresses">
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <input type="text" placeholder="cep" ng-model="address.zipcode">
+            </span>
+        </div>
+        <div>
+            <span>
+                <em class="imp">&nbsp;</em>
+                <input type="text" placeholder="rua/avenida" ng-model="address.street">
+            </span>
+        </div>
+        <div>
+            <span>
+                <em class="imp">&nbsp;</em>
+                <input type="text" placeholder="número" ng-model="address.number">
+            </span>
+        </div>
+        <div>
+            <span>
+                <input type="text" placeholder="complemento" ng-model="address.complement">
+            </span>
+        </div>
+        <div>
+            <span>
+                <select ng-model="address.country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
+                    <option value="">País</option>
+                </select>
+            </span>
+        </div>
+        <div>
+            <span>
+                <select ng-model="address.state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
+                    <option value="">Estado</option>
+                </select>
+            </span>
+        </div>
+        <div>
+            <span>
+                <select ng-model="address.city" ng-options="city.cityId as city.name for city in cities">
+                    <option value="">Cidade</option>
+                </select>
+            </span>
+        </div>
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <input type="text" placeholder="DDD" ng-model="user.phone.areaCode">
+            </span>
+        </div>
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <input type="text" placeholder="telefone" ng-model="user.phone.number">
+            </span>
+        </div>
+    </div>
+    <div ng-click="addAddress()">
+        Adicionar endereço
+    </div>
+    <div ng-show="user.type==='supplier'">
+        <h2>Dados da empresa</h2>
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <input type="text" placeholder="razão social" ng-model="user.company.name">
+            </span>
+        </div>
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <input type="text" placeholder="cnpj" ng-model="user.company.cnpj">
+            </span>
+        </div>
+        <div>
+            <span>
+                <em>&nbsp;</em>
+                <select ng-model="user.company.expertise" ng-options="expertise.expertiseId as expertise.name for expertise in expertises">
+                    <option value="">Selecione a sua área de atuação</option>
+                </select>
+            </span>
+        </div>
+    </div>
+    <input type="submit" value="CADASTRAR">
+</form>
