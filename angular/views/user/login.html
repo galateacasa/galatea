@@ -1,164 +1,202 @@
-<section ng-controller="UserLoginController">
-    <form ng-submit="save()">
-        <h2>Login</h2>
-        <div>
-            <input type="text" placeholder="email" ng-model="user.email" >
-        </div>
-        <div>
-            <input type="password" placeholder="senha" ng-model="user.password" >
-            <input type="submit" value="login">
-        </div>
-        <div>
-            <a href="#/esqueci-minha-senha">esqueceu sua senha?</a>
-            <div>
-                <input type="checkbox" name="keep_logged" value="1">
-                <label for="check-1" class="">manter logado</label>
-            </div>
-        </div>
-    </form>
-</section>
+	<section class="grid_11">
+			<section ng-controller="UserLoginController" class="login-fields">
+				<form ng-submit="save()">
+					<h2>Login</h2>
+					<div>
+						<input type="text" placeholder="email" ng-model="user.email" class="email" >
+					</div>
+					<div>
+						<input type="password" placeholder="senha" ng-model="user.password" class="pwd">
+						<input type="submit" class="button" value="login">
+					</div>
+					<div class="grid_4">
+						<a href="#/esqueci-minha-senha">esqueceu sua senha?</a>
+						<div class="custom-checkbox">
+				            <input type="checkbox" name="keep_logged" id="check-1" value="1">
+				            <label for="check-1" class="">manter logado</label>
+			          </div>
+					</div>
+				</form>
+			</section>
+	
+			<section ng-controller="UserFacebookLoginController" class="connect-fb grid_4">
+		<form>
+			<h2>Login via Facebook</h2>
+			<a href="">
+				<img src="images/icon-fb.jpg" title="fb-login" ng-click="save()">
+			</a>
+		</form>
+	</section>
+	</section>
+</div>
 
-<section ng-controller="UserFacebookLoginController">
-    <form>
-        <h2>Login via Facebook</h2>
-        <a href="">
-            <img src="images/icon-fb.jpg" title="fb-login" ng-click="save()">
-        </a>
-    </form>
-</section>
-
-<section ng-controller="UserSignupController">
-    <form ng-submit="save()" novalidate>
-        <h2>Ou Cadastre-se!</h2>
-        <div>
-            <div>
-                <input type="file" ng-file-select>
-            </div>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <select ng-model="user.type">
-                    <option value="designer">SOU DESIGNER</option>
-                    <option value="client">SOU CLIENTE</option>
-                    <option value="supplier">SOU FORNECEDOR</option>
-                    <option value="decorator">SOU DECORADOR</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="nome" ng-model="user.name">
-            </span>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="sobrenome" ng-model="user.surname">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="email" placeholder="email" ng-model="user.email">
-            </span>
-            <span >
-                <em>&nbsp;</em>
-                <input type="email" placeholder="confirmar email" ng-model="user.confirmEmail">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="password" placeholder="senha" ng-model="user.password">
-            </span>
-            <span>
-                <em>&nbsp;</em>
-                <input type="password" placeholder="confirmar senha" ng-model="user.confirmPassword">
-            </span>
-        </div>
-        <div ng-show="user.type==='supplier'">
-            <h2>Dados da empresa</h2>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <input type="text" placeholder="razão social" ng-model="user.company.name">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <input type="text" placeholder="cnpj" ng-model="user.company.cnpj">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <select ng-model="user.company.expertise" ng-options="expertise.expertiseId as expertise.name for expertise in expertises">
-                        <option value="">Selecione a sua área de atuação</option>
-                    </select>
-                </span>
-            </div>
-            <h2>Endereço</h2>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <input type="text" placeholder="cep" ng-model="user.addresses[0].zipcode">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em class="imp">&nbsp;</em>
-                    <input type="text" placeholder="rua/avenida" ng-model="user.addresses[0].street">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em class="imp">&nbsp;</em>
-                    <input type="text" placeholder="número" ng-model="user.addresses[0].number">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <input type="text" placeholder="complemento" ng-model="user.addresses[0].complement">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <select ng-model="user.addresses[0].country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
-                        <option value="">País</option>
-                    </select>
-                </span>
-            </div>
-            <div>
-                <span>
-                    <select ng-model="user.addresses[0].state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
-                        <option value="">Estado</option>
-                    </select>
-                </span>
-            </div>
-            <div>
-                <span>
-                    <select ng-model="user.addresses[0].city" ng-options="city.cityId as city.name for city in cities">
-                        <option value="">Cidade</option>
-                    </select>
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <input type="text" placeholder="DDD" ng-model="user.phone.areaCode">
-                </span>
-            </div>
-            <div>
-                <span>
-                    <em>&nbsp;</em>
-                    <input type="text" placeholder="telefone" ng-model="user.phone.number">
-                </span>
-            </div>
-        </div>
-        <input type="submit" value="CADASTRAR">
-        <span>
-            Clicando em CADASTRAR, você estará concordando com os <a href="#/institucional/termos-e-condicoes">Termos do site</a> e que você leu nossa <a href="#/institucional/termos-e-condicoes">política de uso de informações</a>, incluindo o relacionado a Cookies.
-        </span>
-    </form>
-</section>
+<div class="login-division">
+	  <section class="container_12">
+    
+	    <section class="grid_11 tabbing" ng-controller="UserSignupController">
+	    	
+		    <form ng-submit="save()" novalidate id="frm_new_user">
+	        
+	        <h2>Ou Cadastre-se!</h2>
+	        	        
+	        <div class="tabbing-content">
+	        	
+	        	<div class="up-image-box">
+	        			<figure class="upload-frame">
+	        				<figcaption>foto</figcaption>
+	        				<span id="user_drop_image" class="frame">
+	        					Arraste a imagem para esta área
+	        				</span>
+	        				<small id="user_drop_image_response">&nbsp;</small>
+	        			</figure>			
+	        			<div class="file-submit file-upload-inline">
+	        				<div class="customfile">
+	        					<span class="customfile-button" aria-hidden="true">Selecione</span>
+	        					<span class="customfile-feedback" aria-hidden="true">Nenhum arquivo selecionado</span>
+	        					<input type="file" ng-file-select id="user_image" class="file-upload-styled customfile-input" style="left: -230px;"></div>
+	        			</div>	
+	        			
+	        			
+	        					
+	        		</div>        		
+		        <div class="login-forms grid_6 omega">
+				
+					<div class="user-type">
+						<select ng-model="user.type">
+							<option value="designer">SOU DESIGNER</option>
+							<option value="client">SOU CLIENTE</option>
+							<option value="supplier">SOU FORNECEDOR</option>
+							<option value="decorator">SOU DECORADOR</option>
+						</select>
+					</div>
+					<div>
+						<span>
+							<em>&nbsp;</em>
+							<input type="text" placeholder="nome" ng-model="user.name" class="name-text">
+						</span>
+						<span>
+							<em>&nbsp;</em>
+							<input type="text" placeholder="sobrenome" ng-model="user.surname" class="sur-name">
+						</span>
+					</div>
+					<div>
+						<span>
+							<em>&nbsp;</em>
+							<input type="email" placeholder="email" ng-model="user.email" class="equal-text">
+						</span>
+						<span >
+							<em>&nbsp;</em>
+							<input type="email" placeholder="confirmar email" ng-model="user.confirmEmail" class="equal-text">
+						</span>
+					</div>
+					<div>
+						<span>
+							<em>&nbsp;</em>
+							<input type="password" placeholder="senha" ng-model="user.password" class="equal-text">
+						</span>
+						<span>
+							<em>&nbsp;</em>
+							<input type="password" placeholder="confirmar senha" ng-model="user.confirmPassword" class="equal-text">
+						</span>
+					</div>
+					
+					
+					<div ng-show="user.type==='supplier'">
+						<h2>Dados da empresa</h2>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<input type="text" placeholder="razão social" ng-model="user.company.name">
+							</span>
+						</div>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<input type="text" placeholder="cnpj" ng-model="user.company.cnpj">
+							</span>
+						</div>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<select ng-model="user.company.expertise" ng-options="expertise.expertiseId as expertise.name for expertise in expertises">
+									<option value="">Selecione a sua área de atuação</option>
+								</select>
+							</span>
+						</div>
+						<h2>Endereço</h2>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<input type="text" placeholder="cep" ng-model="user.addresses[0].zipcode">
+							</span>
+						</div>
+						<div>
+							<span>
+								<em class="imp">&nbsp;</em>
+								<input type="text" placeholder="rua/avenida" ng-model="user.addresses[0].street">
+							</span>
+						</div>
+						<div>
+							<span>
+								<em class="imp">&nbsp;</em>
+								<input type="text" placeholder="número" ng-model="user.addresses[0].number">
+							</span>
+						</div>
+						<div>
+							<span>
+								<input type="text" placeholder="complemento" ng-model="user.addresses[0].complement">
+							</span>
+						</div>
+						<div>
+							<span>
+								<select ng-model="user.addresses[0].country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
+									<option value="">País</option>
+								</select>
+							</span>
+						</div>
+						<div>
+							<span>
+								<select ng-model="user.addresses[0].state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
+									<option value="">Estado</option>
+								</select>
+							</span>
+						</div>
+						<div>
+							<span>
+								<select ng-model="user.addresses[0].city" ng-options="city.cityId as city.name for city in cities">
+									<option value="">Cidade</option>
+								</select>
+							</span>
+						</div>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<input type="text" placeholder="DDD" ng-model="user.phone.areaCode">
+							</span>
+						</div>
+						<div>
+							<span>
+								<em>&nbsp;</em>
+								<input type="text" placeholder="telefone" ng-model="user.phone.number">
+							</span>
+						</div>
+					</div>
+				
+				</div>
+	        
+	        </div>
+	        
+	        <section class="grid_7 float-r" style="margin-right:40px;">
+	          <input type="submit" class="button float-r" value="cadastrar">
+	          <span class="grid_4 terms-con alpha float-r">
+	            Clicando em CADASTRAR, você estará concordando com os <a href="http://new.galateacasa.com.br/site/about/index/terms" target="_blank">Termos do site</a> e que você leu nossa <a href="http://new.galateacasa.com.br/site/about/index/terms#privacity" target="_blank">política de uso de informações</a>, incluindo o relacionado a Cookies.
+	          </span>
+	        </section>
+	        
+	        
+	    </form>
+		    
+		    <div class="clearfix" ></div>
+	
+		</section>
+	</section>
