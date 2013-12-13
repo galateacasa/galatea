@@ -14,20 +14,11 @@ schema = new mongoose.Schema({
         'ref' : 'Country'
     }
 },{
-    'collection' : 'states',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('stateId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'states'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'stateId' : 1,
+    '_id' : 1,
     'name' : 1
 });
 

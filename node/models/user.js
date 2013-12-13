@@ -47,7 +47,7 @@ schema = new mongoose.Schema({
             'ref' : 'Expertise'
         }
     },
-    'address' : {
+    'addresses' : [{
         'zipcode' : {
             'type' : String
         },
@@ -72,7 +72,7 @@ schema = new mongoose.Schema({
             'type' : objectId,
             'ref' : 'City'
         }
-    },
+    }],
     'phone' : {
         'areaCode' : {
             'type' : Number
@@ -82,15 +82,7 @@ schema = new mongoose.Schema({
         }
     }
 },{
-    'collection' : 'users',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('userId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'users'
 });
 
 schema.pre('save', function (next) {
@@ -101,8 +93,7 @@ schema.pre('save', function (next) {
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'userId' : 1,
+    '_id' : 1,
     'name' : 1,
     'surname' : 1,
     'email' : 1,
@@ -110,7 +101,7 @@ schema.plugin(require('mongoose-json-select'), {
     'photo' : 1,
     'type' : 1,
     'company' : 1,
-    'address' : 1,
+    'addresses' : 1,
     'phone' : 1
 });
 

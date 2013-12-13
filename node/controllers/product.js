@@ -43,7 +43,7 @@ server.get('/products/:productId', function (request, response, next) {
     });
 });
 
-server.post('/products/:productId/images', auth.authenticate, function (request, response) {
+server.post('/products/:productId/images', auth.authenticate, require('connect-multiparty')(), function (request, response) {
     'use strict';
 
     Product.findById(request.params.productId, function (error, product) {
@@ -51,6 +51,7 @@ server.post('/products/:productId/images', auth.authenticate, function (request,
         if (!product) { return response.send(404, new Error('product not found')); }
 
         cloudinary.uploader.upload(request.files.file.path, function(result) {
+            console.log(result);
             product.images.push(result.url);
             product.save(function (error) {
                 if (error) { return response.send(400, error); }

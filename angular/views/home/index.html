@@ -55,7 +55,7 @@
                     </section>
                     <section class="grid_6 omega">
                         <ul>
-                            <li ng-show="user.userId">
+                            <li ng-show="user._id">
                                 <a href="" class="padd-new">Ol&#225; {{user.name}}</a>
                                 <div class="drop-down">
                                     <ul>
@@ -80,10 +80,10 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li ng-hide="user.userId">
+                            <li ng-hide="user._id">
                                 <a href="#/entrar" class="padd-new">Entrar</a>
                             </li>
-                            <li ng-show="user.userId">
+                            <li ng-show="user._id">
                                 <a href="#"><span>Enviar</span></a>
                                 <div class="drop-down">
                                     <ul>
@@ -106,7 +106,7 @@
             <section class="container_12">
                 <nav class="grid_12">
                     <li ng-repeat="category in categories" >
-                        <a ng-href="#/categoria/{{category.categoryId}}">{{category.name}}</a>
+                        <a ng-href="#/categoria/{{category._id}}">{{category.name}}</a>
                     </li>
                 </nav>
             </section>

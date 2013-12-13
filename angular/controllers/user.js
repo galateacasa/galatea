@@ -19,18 +19,18 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
     $cookieStore.remove('XSRF-TOKEN');
     $cookieStore.remove('userId');
     delete $rootScope.user;
-}).controller('UserFacebookLoginController', function ($rootScope, $scope, $facebook, users) {
+}).controller('UserFacebookLoginController', function ($rootScope, $scope, $facebook, user) {
     'use strict';
 
-    $scope.user = new users();
+    $scope.user = new user();
 
     $scope.save = function () {
         $facebook.login();
     };
-}).controller('UserLoginController', function ($rootScope, $scope, $location, $http, users) {
+}).controller('UserLoginController', function ($rootScope, $scope, $location, $http, user) {
     'use strict';
 
-    $scope.user = new users();
+    $scope.user = new user();
 
     $scope.save = function () {
         $http.post('/sessions', $scope.user).success(function (user) {
@@ -40,10 +40,10 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
             $scope.error = 'Senha inválida';
         });
     };
-}).controller('UserSignupController', function ($scope, $location, $fileUploader, users, countries, states, cities, expertises) {
+}).controller('UserSignupController', function ($scope, $location, $fileUploader, user, country, state, city, expertise) {
     'use strict';
 
-    $scope.user = new users({type : 'designer'});
+    $scope.user = new user({type : 'designer', addresses : [{}]});
     $scope.uploader = $fileUploader.create({'method' : 'put'});
     $scope.uploader.bind('beforeupload', function (event, item) {
         item.url = 'users/' + $scope.user.userId + '/photo';
@@ -53,15 +53,15 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
         $location.path('/');
     });
 
-    $scope.countries = countries.query();
-    $scope.expertises = expertises.query();
+    $scope.countries = country.query();
+    $scope.expertises = expertise.query();
 
     $scope.loadStates = function () {
-        $scope.states = states.query({countryId : $scope.user.address.country});
+        $scope.states = state.query({countryId : $scope.user.address.country});
     };
 
     $scope.loadCities = function () {
-        $scope.cities = cities.query({countryId : $scope.user.address.country, stateId : $scope.user.address.state});
+        $scope.cities = city.query({countryId : $scope.user.address.country, stateId : $scope.user.address.state});
     };
 
     $scope.save = function () {

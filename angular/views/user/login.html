@@ -102,43 +102,43 @@
             <div>
                 <span>
                     <em>&nbsp;</em>
-                    <input type="text" placeholder="cep" ng-model="user.address.zipcode">
+                    <input type="text" placeholder="cep" ng-model="user.addresses[0].zipcode">
                 </span>
             </div>
             <div>
                 <span>
                     <em class="imp">&nbsp;</em>
-                    <input type="text" placeholder="rua/avenida" ng-model="user.address.street">
+                    <input type="text" placeholder="rua/avenida" ng-model="user.addresses[0].street">
                 </span>
             </div>
             <div>
                 <span>
                     <em class="imp">&nbsp;</em>
-                    <input type="text" placeholder="número" ng-model="user.address.number">
+                    <input type="text" placeholder="número" ng-model="user.addresses[0].number">
                 </span>
             </div>
             <div>
                 <span>
-                    <input type="text" placeholder="complemento" ng-model="user.address.complement">
+                    <input type="text" placeholder="complemento" ng-model="user.addresses[0].complement">
                 </span>
             </div>
             <div>
                 <span>
-                    <select ng-model="user.address.country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
+                    <select ng-model="user.addresses[0].country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
                         <option value="">País</option>
                     </select>
                 </span>
             </div>
             <div>
                 <span>
-                    <select ng-model="user.address.state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
+                    <select ng-model="user.addresses[0].state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
                         <option value="">Estado</option>
                     </select>
                 </span>
             </div>
             <div>
                 <span>
-                    <select ng-model="user.address.city" ng-options="city.cityId as city.name for city in cities">
+                    <select ng-model="user.addresses[0].city" ng-options="city.cityId as city.name for city in cities">
                         <option value="">Cidade</option>
                     </select>
                 </span>

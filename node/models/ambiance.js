@@ -38,20 +38,11 @@ schema = new mongoose.Schema({
         'required' : true
     }]
 },{
-    'collection' : 'ambiances',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('ambianceId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'ambiances'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'ambianceId' : 1,
+    '_id' : 1,
     'name' : 1,
     'user' : 1,
     'category' : 1,

@@ -63,20 +63,11 @@ schema = new mongoose.Schema({
         'required' : true
     }]
 },{
-    'collection' : 'products',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('productId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'products'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'productId' : 1,
+    '_id' : 1,
     'name' : 1,
     'description' : 1,
     'user' : 1,

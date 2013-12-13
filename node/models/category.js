@@ -16,23 +16,18 @@ schema = new mongoose.Schema({
         'name' : {
             'type' : String,
             'required' : true
+        },
+        'slug' : {
+            'type' : String,
+            'required' : true
         }
     }]
 },{
-    'collection' : 'categories',
-    'toJSON' : {'virtuals' : true},
-    'toObject' : {'virtuals' : true}
-});
-
-schema.virtual('categoryId').get(function () {
-    'use strict';
-
-    return this._id;
+    'collection' : 'categories'
 });
 
 schema.plugin(require('mongoose-json-select'), {
-    '_id' : 0,
-    'categoryId' : 1,
+    '_id' : 1,
     'name' : 1,
     'subcategories' : 1
 });

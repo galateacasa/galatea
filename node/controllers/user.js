@@ -17,7 +17,7 @@ server.post('/users', function (request, response) {
         'surname' : request.param('surname'),
         'password' : request.param('password'),
         'type' : request.param('type'),
-        'address' : request.param('address'),
+        'addresses' : request.param('addresses'),
         'company' : request.param('company'),
         'phone' : request.param('phone')
     });
@@ -27,7 +27,7 @@ server.post('/users', function (request, response) {
     });
 });
 
-server.put('/users/:userId/photo', function (request, response) {
+server.put('/users/:userId/photo', require('connect-multiparty')(), function (request, response) {
     'use strict';
 
     User.findById(request.params.userId, function (error, user) {
