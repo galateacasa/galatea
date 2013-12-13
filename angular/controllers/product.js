@@ -60,7 +60,14 @@ angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', '
 
     $scope.cart = {};
     $scope.addToCart = function () {
-        $rootScope.user.$addToCart();
+        $rootScope.user.$addToCart({
+            product : $scope.product._id,
+            measure : $scope.cart.measure,
+            material : $scope.cart.material,
+            quantity : $scope.cart.quantity
+        }, function () {
+            $location.path('/carrinho-de-compras');
+        });
     };
 
     $scope.product = product.get({'productId' : $routeParams.productId});
