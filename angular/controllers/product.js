@@ -4,7 +4,7 @@ angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', '
     'use strict';
 
     $routeProvider.when('/criar-projeto', {'templateUrl' : 'views/product/create.html', 'controller' : 'ProductCreateController'});
-    $routeProvider.when('/categoria/:categoryId', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
+    $routeProvider.when('/categoria/:categoryId/:subCategoryId?', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
     $routeProvider.when('/projeto/:projectId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
     $routeProvider.when('/produto/:productId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
 }).controller('ProductCreateController', function ($rootScope, $scope, $location, $fileUploader, product, category) {
@@ -54,7 +54,12 @@ angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', '
     'use strict';
 
     $scope.category = category.get({'categoryId' : $routeParams.categoryId});
-    $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+
+    if ($routeParams.subCategoryId) {
+        $scope.products = product.query({'categoryId' : $routeParams.subCategoryId});
+    } else {
+        $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+    }
 }).controller('ProductDetailsController', function ($rootScope, $scope, $routeParams, $location, product) {
     'use strict';
 

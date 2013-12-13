@@ -1,6 +1,7 @@
-var mongoose, server, schema;
+var mongoose, server, schema, objectId;
 
 mongoose = require('mongoose');
+objectId = mongoose.Schema.Types.ObjectId;
 server   = require('../modules/server');
 
 schema = new mongoose.Schema({
@@ -12,16 +13,9 @@ schema = new mongoose.Schema({
         'type' : String,
         'required' : true
     },
-    'subcategories' : [{
-        'name' : {
-            'type' : String,
-            'required' : true
-        },
-        'slug' : {
-            'type' : String,
-            'required' : true
-        }
-    }]
+    'parent' : {
+        'type' : objectId
+    }
 },{
     'collection' : 'categories'
 });
@@ -29,6 +23,7 @@ schema = new mongoose.Schema({
 schema.plugin(require('mongoose-json-select'), {
     '_id' : 1,
     'name' : 1,
+    'slug' : 1,
     'subcategories' : 1
 });
 
