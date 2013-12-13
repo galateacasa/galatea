@@ -76,7 +76,7 @@ schema.plugin(require('mongoose-json-select'), {
     'status' : 1,
     'price' : 1,
     'measures' : 1,
-    'material' : 1,
+    'materials' : 1,
     'votes' : 1
 });
 

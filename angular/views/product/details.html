@@ -8,6 +8,14 @@
         {{product.name}}
     </span>
 </div>
+
+<form ng-submit="addToCart()">
+    <select ng-model="cart.measure" ng-options="measure._id as measure.width + 'x' + measure.height + 'x' + measure.depth for measure in product.measures"></select>
+    <select ng-model="cart.material" ng-options="material._id as material.material for material in product.materials"></select>
+    <input type="text" ng-model="cart.quantity">
+    <input type="submit" value="adicionar ao carrinho">
+</form>
+
 <h2>
     Categorias
 </h2>

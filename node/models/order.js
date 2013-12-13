@@ -34,7 +34,8 @@ schema = new mongoose.Schema({
     },
     'status' : {
         'type' : String,
-        'enum' : ['pending', 'payed']
+        'enum' : ['pending', 'payed'],
+        'default' : 'pending'
     }
 },{
     'collection' : 'orders'
