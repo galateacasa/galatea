@@ -80,7 +80,26 @@ schema = new mongoose.Schema({
         'number' : {
             'type' : String
         }
-    }
+    },
+    'cart' : [{
+        'product' : {
+            'type' : objectId,
+            'ref' : 'Category',
+            'required' : true
+        },
+        'material' : {
+            'type' : objectId,
+            'required' : true
+        },
+        'measure' : {
+            'type' : objectId,
+            'required' : true
+        },
+        'quantity' : {
+            'type' : Number,
+            'required' : true
+        }
+    }]
 },{
     'collection' : 'users'
 });

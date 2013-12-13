@@ -6,7 +6,7 @@
 
 <ul>
     <li ng-repeat="product in products">
-        <a ng-href="#/produto/{{product.productId}}">
+        <a ng-href="#/produto/{{product._id}}">
             <img ng-src="{{product.images[0]}}" />
             {{product.name}}
             {{product.price}} | 10 x R${{product.price/10}}

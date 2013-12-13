@@ -55,8 +55,13 @@ angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', '
 
     $scope.category = category.get({'categoryId' : $routeParams.categoryId});
     $scope.products = product.query({'categoryId' : $routeParams.categoryId});
-}).controller('ProductDetailsController', function ($scope, $routeParams, product) {
+}).controller('ProductDetailsController', function ($rootScope, $scope, $routeParams, $location, product) {
     'use strict';
+
+    $scope.cart = {};
+    $scope.addToCart = function () {
+        $rootScope.user.$addToCart();
+    };
 
     $scope.product = product.get({'productId' : $routeParams.productId});
 });
