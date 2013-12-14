@@ -28,7 +28,7 @@ server.post('/products', auth.authenticate, function (request, response) {
 server.get('/products', function (request, response, next) {
     'use strict';
 
-    Product.find({'categories' : request.param('categoryId')}, function (error, ambiances) {
+    Product.find({'categories' : request.param('categoryId')}).populate('user').populate('categories').exec(function (error, ambiances) {
         if (error) { return next(error); }
         response.send(200, ambiances);
     });
@@ -37,7 +37,7 @@ server.get('/products', function (request, response, next) {
 server.get('/products/:productId', function (request, response, next) {
     'use strict';
 
-    Product.findById(request.params.productId).populate('categories').exec(function (error, product) {
+    Product.findById(request.params.productId).populate('user').populate('categories').exec(function (error, product) {
         if (error) { return next(error); }
         response.send(200, product);
     });

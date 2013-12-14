@@ -1,61 +1,95 @@
-<h2>
-    Produto
-</h2>
-<img ng-src="{{image}}" ng-repeat="image in product.images">
-<div>
-    <span>
-        <span>Título</span>
-        {{product.name}}
-    </span>
-</div>
-
-<form ng-submit="addToCart()">
-    <select ng-model="cart.measure" ng-options="measure._id as measure.width + 'x' + measure.height + 'x' + measure.depth for measure in product.measures"></select>
-    <select ng-model="cart.material" ng-options="material._id as material.material for material in product.materials"></select>
-    <input type="text" ng-model="cart.quantity">
-    <input type="submit" value="adicionar ao carrinho">
-</form>
-
-<h2>
-    Categorias
-</h2>
-<div ng-repeat="category in product.categories">
-    <span>
-        <span>Categoria</span>
-        {{category.name}}
-    </span>
-</div>
-<h2>
-    Medidas
-</h2>
-<div ng-repeat="measure in product.measures">
-    <div>
-        <span>
-            <span>Largura</span>
-            {{measure.width}}
-        </span>
+<section class="grid_12">
+    <div class="add-large-img">
+        <ul id="large_images">
+            <li id="img0" class="hide current" style="display: inline;">
+                <figure>
+                    <figcaption>
+                        <h3>
+                        {{product.name}}
+                        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">Por: {{product.user.name}} {{product.user.surname}}</a>
+                        <span class="star-big">
+                            <a id="disponibility_vote_128" class="item_vote " data-vote-id="128" data-vote-type="disponibilities" href="#"> </a>
+                        </span>
+                        </h3>
+                    </figcaption>
+                    <img width="940" height="420" ng-src="{{product.images[0]}}">
+                </figure>
+            </li>
+        </ul>
     </div>
-    <div>
-        <span>
-            <span>Profundidade</span>
-            {{measure.depth}}
-        </span>
+    <div class="add-img-small extra-btm-space">
+        <ul id="thumb_holder" class="product">
+            <li class="grid_2 alpha" ng-repeat="image in product.images">
+                <img width="140" height="62" ng-src="{{image}}">
+            </li>
+        </ul>
     </div>
-    <div>
-        <span>
-            <span>Altura</span>
-            {{measure.height}}
-        </span>
-    </div>
-</div>
-<h2>
-    Materiais
-</h2>
-<div ng-repeat="material in product.materials">
-    <div>
-        <span>
-            <span>Material</span>
-            {{material.material}}
-        </span>
-    </div>
-</div>
+</section>
+<section class="container_12 extra-btm-space">
+    <form ng-submit="addToCart()">
+        <section class="grid_12 add-to-cart-container product-page">
+            <div class="report-box custom-select msr" style="width: 157px; margin-right: 15px;">
+                <h2>Medidas (L x A x P)</h2>
+                <span class="customSelect styled customSelectChanged" style="display: inline-block; width: 140px !important;">
+                    <select ng-model="cart.measure" ng-options="measure._id as measure.width + 'x' + measure.height + 'x' + measure.depth for measure in product.measures">
+                        <option>Selecione uma medida</option>
+                    </select>
+                </span>
+            </div>
+            <div class="report-box custom-select msr" style="width: 330px; margin-right: 15px;">
+                <h2>Acabamento</h2>
+                <span class="customSelect styled customSelectChanged" style="display: inline-block; width: 310px !important;">
+                    <select ng-model="cart.material" ng-options="material._id as material.material for material in product.materials">
+                        <option value="">Selecione um acabamento</option>
+                    </select>
+                </span>
+            </div>
+            <div class="report-box custom-select msr" style="width: 82px; margin-right: 15px;">
+                <h2>Quantidade</h2>
+                <input class="search-area float-l mid-text-box no-bg-img alpha extra-top-space" type="text" value="1" style="width: 70px !important; margin-top: 0px; height: 20px;" ng-model="cart.quantity">
+            </div>
+            <span class="report-box cart-btn float-r" style="width: 160px; margin-left: 0px !important;">
+                <button class="link-btn blue" style="margin: 0;" type="submit">adicionar ao carrinho</button>
+            </span>
+            <div class="report-box grand-total float-r" style="width: 140px; margin-right: 5px;">
+                <span class="remark">
+                10x de
+                <input class="money" type="text" value="">
+                </span>
+            </div>
+        </section>
+    </form>
+    <section class="grid_6">
+        <h2 class="extra-btm-space extra-top-space">Sobre o produto</h2>
+        <p class="extra-btm-space">{{product.about}}</p>
+        <br>
+        <br>
+        <h2 class="extra-btm-space extra-top-space"> Prazo de entrega: {{product.deliveryDate}} dias </h2>
+    </section>
+    <section class="grid_6 omega extra-top-space">
+        <section class="grid_6 omega alpha extra-btm-space">
+            <img width="80" height="85" style="float: left;" ng-src="{{product.user.picture}}">
+            <article class="profile-des">
+                <h2>
+                    Designer
+                    <small>
+                        <a ng-href="#/perfil/{{product.user._id}}"> {{product.user.name}} {{product.user.surname}} </a>
+                    </small>
+                </h2>
+                <p>{{product.user.about}}</p>
+            </article>
+        </section>
+        <section class="grid_6 omega alpha no-under-l">
+            <h2 class=" extra-btm-space">Informações técnicas</h2>
+            <h3>Medidas</h3>
+            <div ng-repeat="measure in product.measures">
+                <p>Largura: {{measure.width}}cm</p>
+                <p>Altura: {{measure.heigth}}cm</p>
+                <p>Profundidade: {{measure.depth}}cm</p>
+                <br>
+            </div>
+            <h3>Acabamentos</h3>
+            <p ng-repeat="material in product.materials">{{material.material}}</p>
+        </section>
+    </section>
+</section>

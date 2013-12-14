@@ -21,7 +21,7 @@
         <script src="/controllers/order.js"></script>
         <script src="/index.js"></script>
 
-        <link type="text/css" rel="stylesheet" href="/css/main.css">        
+        <link type="text/css" rel="stylesheet" href="/css/main.css">
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic,200,300,600italic,400italic,300italic,200italic">
         <link type="image/ico" rel="shortcut icon" href="/images/favicon.ico">
     </head>
@@ -99,20 +99,46 @@
                                 </div>
                             </li>
                         </ul>
+                        <div class="compras">
+                            <dfn>COMPRAS</dfn>
+                            <span>0</span>
+                            <div class="drop-down-cart" ng-show="user.cart">
+                                <ul>
+                                    <li ng-repeat="item in cart">
+                                        <figure>
+                                            <img alt="" ng-src="item.product.pictures[0]">
+                                        </figure>
+                                        <small class="desc"> (x{{item.quantity}}) item.product.name </small>
+                                        <small class="price"> R$ {{item.quantity * item.product.value}} </small>
+                                    </li>
+                                </ul>
+                                <a class="button float-r" href="#/carrinho-de-compras">Ver Carrinho</a>
+                                <a class="button button-red float-r" href="#/limpar-carrinho">Limpar Carrinho</a>
+                            </div>
+                        </div>
                     </section>
                 </section>
             </header>
         </section>
-        <div class="container_12 content">
-            <section class="container_12">
-                <nav class="grid_12">
-                    <li ng-repeat="category in categories" >
-                        <a ng-href="#/categoria/{{category._id}}">{{category.name}}</a>
+        <div class="container_12">
+            <nav class="grid_12 nav-main">
+                <ul>
+                    <li>
+                        <a class="padd-first" ng-href="#/categoria/novidades">novidades</a>
                     </li>
-                </nav>
-            </section>
-            <section ng-view></section>
+                    <li ng-repeat="category in categories">
+                        <a class="padd-first" ng-href="#/categoria/{{category._id}}">{{category.name}}</a>
+                    </li>
+                    <li>
+                        <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
+                    </li>
+                </ul>
+                <form ng-submit="search()">
+                    <input id="search" type="text" placeholder="Buscar" name="search">
+                </form>
+            </nav>
         </div>
+        <section ng-view class="container_12"></section>
         <footer class="footer-main">
             <section class="container_12">
                 <section class="grid_12">
