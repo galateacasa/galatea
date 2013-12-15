@@ -81,7 +81,8 @@ schema.plugin(require('mongoose-json-select'), {
     'price' : 1,
     'measures' : 1,
     'materials' : 1,
-    'votes' : 1
+    'votes' : 1,
+    'deadline' : 1
 });
 
 mongoose.model('Product', schema);
