@@ -1,6 +1,6 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
     'use strict';
 
     $routeProvider.when('/criar-projeto', {'templateUrl' : 'views/product/create.html', 'controller' : 'ProductCreateController'});
@@ -54,17 +54,24 @@ angular.module('galatea.controllers.product', ['ngRoute', 'angularFileUpload', '
     'use strict';
 
     $scope.category = category.get({'categoryId' : $routeParams.categoryId});
+    $scope.subcategory = category.get({'categoryId' : $routeParams.subCategoryId});
 
     if ($routeParams.subCategoryId) {
         $scope.products = product.query({'categoryId' : $routeParams.subCategoryId});
     } else {
         $scope.products = product.query({'categoryId' : $routeParams.categoryId});
     }
-}).controller('ProductDetailsController', function ($rootScope, $scope, $routeParams, $location, product) {
+}).controller('ProductDetailsController', function ($rootScope, $scope, $routeParams, $location, $cookieStore, product) {
     'use strict';
 
     $scope.addToCart = function () {
-        $rootScope.cart.push($scope.cart);
+        $rootScope.cart.push({
+            product : $scope.cart.product.slug,
+            material : $scope.cart.material._id,
+            measure : $scope.cart.measure._id,
+            quantity : $scope.cart.quantity
+        });
+        $cookieStore.put('cart', $rootScope.cart);
         $location.path('/carrinho-de-compras');
     };
 

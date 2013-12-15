@@ -1,5 +1,5 @@
 /*global angular:false*/
-angular.module('galatea', ['ngRoute', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
+angular.module('galatea', ['ngRoute', 'ngCookies', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
     'use strict';
 
     $facebookProvider.init({
@@ -11,11 +11,11 @@ angular.module('galatea', ['ngRoute', 'galatea.controllers.institutional', 'gala
     });
 
     $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController'});
-}).run(function ($rootScope, user, category) {
+}).run(function ($rootScope, $cookieStore, user, category) {
     'use strict';
 
     $rootScope.categories = category.query();
-    $rootScope.cart = [];
+    $rootScope.cart = $cookieStore.get('cart') || [];
     $rootScope.user = user.get({'userId' : 'me'});
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';

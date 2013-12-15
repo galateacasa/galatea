@@ -2,9 +2,12 @@
     <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/categories/{{category.image}}">
 </div>
 <nav class="grid_12 category-nav">
+    <h2>
+        {{subcategory.name}}
+    </h2>
     <ul>
-        <li ng-repeat="subcategory in category.subcategories">
-            <a ng-href="#/categoria/{{category.slug}}/{{subcategory.slug}}">{{subcategory.name}}</a>
+        <li ng-repeat="subcategoryOption in category.subcategories" ng-hide="subcategory._id === subcategoryOption._id">
+            <a ng-href="#/categoria/{{category.slug}}/{{subcategoryOption.slug}}">{{subcategoryOption.name}}</a>
         </li>
     </ul>
 </nav>

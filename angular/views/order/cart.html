@@ -1,71 +1,82 @@
+<section id="delivery_address" class="container_12">
+    <section class="grid_12 mycart border-hrz">
+        <h2 class="float-l">Meu Carrinho</h2>
+        <div class="delivery_address_select" ng-show="user._id">
+            <label id="select-address" for="">selecione um endereço de entrega</label>
+            <div>
+                <select ng-model="order.address" class="styled" ng-model="category._id" ng-options="address as address.zipCode for address in user.addresses">
+                    <option value=""> -- Selecione -- </option>
+                </select>
+                <a class="button" href="#/minha-conta">Novo endereço</a>
+            </div>
+        </div>
+    </section>
+</section>
 <section class="grid_12 border-btm ">
-    <form ng-submit="purchase">
-        <table class="chart shopping-cart">
-            <tbody>
-                <tr class="chart-title">
-                    <th>Item</th>
-                    <th>Imagem</th>
-                    <th>Descrição</th>
-                    <th>Valor Unitário</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                    <th> </th>
-                </tr>
-                <tr ng-repeat="item in cart">
-                    <td>
-                        <a ng-href="#/produto/{{item.product.slug}}">{{item.product.name}}</a>
-                    </td>
-                    <td>
-                        <a href="http://www.galateacasa.com.br/index.php/produto/mesa-lateral-lev">
-                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
-                        </a>
-                    </td>
-                    <td>
-                        <p>
-                            <strong>Material:</strong>
-                            {{item.material.material}}
-                            <br>
-                            <strong>Medida:</strong>
-                            {{item.measure.width}}cm x {{item.measure.heigth}}cm x {{item.measure.depth}}cm
-                            <br>
-                        </p>
-                    </td>
-                    <td>R${{(product.price + item.material.priceIncrease + item.measure.priceIncrease)}}</td>
-                    <td>
-                        <input class="quantity-pro" type="text" ng-model="item.quantity" name="qty[af65596ae3145c455be83cfe4fdc6bc4]">
-                        <input class="link-btn blue float-r bold-text" type="submit" value="ok" style="padding: 4px 10px">
-                    </td>
-                    <td>R${{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity}}</td>
-                    <td>
-                        <a class="remove-link">excluir</a>
-                    </td>
-                </tr>
-                <tr class="subtotal">
-                    <td colspan="5"> </td>
-                    <td> R${{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity}} </td>
-                    <td> </td>
-                </tr>
-                <tr>
-                    <td colspan="7"></td>
-                </tr>
-                <tr class="grand-amount chart-title cap-caps">
-                    <td style="text-align: right;" colspan="5">total</td>
-                    <td colspan="2">R${{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+    <table class="chart shopping-cart">
+        <tbody>
+            <tr class="chart-title">
+                <th>Item</th>
+                <th>Imagem</th>
+                <th>Descrição</th>
+                <th>Valor Unitário</th>
+                <th>Quantidade</th>
+                <th>Total</th>
+                <th> </th>
+            </tr>
+            <tr ng-repeat="item in cart">
+                <td>
+                    <a ng-href="#/produto/{{item.product.slug}}">{{item.product.name}}</a>
+                </td>
+                <td>
+                    <a href="#/produto/{{item.product.slug}}">
+                        <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
+                    </a>
+                </td>
+                <td>
+                    <p>
+                        <strong>Material:</strong>
+                        <span ng-repeat="material in item.product.materials" ng-show="material._id === item.material">
+                            {{material.material}}
+                        </span>
+                        <br>
+                        <strong>Medida:</strong>
+                        <span ng-repeat="measure in item.product.measures" ng-show="measure._id === item.measure">
+                            {{measure.width}}cm x {{measure.heigth}}cm x {{measure.depth}}cm
+                        </span>
+                        <br>
+                    </p>
+                </td>
+                <td>R${{item.price}}</td>
+                <td>
+                    <input class="quantity-pro" type="text" ng-model="item.quantity" name="qty[af65596ae3145c455be83cfe4fdc6bc4]">
+                    <button class="link-btn blue float-r bold-text" type="submit" style="padding: 4px 10px" ng-click="changeQuantity(item)">ok</button>
+                </td>
+                <td>R${{item.price * item.quantity}}</td>
+                <td>
+                    <span class="remove-link" ng-click="removeItem(item)">excluir</span>
+                </td>
+            </tr>
+            <tr class="grand-amount chart-title cap-caps">
+                <td style="text-align: right;" colspan="5">total</td>
+                <td colspan="2">R$ {{total}} </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 <section class="grid_6 extra-top-space text-big float-r ">
     <span class="credit-amount ext-bold grey-text right-text ">
         a data de entrega estimada para essa compra é
-        <em class="omega">13/02/2014</em>
+        <em class="omega">{{deliveryDate.getDate()}} / {{deliveryDate.getMonth() + 1}} / {{deliveryDate.getFullYear()}}</em>
     </span>
-    <h3 class="extra-top-space right-text grey-text ext-bold extra-btm-space"> CLICANDO EM “FINALIZAR” VOCÊ SERÁ DIRECIONADO AO SITE DO PAGSEGURO PARA SELECIONAR O MEIO DE PAGAMENTO, NÚMERO DE PARCELAS E FINALIZAR A COMPRA DE FORMA SEGURA. </h3>
+    <h3 class="extra-top-space right-text grey-text ext-bold extra-btm-space">
+        CLICANDO EM “FINALIZAR” VOCÊ SERÁ DIRECIONADO AO SITE DO PAGSEGURO PARA SELECIONAR O MEIO DE PAGAMENTO, NÚMERO DE PARCELAS E FINALIZAR A COMPRA DE FORMA SEGURA.
+    </h3>
     <div class="shopping-cart-buttons">
-        <a id="finalize" class="button float-r push-left" style="display: none;" href="http://www.galateacasa.com.br/site/cart/finalize"> Finalizar </a>
-        <a id="change-address" class="button float-r push-left" style="display: block;" href="#select-address"> troque o endereço </a>
-        <a class="button button-gray float-r" href="http://www.galateacasa.com.br/">Seguir comprando</a>
+        <a class="button button-gray float-r" href="#/entrar" ng-hide="user._id">Entre para finalizar a compra</a>
+        <a class="button float-r" href="" ng-show="order.address"> Finalizar </a>
+        <a class="button float-r" ng-show="user._id && !order.address"> troque o endereço </a>
+        <a class="button button-gray float-r" href="#/">Seguir comprando</a>
     </div>
 </section>
