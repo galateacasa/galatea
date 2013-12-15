@@ -6,13 +6,13 @@
                     <figcaption>
                         <h3>
                         {{product.name}}
-                        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">Por: {{product.user.name}} {{product.user.surname}}</a>
+                        <a ng-href="/perfil/{{product.user._id}}">Por: {{product.user.name}} {{product.user.surname}}</a>
                         <span class="star-big">
                             <a id="disponibility_vote_128" class="item_vote " data-vote-id="128" data-vote-type="disponibilities" href="#"> </a>
                         </span>
                         </h3>
                     </figcaption>
-                    <img width="940" height="420" ng-src="{{product.images[0]}}">
+                    <img width="940" height="420" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0]}}">
                 </figure>
             </li>
         </ul>
@@ -20,7 +20,7 @@
     <div class="add-img-small extra-btm-space">
         <ul id="thumb_holder" class="product">
             <li class="grid_2 alpha" ng-repeat="image in product.images">
-                <img width="140" height="62" ng-src="{{image}}">
+                <img width="140" height="62" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{image}}">
             </li>
         </ul>
     </div>
