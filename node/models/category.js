@@ -15,6 +15,9 @@ schema = new mongoose.Schema({
     },
     'parent' : {
         'type' : objectId
+    },
+    'image' : {
+        'type' : String
     }
 },{
     'collection' : 'categories'
@@ -24,7 +27,7 @@ schema.plugin(require('mongoose-json-select'), {
     '_id' : 1,
     'name' : 1,
     'slug' : 1,
-    'subcategories' : 1
+    'image' : 1
 });
 
 mongoose.model('Category', schema);
