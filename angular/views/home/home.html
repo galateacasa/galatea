@@ -12,7 +12,7 @@
                                 </h3>
                             </div>
                             <figure>
-                                <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0]}}">
+                                <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_460_200.jpg')}}">
                             </figure>
                             <span class="rate-new">R$ {{product.price}}</span>
                             <span class="rate">10 x R$ {{product.price/10}}</span>

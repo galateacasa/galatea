@@ -1,3 +1,11 @@
+<section class="grid_12">
+    <nav class="brydcrumb">
+        <ul>
+            <li> Home </li>
+            <li class="last"> Inspire-me </li>
+        </ul>
+    </nav>
+</section>
 <div class="overlay upload-page-popup" style="display: block;" ng-show="ambiance"></div>
 <section class="pop-block-extended" style="top: 50px; display: block;" ng-show="ambiance">
     <a class="close-button" href="#/inspire-me">Fechar</a>
@@ -15,7 +23,7 @@
                 <ul>
                     <li ng-repeat="product in ambiance.products">
                         <a ng-href="#/produto/{{product.slug}}">
-                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0]}}">
+                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_100_100.jpg')}}">
                         </a>
                     </li>
                 </ul>
