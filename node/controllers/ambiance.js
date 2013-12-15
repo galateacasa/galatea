@@ -32,9 +32,9 @@ server.get('/ambiances', function (request, response, next) {
     var query;
 
     if (request.param('featured')) {
-        query = {featured : true};
+        query = {featured : true, status : 'active'};
     } else {
-        query = {};
+        query = {status : 'active'};
     }
 
     Ambiance.find(query).populate('user').populate('products').exec(function (error, ambiances) {
