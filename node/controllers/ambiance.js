@@ -39,7 +39,6 @@ server.get('/ambiances', function (request, response, next) {
 
     Ambiance.find(query).populate('user').populate('products').exec(function (error, ambiances) {
         if (error) { return next(error); }
-        console.log(ambiances);
         response.send(200, ambiances);
     });
 });

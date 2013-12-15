@@ -19,6 +19,9 @@ schema = new mongoose.Schema({
         'type' : String,
         'required' : true
     },
+    'about' : {
+        'type' : String
+    },
     'password' : {
         'type' : String,
         'required' : true
@@ -122,7 +125,8 @@ schema.plugin(require('mongoose-json-select'), {
     'company' : 1,
     'addresses' : 1,
     'phone' : 1,
-    'cart' : 1
+    'cart' : 1,
+    'about' : 1
 });
 
 mongoose.model('User', schema);
