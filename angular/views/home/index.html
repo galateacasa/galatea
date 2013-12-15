@@ -102,14 +102,14 @@
                         <div class="compras">
                             <dfn>COMPRAS</dfn>
                             <span>0</span>
-                            <div class="drop-down-cart" ng-show="user.cart">
+                            <div class="drop-down-cart">
                                 <ul>
                                     <li ng-repeat="item in cart">
                                         <figure>
-                                            <img alt="" ng-src="item.product.pictures[0]">
+                                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
                                         </figure>
-                                        <small class="desc"> (x{{item.quantity}}) item.product.name </small>
-                                        <small class="price"> R$ {{item.quantity * item.product.value}} </small>
+                                        <small class="desc"> (x{{item.quantity}}) {{item.product.name}} </small>
+                                        <small class="price"> R$ {{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity}} </small>
                                     </li>
                                 </ul>
                                 <a class="button float-r" href="#/carrinho-de-compras">Ver Carrinho</a>

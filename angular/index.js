@@ -15,7 +15,12 @@ angular.module('galatea', ['ngRoute', 'galatea.controllers.institutional', 'gala
     'use strict';
 
     $rootScope.categories = category.query();
-    $rootScope.user = user.get({'userId' : 'me'});
+    $rootScope.cart = [];
+    $rootScope.user = user.get({'userId' : 'me'}, function (user) {
+        if (user) {
+            $rootScope.cart = user.cart;
+        }
+    });
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';
 
