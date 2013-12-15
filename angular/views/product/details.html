@@ -64,11 +64,11 @@
                 <button class="link-btn blue" style="margin: 0;" type="submit">adicionar ao carrinho</button>
             </span>
             <div class="report-box grand-total float-r" style="width: 140px; margin-right: 5px;">
-                <input id="price" class="variation money" type="text" ng-value="product.price + cart.material.priceIncrease + cart.measure.priceIncrease" name="price">
+                <input id="price" class="variation money" type="text" ng-value="(product.price + cart.material.priceIncrease + cart.measure.priceIncrease) * cart.quantity" name="price">
                 <label>total</label>
                 <span class="remark">
                     10x de
-                    <input id="total_instalments" class="money" type="text" ng-value="(product.price + cart.material.priceIncrease + cart.measure.priceIncrease) / 10">
+                    <input id="total_instalments" class="money" type="text" ng-value="(product.price + cart.material.priceIncrease + cart.measure.priceIncrease)  * cart.quantity / 10">
                 </span>
             </div>
         </section>
