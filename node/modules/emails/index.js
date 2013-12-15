@@ -18,7 +18,7 @@ exports.confirmation = function (user, cb) {
             'html' : welcomeTemplate({
                 'host' : 'http://' + config.host.url + ':' + config.host.port,
                 'name' : user.name,
-                'confirmation_url' : 'http://' + config.host.url + ':' + config.host.port + '/#/confirmar-email?token=' + token + '&userId=' + user._id
+                'confirmation_url' : 'http://' + config.host.url + (config.host.url === 'localhost' ? (':' + config.host.port) : '') + '/#/confirmar-email?token=' + token + '&userId=' + user._id
             })
         }});
         cb();
