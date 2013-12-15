@@ -1,6 +1,17 @@
-<h2>Inspire-me</h2>
-<ul>
-    <li ng-repeat="ambiance in ambiances">
-        <a ng-href="#/inspire-me/{{ambiance.ambianceId}}">{{ambiance.name}}</a>
-    </li>
-</ul>
+<section class="upload-image container_12">
+    <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
+        <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">
+            <h2>
+                <a class="ambiance-info" href="http://www.galateacasa.com.br/inspire-me/100" ambiance-id="100"> {{ambiance.name}} </a>
+            </h2>
+            <span class="star">
+                <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>
+            </span>
+            <figure class="ambiance-image">
+                <a href="#">
+                    <img alt="" ng-src="{{ambiance.image}}">
+                </a>
+            </figure>
+        </div>
+    </div>
+</section>
