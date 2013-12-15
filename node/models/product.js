@@ -30,6 +30,9 @@ schema = new mongoose.Schema({
     'images' : [{
         'type' : String
     }],
+    'description' : {
+        'type' : String
+    },
     'status' : {
         'type' : String,
         'enum' : ['pending', 'voting', 'selling'],
