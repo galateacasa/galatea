@@ -33,7 +33,7 @@ server.get('/products', function (request, response, next) {
         Category.find({parent : parentCategory._id}, function (error, categories) {
             if (error) { return next(error); }
             categories.push(parentCategory);
-            Product.find({'categories' : {'$in' : categories.map(function (category) {
+            Product.find({'status' : 'selling', 'categories' : {'$in' : categories.map(function (category) {
                 return category._id;
             })}}).populate('user').populate('categories').exec(function (error, ambiances) {
                 if (error) { return next(error); }
