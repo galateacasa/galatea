@@ -30,23 +30,35 @@
         <section class="grid_12 add-to-cart-container product-page">
             <div class="report-box custom-select msr" style="width: 157px; margin-right: 15px;">
                 <h2>Medidas (L x A x P)</h2>
+                <select ng-model="cart.measure" id="measurement" class="styled variations" style="-webkit-appearance: menulist-button; width: 219px; position: absolute; opacity: 0; left: 0px; height: 25px;" name="measurement" ng-options="measure as measure.width + 'x' + measure.heigth + 'x' + measure.depth for measure in product.measures">
+                    <option value="">Selecione uma medida</option>
+                </select>
                 <span class="customSelect styled customSelectChanged" style="display: inline-block; width: 140px !important;">
-                    <select ng-model="cart.measure" ng-options="measure._id as measure.width + 'x' + measure.height + 'x' + measure.depth for measure in product.measures">
-                        <option>Selecione uma medida</option>
-                    </select>
+                    <span class="customSelectInner" style="width: 153px; display: inline-block;" ng-show="cart.measure">
+                        {{cart.measure.width}} x {{cart.measure.heigth}} x {{cart.measure.depth}}
+                    </span>
+                    <span class="customSelectInner" style="width: 153px; display: inline-block;" ng-hide="cart.measure">
+                        Selecione uma medida
+                    </span>
                 </span>
             </div>
             <div class="report-box custom-select msr" style="width: 330px; margin-right: 15px;">
                 <h2>Acabamento</h2>
+                <select ng-model="cart.material" id="material" class="styled variations" style="-webkit-appearance: menulist-button; width: 310px; position: absolute; opacity: 0; left: 0px; height: 25px;" name="material" ng-options="material as material.material for material in product.materials">
+                    <option value="">Selecione um acabamento</option>
+                </select>
                 <span class="customSelect styled customSelectChanged" style="display: inline-block; width: 310px !important;">
-                    <select ng-model="cart.material" ng-options="material._id as material.material for material in product.materials">
-                        <option value="">Selecione um acabamento</option>
-                    </select>
+                    <span class="customSelectInner" style="width: 153px; display: inline-block;" ng-show="cart.material">
+                        {{cart.material.material}}
+                    </span>
+                    <span class="customSelectInner" style="width: 153px; display: inline-block;" ng-hide="cart.material">
+                        Selecione uma acabamento
+                    </span>
                 </span>
             </div>
             <div class="report-box custom-select msr" style="width: 82px; margin-right: 15px;">
                 <h2>Quantidade</h2>
-                <input class="search-area float-l mid-text-box no-bg-img alpha extra-top-space" type="text" value="1" style="width: 70px !important; margin-top: 0px; height: 20px;" ng-model="cart.quantity">
+                <input class="search-area float-l mid-text-box no-bg-img alpha extra-top-space" type="text" style="width: 70px !important; margin-top: 0px; height: 20px;" ng-model="cart.quantity">
             </div>
             <span class="report-box cart-btn float-r" style="width: 160px; margin-left: 0px !important;">
                 <button class="link-btn blue" style="margin: 0;" type="submit">adicionar ao carrinho</button>
