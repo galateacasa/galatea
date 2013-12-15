@@ -69,6 +69,7 @@ schema = new mongoose.Schema({
 schema.plugin(require('mongoose-json-select'), {
     '_id' : 1,
     'name' : 1,
+    'slug' : 1,
     'description' : 1,
     'user' : 1,
     'categories' : 1,

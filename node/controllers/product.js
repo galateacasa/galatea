@@ -29,14 +29,16 @@ server.post('/products', auth.authenticate, function (request, response) {
 server.get('/products', function (request, response, next) {
     'use strict';
 
-    Category.find({parent : request.param('categoryId')}, function (error, categories) {
-        if (error) { return next(error); }
-        categories.push({_id : request.param('categoryId')});
-        Product.find({'categories' : {'$in' : categories.map(function (category) {
-            return category._id;
-        })}}).populate('user').populate('categories').exec(function (error, ambiances) {
+    Category.findOne({slug : request.param('categoryId')}, function (error, parentCategory) {
+        Category.find({parent : parentCategory._id}, function (error, categories) {
             if (error) { return next(error); }
-            response.send(200, ambiances);
+            categories.push(parentCategory);
+            Product.find({'categories' : {'$in' : categories.map(function (category) {
+                return category._id;
+            })}}).populate('user').populate('categories').exec(function (error, ambiances) {
+                if (error) { return next(error); }
+                response.send(200, ambiances);
+            });
         });
     });
 });
@@ -44,7 +46,7 @@ server.get('/products', function (request, response, next) {
 server.get('/products/:productId', function (request, response, next) {
     'use strict';
 
-    Product.findById(request.params.productId).populate('user').populate('categories').exec(function (error, product) {
+    Product.findOne({slug : request.params.productId}).populate('user').populate('categories').exec(function (error, product) {
         if (error) { return next(error); }
         response.send(200, product);
     });
@@ -53,7 +55,7 @@ server.get('/products/:productId', function (request, response, next) {
 server.post('/products/:productId/images', auth.authenticate, require('connect-multiparty')(), function (request, response) {
     'use strict';
 
-    Product.findById(request.params.productId, function (error, product) {
+    Product.findOne({slug : request.params.productId}, function (error, product) {
         if (error) { return response.send(400, error); }
         if (!product) { return response.send(404, new Error('product not found')); }
 

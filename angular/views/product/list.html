@@ -6,7 +6,7 @@
 <nav class="grid_12 category-nav">
     <ul>
         <li ng-repeat="subcategory in category.subcategories">
-            <a ng-href="#/categoria/{{category._id}}/{{subcategory._id}}">{{subcategory.name}}</a>
+            <a ng-href="#/categoria/{{category.slug}}/{{subcategory.slug}}">{{subcategory.name}}</a>
         </li>
     </ul>
 </nav>
@@ -16,10 +16,10 @@
             <ul>
                 <li class="filter-name">organizar por:</li>
                 <li class="border">
-                    <a href="http://www.galateacasa.com.br/categoria/sala-de-estar/?filter=&order=price_asc">menor preço</a>
+                    <a href="">menor preço</a>
                 </li>
                 <li>
-                    <a href="http://www.galateacasa.com.br/categoria/sala-de-estar/?filter=&order=price_desc">maior preço</a>
+                    <a href="">maior preço</a>
                 </li>
             </ul>
         </div>
@@ -27,10 +27,10 @@
             <ul>
                 <li class="filter-name">filtrar por:</li>
                 <li class="border">
-                    <a href="http://www.galateacasa.com.br/index.php/categoria/sala-de-estar/?filter=news&order=">novidades</a>
+                    <a href="">novidades</a>
                 </li>
                 <li>
-                    <a class="current-sel" href="http://www.galateacasa.com.br/index.php/categoria/sala-de-estar">tudo</a>
+                    <a class="current-sel" href="">tudo</a>
                 </li>
             </ul>
         </div>
@@ -40,7 +40,7 @@
             <li ng-repeat="product in products" class="product">
                 <div class="product-image">
                     <figure>
-                        <a ng-href="#/produto/{{product._id}}">
+                        <a ng-href="#/produto/{{product.slug}}">
                             <div class="jcarousel">
                                 <ul>
                                     <li>
@@ -51,7 +51,7 @@
                         </a>
                     </figure>
                 </div>
-                <a ng-href="#/produto/{{product._id}}">
+                <a ng-href="#/produto/{{product.slug}}">
                     <h3>
                         <span style="word-wrap: break-word;" itemprop="name">{{product.name}}</span>
                     </h3>

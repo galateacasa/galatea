@@ -16,12 +16,12 @@ server.get('/categories', function (request, response, next) {
 server.get('/categories/:categoryId', function (request, response, next) {
     'use strict';
 
-    Category.findById(request.params.categoryId, function (error, category) {
+    Category.findOne({slug : request.params.categoryId}, function (error, category) {
         if (error) { return next(error); }
-        Category.find({parent : request.params.categoryId}, function (error, categories) {
+        Category.find({parent : category._id}, function (error, categories) {
             if (error) { return next(error); }
 
-            response.send(200, {name : category.name, _id : category._id, subcategories : categories});
+            response.send(200, {name : category.name, slug : category.slug, _id : category._id, subcategories : categories});
         });
     });
 });
