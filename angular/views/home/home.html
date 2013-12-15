@@ -3,7 +3,7 @@
         <section class="product-top grid_12" ng-repeat="ambiance in featured">
             <section class="grid_6 alpha fig-product">
                 <ul>
-                    <li ng-repeat="product in ambiance.products">
+                    <li ng-repeat="product in ambiance.products.slice(0,2)">
                         <a ng-href="#/produto/{{product.slug}}">
                             <div class="hdn-top">
                                 <h3>

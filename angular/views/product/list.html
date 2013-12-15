@@ -1,3 +1,12 @@
+<section class="grid_12">
+    <nav class="brydcrumb">
+        <ul>
+            <li> Home </li>
+            <li ng-class="{last : !subcategory.name}"> {{category.name}} </li>
+            <li class="last" ng-show="subcategory.name"> {{subcategory.name}} </li>
+        </ul>
+    </nav>
+</section>
 <div class="banner-area c-banner">
     <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/categories/{{category.image}}">
 </div>
@@ -6,7 +15,7 @@
         {{subcategory.name}}
     </h2>
     <ul>
-        <li ng-repeat="subcategoryOption in category.subcategories" ng-hide="subcategory._id === subcategoryOption._id">
+        <li ng-repeat="subcategoryOption in category.subcategories" ng-hide="subcategory.name === subcategoryOption.name">
             <a ng-href="#/categoria/{{category.slug}}/{{subcategoryOption.slug}}">{{subcategoryOption.name}}</a>
         </li>
     </ul>

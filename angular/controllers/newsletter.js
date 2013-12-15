@@ -3,9 +3,9 @@
 angular.module('galatea.controllers.newsletter', ['resources']).config(function () {
     'use strict';
 
-}).controller('NewsletterController', function ($scope) {
+}).controller('NewsletterController', function ($scope, newsletter) {
     'use strict';
-/*
+
     $scope.newsletter = new newsletter();
 
     $scope.save = function () {
@@ -13,5 +13,5 @@ angular.module('galatea.controllers.newsletter', ['resources']).config(function 
             $scope.success = 'Obrigado por ser inscrever em nossa newsletter!!';
             $scope.newsletter = new newsletter();
         });
-    };*/
+    };
 });

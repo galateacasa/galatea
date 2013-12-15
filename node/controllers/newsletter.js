@@ -17,3 +17,12 @@ server.post('/newsletters', function (request, response) {
         response.send(201, newsletter);
     });
 });
+
+server.get('/newsletters/:newsletterId', function (request, response, next) {
+    'use strict';
+
+    Newsletter.findById(request.params.newsletterId, function (error, newsletter) {
+        if (error) { return next(error); }
+        response.send(201, newsletter);
+    });
+});
