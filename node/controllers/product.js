@@ -1,9 +1,10 @@
-var mongoose, server, cloudinary, auth, Product;
+var mongoose, server, cloudinary, auth, Category, Product;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
 cloudinary = require('cloudinary');
 auth       = require('../modules/auth');
+Category   = mongoose.model('Category');
 Product    = mongoose.model('Product');
 
 server.post('/products', auth.authenticate, function (request, response) {
@@ -28,9 +29,15 @@ server.post('/products', auth.authenticate, function (request, response) {
 server.get('/products', function (request, response, next) {
     'use strict';
 
-    Product.find({'categories' : request.param('categoryId')}).populate('user').populate('categories').exec(function (error, ambiances) {
+    Category.find({parent : request.param('categoryId')}, function (error, categories) {
         if (error) { return next(error); }
-        response.send(200, ambiances);
+        categories.push({_id : request.param('categoryId')});
+        Product.find({'categories' : {'$in' : categories.map(function (category) {
+            return category._id;
+        })}}).populate('user').populate('categories').exec(function (error, ambiances) {
+            if (error) { return next(error); }
+            response.send(200, ambiances);
+        });
     });
 });
 
