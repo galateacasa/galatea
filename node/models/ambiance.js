@@ -9,6 +9,10 @@ schema = new mongoose.Schema({
         'type' : String,
         'required' : true
     },
+    'slug' : {
+        'type' : String,
+        'required' : true
+    },
     'user' : {
         'type' : objectId,
         'ref' : 'User',
@@ -21,6 +25,9 @@ schema = new mongoose.Schema({
     },
     'image' : {
         'type' : String
+    },
+    'featured' : {
+        'type' : Boolean
     },
     'status' : {
         'type' : String,
@@ -44,6 +51,7 @@ schema = new mongoose.Schema({
 schema.plugin(require('mongoose-json-select'), {
     '_id' : 1,
     'name' : 1,
+    'slug' : 1,
     'user' : 1,
     'category' : 1,
     'image' : 1,

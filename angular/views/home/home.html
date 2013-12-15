@@ -1,0 +1,46 @@
+<div id="homeContent">
+    <div class="container_12">
+        <section class="product-top grid_12" ng-repeat="ambiance in featured">
+            <section class="grid_6 alpha fig-product">
+                <ul>
+                    <li ng-repeat="product in ambiance.products">
+                        <a ng-href="#/produto/{{product.slug}}">
+                            <div class="hdn-top">
+                                <h3>
+                                    {{product.name}}
+                                </h3>
+                            </div>
+                            <figure>
+                                <img alt="" ng-src="{{product.images[0]}}">
+                            </figure>
+                            <span class="rate-new">R$ {{product.price}}</span>
+                            <div class="white-box"></div>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="grid_6 omega">
+                <section class="product-top-right">
+                    <h3>
+                        <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}"> {{ambiance.name}} </a>
+                    </h3>
+                    <figure>
+                        <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}">
+                            <img ng-src="{{ambiance.image}}">
+                        </a>
+                    </figure>
+                    <div class="fig-sm">
+                        <figure>
+                            <figcaption>
+                                <a ng-href="#/perfil/{{ambiance.user._id}}">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+                            </figcaption>
+                            <a ng-href="{{ambiance.user._id}}">
+                                <img alt="Estúdio" ng-src="{{ambiance.user.photo}}">
+                            </a>
+                        </figure>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </div>
+</div>
