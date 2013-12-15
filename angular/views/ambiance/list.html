@@ -1,8 +1,33 @@
+<div class="overlay upload-page-popup" style="display: block;" ng-show="ambiance"></div>
+<section class="pop-block-extended" style="top: 50px; display: block;" ng-show="ambiance">
+    <a class="close-button" ng-click="ambiance = null">Fechar</a>
+    <h2>
+        {{ambiance.name}}
+        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+    </h2>
+    <figure class="main-image">
+        <img ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/ambiances/{{ambiance.image}}">
+    </figure>
+    <section class="vertical-slider">
+        <h2>Produtos neste ambiente</h2>
+        <div id="ambiance-vertical-slider">
+            <div class="content">
+                <ul>
+                    <li ng-repeat="product in ambiance.products">
+                        <a ng-href="#/produto/{{product.slug}}">
+                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0]}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
 <section class="upload-image container_12">
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
         <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">
             <h2>
-                <a class="ambiance-info" href="http://www.galateacasa.com.br/inspire-me/100" ambiance-id="100"> {{ambiance.name}} </a>
+                <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}" ambiance-id="100"> {{ambiance.name}} </a>
             </h2>
             <span class="star">
                 <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>

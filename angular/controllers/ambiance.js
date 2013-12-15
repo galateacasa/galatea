@@ -4,8 +4,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
     'use strict';
 
     $routeProvider.when('/criar-ambiente', {'templateUrl' : 'views/ambiance/create.html', 'controller' : 'AmbianceCreateController'});
-    $routeProvider.when('/inspire-me', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
-    $routeProvider.when('/inspire-me/:ambianceId', {'templateUrl' : 'views/ambiance/details.html', 'controller' : 'AmbianceDetailsController'});
+    $routeProvider.when('/inspire-me/:ambianceId?', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
 }).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $fileUploader, ambiance, category) {
     'use strict';
 
@@ -32,9 +31,8 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
 }).controller('AmbianceListController', function ($scope, $routeParams, ambiance) {
     'use strict';
 
+    if ($routeParams.ambianceId) {
+        $scope.ambiance = ambiance.get({'ambianceId' : $routeParams.ambianceId});
+    }
     $scope.ambiances = ambiance.query();
-}).controller('AmbianceDetailsController', function ($scope, $routeParams, ambiance) {
-    'use strict';
-
-    $scope.ambiance = ambiance.get({'ambianceId' : $routeParams.ambianceId});
 });
