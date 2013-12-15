@@ -8,12 +8,14 @@
                             <div class="hdn-top">
                                 <h3>
                                     {{product.name}}
+                                    <i> Por {{ambiance.user.name}} {{ambiance.user.surname}} </i>
                                 </h3>
                             </div>
                             <figure>
                                 <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0]}}">
                             </figure>
                             <span class="rate-new">R$ {{product.price}}</span>
+                            <span class="rate">10 x R$ {{product.price/10}}</span>
                             <div class="white-box"></div>
                         </a>
                     </li>
@@ -32,10 +34,13 @@
                     <div class="fig-sm">
                         <figure>
                             <figcaption>
-                                <a ng-href="#/perfil/{{ambiance.user._id}}">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+                                <a href="#/perfil/{{ambiance.user._id}}">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+                                <mark>
+                                    <a ng-href="/inspire-me/categorias/{{ambiance.category.slug}}">{{ambiance.category.name}}</a>
+                                </mark>
                             </figcaption>
-                            <a ng-href="{{ambiance.user._id}}">
-                                <img alt="Estúdio" ng-src="{{ambiance.user.photo}}">
+                            <a ng-href="/perfil/{{ambiance.user._id}}">
+                                <img alt="" src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/users/{{ambiance.user.photo}}">
                             </a>
                         </figure>
                     </div>
