@@ -1,3 +1,28 @@
+<div class="overlay upload-page-popup" style="display: block;" ng-show="ambiance" ng-click="ambiance = null"></div>
+<section class="pop-block-extended" style="display: block; position: fixed; top : 50px" ng-show="ambiance">
+    <a class="close-button" ng-click="ambiance = null">Fechar</a>
+    <h2>
+        {{ambiance.name}}
+        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+    </h2>
+    <figure class="main-image">
+        <img ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/ambiances/{{ambiance.image}}">
+    </figure>
+    <section class="vertical-slider">
+        <h2>Produtos neste ambiente</h2>
+        <div id="ambiance-vertical-slider">
+            <div class="content">
+                <ul>
+                    <li ng-repeat="product in ambiance.products">
+                        <a ng-href="#/produto/{{product.slug}}" target="_blank">
+                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_100_100.jpg')}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
 <div id="homeContent">
     <div class="container_12">
         <section class="product-top grid_12" ng-repeat="ambiance in featured">
@@ -24,10 +49,10 @@
             <section class="grid_6 omega">
                 <section class="product-top-right">
                     <h3>
-                        <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}"> {{ambiance.name}} </a>
+                        <a class="ambiance-info" ng-click="loadAmbiance(ambiance)" style="cursor : pointer;"> {{ambiance.name}} </a>
                     </h3>
                     <figure>
-                        <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}">
+                        <a class="ambiance-info" ng-click="loadAmbiance(ambiance)">
                             <img ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/ambiances/{{ambiance.image}}">
                         </a>
                     </figure>

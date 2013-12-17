@@ -37,7 +37,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
 
     $scope.loadAmbiance = function (ambiance) {
         $scope.ambiance = ambiance;
-    }
+    };
 
     $scope.ambiances = ambiance.query();
 });

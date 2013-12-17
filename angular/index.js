@@ -36,5 +36,9 @@ angular.module('galatea', ['ngRoute', 'ngCookies', 'galatea.controllers.institut
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';
 
+    $scope.loadAmbiance = function (ambiance) {
+        $scope.ambiance = ambiance;
+    };
+
     $scope.featured = ambiance.query({'featured' : true});
 });
