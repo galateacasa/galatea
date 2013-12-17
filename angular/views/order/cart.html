@@ -43,19 +43,19 @@
                         <br>
                     </p>
                 </td>
-                <td>R${{item.product.price + item.measure.priceIncrease + item.material.priceIncrease}}</td>
+                <td>{{item.product.price + item.measure.priceIncrease + item.material.priceIncrease | currency:'R$'}}</td>
                 <td>
                     <input class="quantity-pro" type="text" ng-model="item.quantity" name="qty[af65596ae3145c455be83cfe4fdc6bc4]">
                     <button class="link-btn blue float-r bold-text" type="submit" style="padding: 4px 10px" ng-click="changeQuantity(item)">ok</button>
                 </td>
-                <td>R${{(item.product.price + item.measure.priceIncrease + item.material.priceIncrease) * item.quantity}}</td>
+                <td>{{(item.product.price + item.measure.priceIncrease + item.material.priceIncrease) * item.quantity | currency:'R$'}}</td>
                 <td>
                     <span class="remove-link" ng-click="removeItem(item)">excluir</span>
                 </td>
             </tr>
             <tr class="grand-amount chart-title cap-caps">
                 <td style="text-align: right;" colspan="5">total</td>
-                <td colspan="2">R$ {{total}} </td>
+                <td colspan="2">{{total | currency:'R$'}}</td>
             </tr>
         </tbody>
     </table>

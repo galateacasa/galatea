@@ -67,9 +67,9 @@
                     </h3>
                     <div class="white-box">
                         <div class="rate-new-container">
-                            <span class="rate-new">R$ {{product.price}}</span>
+                            <span class="rate-new">{{product.price | currency:'R$'}}</span>
                         </div>
-                        <span class="rate" itemprop="price">10 x R$ {{product.price/10}}</span>
+                        <span class="rate" itemprop="price">10 x {{product.price/10 | currency:'R$'}}</span>
                     </div>
                 </a>
             </li>
