@@ -1,188 +1,206 @@
 <!doctype html>
 <html lang="en" ng-app="galatea">
-    <head>
-        <meta charset="utf-8" />
-        <title>Galatea Casa</title>
+<head>
+    <meta charset="utf-8" />
+    <title>Galatea Casa</title>
 
-        <script src="/angular.min.js"></script>
-        <script src="/file-upload.min.js" ></script>
-        <script src="/animate.min.js" ></script>
-        <script src="/cookies.min.js"></script>
-        <script src="/route.min.js"></script>
-        <script src="/resource.min.js"></script>
-        <script src="/facebook.min.js"></script>
-        <script src="/resources.js"></script>
+    <script src="/angular.min.js"></script>
+    <script src="/file-upload.min.js" ></script>
+    <script src="/animate.min.js" ></script>
+    <script src="/cookies.min.js"></script>
+    <script src="/route.min.js"></script>
+    <script src="/resource.min.js"></script>
+    <script src="/facebook.min.js"></script>
+    <script src="/resources.js"></script>
 
-        <script src="/controllers/user.js"></script>
-        <script src="/controllers/institutional.js"></script>
-        <script src="/controllers/newsletter.js"></script>
-        <script src="/controllers/ambiance.js"></script>
-        <script src="/controllers/product.js"></script>
-        <script src="/controllers/order.js"></script>
-        <script src="/index.js"></script>
+    <script src="/controllers/user.js"></script>
+    <script src="/controllers/institutional.js"></script>
+    <script src="/controllers/newsletter.js"></script>
+    <script src="/controllers/ambiance.js"></script>
+    <script src="/controllers/product.js"></script>
+    <script src="/controllers/order.js"></script>
+    <script src="/index.js"></script>
 
-        <link type="text/css" rel="stylesheet" href="/css/main.css">
-        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic,200,300,600italic,400italic,300italic,200italic">
-        <link type="image/ico" rel="shortcut icon" href="/images/favicon.ico">
-    </head>
-    <body class="product-page">
-        <section class="header-main">
-            <header class="container_12">
-                <section class="grid_12">
-                    <nav class="grid_6 prefix_6">
-                        <ul>
-                            <li>
-                                <a href="#/institucional/sobre">Sobre a Galatea</a>
-                            </li>
-                            <li>
-                                <a href="#/atendimento">Atendimento</a>
-                            </li>
-                            <li>
-                                (19) 3112-0316
-                            </li>
-                        </ul>
-                        <small class="inspire-me">
-                            <a href="#/inspire-me">inspire-me</a>
-                        </small>
-                    </nav>
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700italic,200,300,600italic,400italic,300italic,200italic">
+    <link type="image/ico" rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body class="product-page">
+    <div id="captacao" style="top: 70px; opacity: 1;" ng-show="popUp" ng-controller="NewsletterController">
+        <a id="fecha" class="fecha" ng-click="close()">×</a>
+        <div class="logo">
+            <img title="Galatea" alt="Galatea" src="/images/captacao/logo.jpg">
+        </div>
+        <h2>
+            A Galatea Evoluiu. Mais criativa. Mais interativa.
+            <br>
+            E você está no centro de tudo. Faça parte!
+        </h2>
+        <h3>Fique em contato. Móveis exclusivos, design de ponta, dicas de decoração e os projetos vencedores de cada mês no seu email!</h3>
+        <form ng-submit="save()">
+            <input id="email" type="text" placeholder="e-mail">
+            <input id="button" class="envia_newsletter" type="submit" value="OK">
+        </form>
+        <img alt="" src="/images/captacao/mesa_captacao.jpg">
+    </div>
+    <div id="overlay" class="overlay" style="display: block;" ng-click="close()" ng-show="popUp" ng-controller="NewsletterController"></div>
+    <section class="header-main">
+        <header class="container_12">
+            <section class="grid_12">
+                <nav class="grid_6 prefix_6">
+                    <ul>
+                        <li>
+                            <a href="#/institucional/sobre">Sobre a Galatea</a>
+                        </li>
+                        <li>
+                            <a href="#/atendimento">Atendimento</a>
+                        </li>
+                        <li>
+                            (19) 3112-0316
+                        </li>
+                    </ul>
+                    <small class="inspire-me">
+                        <a href="#/inspire-me">inspire-me</a>
+                    </small>
+                </nav>
+            </section>
+            <section class="grid_12 header-mid">
+                <section class="grid_6 alpha">
+                    <h1 class="logo">
+                        <a href="#/" title="P&#225;gina inicial">
+                            <img width="461" height="41" alt="Galatea" src="/images/logo.jpg">
+                        </a>
+                    </h1>
                 </section>
-                <section class="grid_12 header-mid">
-                    <section class="grid_6 alpha">
-                        <h1 class="logo">
-                            <a href="#/" title="P&#225;gina inicial">
-                                <img width="461" height="41" alt="Galatea" src="/images/logo.jpg">
-                            </a>
-                        </h1>
-                    </section>
-                    <section class="grid_6 omega">
-                        <ul>
-                            <li ng-show="user._id">
-                                <a href="" class="padd-new">Ol&#225; {{user.name}}</a>
-                                <div class="drop-down">
-                                    <ul>
-                                        <li>
-                                            <a ng-href="#/perfil/{{user.username}}">Meu perfil</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/minha-conta">Minha conta</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/meus-creditos">Meus créditos</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/meus-pedidos">Meus pedidos</a>
-                                        </li>
-                                        <li ng-show="user.type=='supplier'">
-                                            <a href="#/quero-produzir">Quero produzir</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/sair">Sair</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li ng-hide="user._id">
-                                <a href="#/entrar" class="padd-new">Entrar</a>
-                            </li>
-                            <li ng-show="user._id">
-                                <a href="#"><span>Enviar</span></a>
-                                <div class="drop-down">
-                                    <ul>
-                                        <li>
-                                            <a href="#/criar-ambiente">Enviar ambiente</a>
-                                        </li>
-                                        <li>
-                                            <a href="#/criar-projeto">Enviar projeto</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="compras" ng-controller="MiniCartController">
-                            <dfn>COMPRAS</dfn>
-                            <span>{{cart.length}}</span>
-                            <div class="drop-down-cart">
+                <section class="grid_6 omega">
+                    <ul>
+                        <li ng-show="user._id">
+                            <a href="" class="padd-new">Ol&#225; {{user.name}}</a>
+                            <div class="drop-down">
                                 <ul>
-                                    <li ng-repeat="item in cart">
-                                        <figure>
-                                            <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
-                                        </figure>
-                                        <small class="desc"> (x{{item.quantity}}) {{item.product.name}} </small>
-                                        <small class="price">{{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity | currency:'R$'}} </small>
+                                    <li>
+                                        <a ng-href="#/perfil/{{user.username}}">Meu perfil</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/minha-conta">Minha conta</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/meus-creditos">Meus créditos</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/meus-pedidos">Meus pedidos</a>
+                                    </li>
+                                    <li ng-show="user.type=='supplier'">
+                                        <a href="#/quero-produzir">Quero produzir</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/sair">Sair</a>
                                     </li>
                                 </ul>
-                                <a class="button float-r" href="#/carrinho-de-compras">Ver Carrinho</a>
-                                <button class="button button-red float-r" ng-click="emptyCart();">Limpar Carrinho</button>
                             </div>
-                        </div>
-                    </section>
-                </section>
-            </header>
-        </section>
-        <div class="container_12">
-            <nav class="grid_12 nav-main">
-                <ul>
-                    <li ng-repeat="category in categories">
-                        <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
-                    </li>
-                    <li>
-                        <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
-                    </li>
-                </ul>
-                <form ng-submit="search()">
-                    <input id="search" type="text" placeholder="Buscar" name="search">
-                </form>
-            </nav>
-        </div>
-        <section ng-view class="container_12"></section>
-        <footer class="footer-main">
-            <section class="container_12">
-                <section class="grid_12">
-                    <nav>
-                        <ul>
+                        </li>
+                        <li ng-hide="user._id">
+                            <a href="#/entrar" class="padd-new">Entrar</a>
+                        </li>
+                        <li ng-show="user._id">
+                            <a href="#"><span>Enviar</span></a>
+                            <div class="drop-down">
+                                <ul>
+                                    <li>
+                                        <a href="#/criar-ambiente">Enviar ambiente</a>
+                                    </li>
+                                    <li>
+                                        <a href="#/criar-projeto">Enviar projeto</a>
+                                    </li>
 
-                            <li>
-                                <a href="#/institucional/cuidados-com-a-mobilia">Cuidados com a mobília</a>
-                            </li>
-                            <li>
-                                <a href="#/institucional/trocas-e-devolucoes">Trocas e Devoluções</a>
-                            </li>
-                            <li>
-                                <a href="#/institucional/termos-e-condicoes">Termos e Condições</a>
-                            </li>
-                            <li>
-                                <a href="#/institucional/formas-de-pagamento">Pagamento e Entrega</a>
-                            </li>
-                            <li>
-                                <a href="#/institucional/termos-e-condicoes">Política de Privacidade</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <section class="footer-mid">
-                        <h4>Siga em outras redes:</h4>
-                        <ul>
-                            <li>
-                                <a href="http://pinterest.com/galateacasa/" target="_blank">pinterst</a>
-                            </li>
-                            <li>
-                                <a href="https://www.facebook.com/GalateaCasa" class="facebook" target="_blank">facebook</a>
-                            </li>
-                        </ul>
-                    </section>
-                    <aside ng-controller="NewsletterController">
-                        <h4>NewsLetter</h4>
-                        <div class="inpt-out">
-                            <form ng-submit="save()">
-                                <input class="button-newsletter float-l" type="text" placeholder="e-mail" name="email" ng-model="newsletter.email">
-                                <input type="submit" class="button float-r" value="OK">
-                            </form>
-                            <a class="back-top-top" ng-click="goToTop()">&nbsp;</a>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="compras" ng-controller="MiniCartController">
+                        <dfn>COMPRAS</dfn>
+                        <span>{{cart.length}}</span>
+                        <div class="drop-down-cart">
+                            <ul>
+                                <li ng-repeat="item in cart">
+                                    <figure>
+                                        <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
+                                    </figure>
+                                    <small class="desc"> (x{{item.quantity}}) {{item.product.name}} </small>
+                                    <small class="price">{{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity | currency:'R$'}} </small>
+                                </li>
+                            </ul>
+                            <a class="button float-r" href="#/carrinho-de-compras">Ver Carrinho</a>
+                            <button class="button button-red float-r" ng-click="emptyCart();">Limpar Carrinho</button>
                         </div>
-                        <em>Galatea Casa &#169; Todos os direitos reservados.</em>
-                    </aside>
+                    </div>
                 </section>
             </section>
-        </footer>
-    </body>
+        </header>
+    </section>
+    <div class="container_12">
+        <nav class="grid_12 nav-main">
+            <ul>
+                <li ng-repeat="category in categories">
+                    <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
+                </li>
+                <li>
+                    <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
+                </li>
+            </ul>
+            <form ng-submit="search()">
+                <input id="search" type="text" placeholder="Buscar" name="search">
+            </form>
+        </nav>
+    </div>
+    <section ng-view class="container_12"></section>
+    <footer class="footer-main">
+        <section class="container_12">
+            <section class="grid_12">
+                <nav>
+                    <ul>
+
+                        <li>
+                            <a href="#/institucional/cuidados-com-a-mobilia">Cuidados com a mobília</a>
+                        </li>
+                        <li>
+                            <a href="#/institucional/trocas-e-devolucoes">Trocas e Devoluções</a>
+                        </li>
+                        <li>
+                            <a href="#/institucional/termos-e-condicoes">Termos e Condições</a>
+                        </li>
+                        <li>
+                            <a href="#/institucional/formas-de-pagamento">Pagamento e Entrega</a>
+                        </li>
+                        <li>
+                            <a href="#/institucional/termos-e-condicoes">Política de Privacidade</a>
+                        </li>
+                    </ul>
+                </nav>
+                <section class="footer-mid">
+                    <h4>Siga em outras redes:</h4>
+                    <ul>
+                        <li>
+                            <a href="http://pinterest.com/galateacasa/" target="_blank">pinterst</a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/GalateaCasa" class="facebook" target="_blank">facebook</a>
+                        </li>
+                    </ul>
+                </section>
+                <aside ng-controller="NewsletterController">
+                    <h4>NewsLetter</h4>
+                    <div class="inpt-out">
+                        <form ng-submit="save()">
+                            <input class="button-newsletter float-l" type="text" placeholder="e-mail" name="email" ng-model="newsletter.email">
+                            <input type="submit" class="button float-r" value="OK">
+                        </form>
+                        <a class="back-top-top" ng-click="goToTop()">&nbsp;</a>
+                    </div>
+                    <em>Galatea Casa &#169; Todos os direitos reservados.</em>
+                </aside>
+            </section>
+        </section>
+    </footer>
+</body>
 </html>
