@@ -7,6 +7,16 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
     $routeProvider.when('/sair', {'templateUrl' : 'views/user/logout.html', 'controller' : 'UserLogoutController'});
     $routeProvider.when('/confirmar-email', {'templateUrl' : 'views/user/account.html', 'controller' : 'UserEmailConfirmationController'});
     $routeProvider.when('/minha-conta', {'templateUrl' : 'views/user/account.html', 'controller' : 'UserAccountController'});
+    $routeProvider.when('/meus-creditos', {'templateUrl' : 'views/user/credits.html'});
+    $routeProvider.when('/perfil/:userId?', {'templateUrl' : 'views/user/profile.html', 'controller' : 'UserProfileController'});
+}).controller('UserProfileController', function ($scope, $routeParams, user) {
+    'use strict';
+
+    if ($routeParams.userId) {
+        $scope.user = user.get({userId : $routeParams.userId});
+    } else {
+        $scope.user = user.get({userId : 'me'});
+    }
 }).controller('UserEmailConfirmationController', function ($rootScope, $scope, $cookies, $location, user) {
     'use strict';
 

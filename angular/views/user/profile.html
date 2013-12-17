@@ -1,0 +1,33 @@
+<section class="container_12">
+    <section class="grid_12 border-btm">
+        <section class="post-info">
+            <img  ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/users/{{user.photo}}" ng-show="user.photo" width="110" style="float: left;" >
+            <figure class="profile-img" ng-hide="user.photo">&nbsp;</figure>
+            <article class="post-by-detail">
+                <h3>
+                    {{user.name}} {{user.surname}}
+                    <small>{{user.type}}</small>
+                </h3>
+                <ul>
+                    <li ng-show="user.type==='supplier'">
+                        <span>Produtos produzidos</span>
+                        {{products.length}}
+                    </li>
+                    <li ng-show="user.type==='designer'">
+                        <span>Projetos propostos</span>
+                        {{projects.length}}
+                    </li>
+                    <li>
+                        <span>Ambientes Postados</span>
+                        {{ambiances.length}}
+                    </li>
+                </ul>
+            </article>
+            <article class="grid_7 float-r omega">
+                <p class="extra-btm-space">
+                    {{user.about}}
+                </p>
+            </article>
+        </section>
+    </section>
+</section>

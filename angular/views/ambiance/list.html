@@ -22,7 +22,7 @@
             <div class="content">
                 <ul>
                     <li ng-repeat="product in ambiance.products">
-                        <a ng-href="#/produto/{{product.slug}}">
+                        <a ng-href="#/produto/{{product.slug}}" target="_blank">
                             <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_100_100.jpg')}}">
                         </a>
                     </li>
@@ -49,10 +49,10 @@
                 <figcaption>
                     <a href="#/perfil/{{ambiance.user._id}}">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
                     <mark>
-                        <a ng-href="/inspire-me/categorias/{{ambiance.category.slug}}">{{ambiance.category.name}}</a>
+                        <a ng-href="#/inspire-me/categorias/{{ambiance.category.slug}}">{{ambiance.category.name}}</a>
                     </mark>
                 </figcaption>
-                <a ng-href="/perfil/{{ambiance.user._id}}">
+                <a ng-href="#/perfil/{{ambiance.user._id}}">
                     <img alt="" src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/users/{{ambiance.user.photo}}">
                 </a>
             </figure>

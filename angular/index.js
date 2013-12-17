@@ -18,6 +18,10 @@ angular.module('galatea', ['ngRoute', 'ngCookies', 'galatea.controllers.institut
         $window.scrollTo(0,0);
     });
 
+    $rootScope.goToTop = function () {
+        $window.scrollTo(0,0);
+    };
+
     $rootScope.categories = category.query();
     $rootScope.user = user.get({'userId' : 'me'});
 }).controller('MiniCartController', function ($rootScope, $scope, $cookieStore) {
