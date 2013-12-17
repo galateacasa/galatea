@@ -11,8 +11,12 @@ angular.module('galatea', ['ngRoute', 'ngCookies', 'galatea.controllers.institut
     });
 
     $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController'});
-}).run(function ($rootScope, user, category) {
+}).run(function ($rootScope, $window, user, category) {
     'use strict';
+
+    $rootScope.$on('$routeChangeSuccess', function () {
+        $window.scrollTo(0,0);
+    });
 
     $rootScope.categories = category.query();
     $rootScope.user = user.get({'userId' : 'me'});
