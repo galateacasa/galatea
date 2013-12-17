@@ -62,12 +62,12 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
     $scope.countries = country.query();
     $scope.expertises = expertise.query();
 
-    $scope.loadStates = function () {
-        $scope.states = state.query({countryId : $scope.user.address.country});
+    $scope.loadStates = function (address) {
+        $scope.states = state.query({countryId : address.country});
     };
 
-    $scope.loadCities = function () {
-        $scope.cities = city.query({countryId : $scope.user.address.country, stateId : $scope.user.address.state});
+    $scope.loadCities = function (address) {
+        $scope.cities = city.query({countryId : address.country, stateId : address.state});
     };
 
     $scope.save = function () {
@@ -75,16 +75,41 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
             $scope.uploader.uploadAll();
         });
     };
-}).controller('UserAccountController', function ($rootScope, $scope, user) {
+}).controller('UserAccountController', function ($rootScope, $scope, $location, user, country, state, city) {
     'use strict';
 
-    $scope.user = user.get({'userId' : 'me'});
+    $scope.user = user.get({'userId' : 'me'}, function (user) {
+        console.log(user);
+    });
+    $scope.countries = country.query();
 
     $scope.addAddress = function () {
         $scope.user.addresses.push({});
     };
 
-    $scope.save = function () {
+    $scope.removeAddress = function (address) {
+        for (var i = 0; i < $scope.user.addresses.length; i += 1) {
+            if ($scope.user.addresses[i] === address) {
+                $scope.user.addresses.splice(i,1);
+            }
+        }
+    };
+
+    $scope.loadStates = function (address) {
+        $scope.states = state.query({countryId : address.country});
+    };
+
+    $scope.loadCities = function (address) {
+        $scope.cities = city.query({countryId : address.country, stateId : address.state});
+    };
+
+    $scope.save = function (goToCart) {
         $scope.user.$save();
+        $rootScope.user = $scope.user;
+        if (goToCart) {
+            $location.path('/carrinho-de-compras');
+        } else {
+            $location.path('/');
+        }
     };
 });

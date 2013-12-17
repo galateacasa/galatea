@@ -1,99 +1,147 @@
-<form ng-submit="save()" novalidate>
-    <h2>Seus dados</h2>
-    <div>
-        <span>
-            <em>&nbsp;</em>
-            <input type="text" placeholder="nome" ng-model="user.name">
-        </span>
-        <span>
-            <em>&nbsp;</em>
-            <input type="text" placeholder="sobrenome" ng-model="user.surname">
-        </span>
-    </div>
-    <h2>Endereços</h2>
-    <div ng-repeat="address in user.addresses">
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="cep" ng-model="address.zipcode">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em class="imp">&nbsp;</em>
-                <input type="text" placeholder="rua/avenida" ng-model="address.street">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em class="imp">&nbsp;</em>
-                <input type="text" placeholder="número" ng-model="address.number">
-            </span>
-        </div>
-        <div>
-            <span>
-                <input type="text" placeholder="complemento" ng-model="address.complement">
-            </span>
-        </div>
-        <div>
-            <span>
-                <select ng-model="address.country" ng-options="country.countryId as country.name for country in countries" ng-change="loadStates()">
-                    <option value="">País</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span>
-                <select ng-model="address.state" ng-options="state.stateId as state.name for state in states" ng-change="loadCities()">
-                    <option value="">Estado</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span>
-                <select ng-model="address.city" ng-options="city.cityId as city.name for city in cities">
-                    <option value="">Cidade</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="DDD" ng-model="user.phone.areaCode">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="telefone" ng-model="user.phone.number">
-            </span>
-        </div>
-    </div>
-    <div ng-click="addAddress()">
-        Adicionar endereço
-    </div>
-    <div ng-show="user.type==='supplier'">
-        <h2>Dados da empresa</h2>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="razão social" ng-model="user.company.name">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <input type="text" placeholder="cnpj" ng-model="user.company.cnpj">
-            </span>
-        </div>
-        <div>
-            <span>
-                <em>&nbsp;</em>
-                <select ng-model="user.company.expertise" ng-options="expertise.expertiseId as expertise.name for expertise in expertises">
-                    <option value="">Selecione a sua área de atuação</option>
-                </select>
-            </span>
-        </div>
-    </div>
-    <input type="submit" value="CADASTRAR">
-</form>
+<section class="container_12 extra-top-space">
+    <section class="grid_12">
+        <ng-include src="'/views/institutional/menu.html'"></ng-include>
+        <section class="grid_8 omega product-top">
+            <div class="block space-container">
+                <h2 class="extra-btm-space extra-top-space">dados Pessoais</h2>
+                <form class="user-edit" ng-submit="save()">
+                    <aside>
+                        <i class="imp">&nbsp;</i> = Campos obrigatórios para realizar compras
+                    </aside>
+                    <section>
+                        <div class="name">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="nome" ng-model="user.name" class="name">
+                        </div>
+                        <div class="surname">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="sobrenome" ng-model="user.surname" class="surname">
+                        </div>
+                        <div class="cpf">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="cpf" ng-model="user.cpf" class="cpf">
+                        </div>
+                        <input type="file" name="file" id="user-edit-custom-file" class="file-upload-styled" />
+                        <textarea class="msg" ng-model="user.about" rows="4"></textarea>
+                    </section>
+                    <section ng-show="user.type==='supplier'">
+                        <hr>
+                        <h2>Dados da empresa</h2>
+                        <div class="company-name">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="razão social" ng-model="user.company.name" class="company_name">
+                        </div>
+                        <div class="cnpj">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="cnpj" ng-model="user.company.cnpj" class="cnpj">
+                        </div>
+                        <div class="expertise">
+                            <select ng-model="user.company.expertise" ng-options="expertise.expertiseId as expertise.name for expertise in expertises">
+                                <option value="">Selecione a sua área de atuação</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section ng-repeat="address in user.addresses.slice(0,1)">
+                        <hr>
+                        <h2>endereço</h2>
+                        <div class="zip">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="cep" ng-model="address.zipcode" class="zip">
+                        </div>
+                        <div class="area-code">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="ddd" ng-model="address.phone.areaCode" class="areaCode">
+                        </div>
+                        <div class="phone">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="telefone" ng-model="address.phone.number" class=" phone">
+                        </div>
+                        <div class="address">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="rua/avenida" ng-model="address.street" class="street">
+                        </div>
+                        <div class="number">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="número" ng-model="address.number" class="number">
+                        </div>
+                        <div class="complement">
+                            <input type="text" placeholder="complemento"  ng-model="address.complement" class="complement">
+                        </div>
+                        <div class="country-container">
+                            <em class="imp">&nbsp;</em>
+                            <select ng-model="address.country" ng-options="country._id as country.name for country in countries" ng-change="loadStates(address)">
+                                <option value="">País</option>
+                            </select>
+                        </div>
+                        <div class="state-container" ng-show="address.country==='52aa3e59e243ab7de88347a6'">
+                            <select ng-model="address.state" ng-options="state._id as state.name for state in states" ng-change="loadCities(address)">
+                                <option value="">Estado</option>
+                            </select>
+                        </div>
+                        <div class="city-container" ng-show="address.country==='52aa3e59e243ab7de88347a6'">
+                            <select ng-model="address.city" ng-options="city._id as city.name for city in cities">
+                                <option value="">Cidade</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>
+                            <a style="cursor:pointer;" class="dark-clr" ng-click="addAddress()">+ endereço de entrega</a>
+                        </h2>
+                    </section>
+                    <section ng-repeat="address in user.addresses.slice(1)">
+                        <a class="delivery-address-delete" ng-click="removeAddress(address)">Remover</a>
+                        <hr>
+                        <h2>endereço</h2>
+                        <div class="zip">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="cep" ng-model="address.zipcode" class="zip">
+                        </div>
+                        <div class="area-code">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="ddd" ng-model="address.phone.areaCode" class="areaCode">
+                        </div>
+                        <div class="phone">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="telefone" ng-model="address.phone.number" class=" phone">
+                        </div>
+                        <div class="address">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="rua/avenida" ng-model="address.street" class="street">
+                        </div>
+                        <div class="number">
+                            <em class="imp">&nbsp;</em>
+                            <input type="text" placeholder="número" ng-model="address.number" class="number">
+                        </div>
+                        <div class="complement">
+                            <input type="text" placeholder="complemento"  ng-model="address.complement" class="complement">
+                        </div>
+                        <div class="country-container">
+                            <em class="imp">&nbsp;</em>
+                            <select ng-model="address.country" ng-options="country._id as country.name for country in countries" ng-change="loadStates(address)">
+                                <option value="">País</option>
+                            </select>
+                        </div>
+                        <div class="state-container" ng-show="address.country==='52aa3e59e243ab7de88347a6'">
+                            <select ng-model="address.state" ng-options="state._id as state.name for state in states" ng-change="loadCities(address)">
+                                <option value="">Estado</option>
+                            </select>
+                        </div>
+                        <div class="city-container" ng-show="address.country==='52aa3e59e243ab7de88347a6'">
+                            <select ng-model="address.city" ng-options="city._id as city.name for city in cities">
+                                <option value="">Cidade</option>
+                            </select>
+                        </div>
+                    </section>
+                    <footer id="user-delivery-address-footer">
+                        <button type="submit" class="button float-r">Atualizar</button>
+                        <button id="update-go-cart" type="button" class="button float-r" ng-click="save(true)">Atualizar e ir para o carrinho</button>
+                        <span class="grid_4 terms-con alpha float-r">
+                            Clicando em ATUALIZAR, você estará concordando <br> com os <a href="#/institucional/termos-e-condicoes">termos e condições</a> e que você leu nossa <br> <a href="#/institucional/termos-e-condicoes">política de uso de informações e Cookies</a>.
+                        </span>
+                    </footer>
+                </form>
+            </div>
+        </section>
+    </section>
+</section>

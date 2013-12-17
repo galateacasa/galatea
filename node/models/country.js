@@ -9,7 +9,7 @@ schema = new mongoose.Schema({
         'required' : true
     }
 },{
-    'collection' : 'contries'
+    'collection' : 'countries'
 });
 
 schema.plugin(require('mongoose-json-select'), {

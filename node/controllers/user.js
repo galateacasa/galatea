@@ -12,14 +12,16 @@ server.post('/users', function (request, response) {
     var user;
 
     user = new User({
-        'email' : request.param('email'),
         'name' : request.param('name'),
         'surname' : request.param('surname'),
+        'cpf' : request.param('cpf'),
+        'email' : request.param('email'),
         'password' : request.param('password'),
+        'photo' : request.param('photo'),
         'type' : request.param('type'),
-        'addresses' : request.param('addresses'),
         'company' : request.param('company'),
-        'phone' : request.param('phone')
+        'addresses' : request.param('addresses'),
+        'about' : request.param('about')
     });
     user.save(function (error) {
         if (error) { return response.send(400, error); }
@@ -66,6 +68,30 @@ server.get('/users/:userId', auth.authenticate, function (request, response) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(404, new Error('user not found')); }
         response.send(200, user);
+    });
+});
+
+server.post('/users/:userId', auth.authenticate, function (request, response) {
+    'use strict';
+
+    User.findById(request.params.userId === 'me' ? request.userId : request.params.userId).populate('addresses.country').populate('addresses.state').populate('addresses.city').populate('cart.product').exec(function (error, user) {
+        if (error) { return response.send(400, error); }
+        if (!user) { return response.send(404, new Error('user not found')); }
+
+
+        user.name = request.param('name');
+        user.surname = request.param('surname');
+        user.cpf = request.param('cpf');
+        user.photo = request.param('photo');
+        user.type = request.param('type');
+        user.company = request.param('company');
+        user.addresses = request.param('addresses');
+        user.about = request.param('about');
+
+        user.save(function (error) {
+            if (error) { return response.send(400, error); }
+            response.send(200, user);
+        });
     });
 });
 

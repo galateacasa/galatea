@@ -22,6 +22,9 @@ schema = new mongoose.Schema({
     'about' : {
         'type' : String
     },
+    'cpf' : {
+        'type' : String
+    },
     'password' : {
         'type' : String,
         'required' : true
@@ -74,16 +77,16 @@ schema = new mongoose.Schema({
         'city' : {
             'type' : objectId,
             'ref' : 'City'
-        }
-    }],
-    'phone' : {
-        'areaCode' : {
-            'type' : Number
         },
-        'number' : {
-            'type' : String
+        'phone' : {
+            'areaCode' : {
+                'type' : Number
+            },
+            'number' : {
+                'type' : String
+            }
         }
-    }
+    }]
 },{
     'collection' : 'users'
 });
@@ -99,13 +102,13 @@ schema.plugin(require('mongoose-json-select'), {
     '_id' : 1,
     'name' : 1,
     'surname' : 1,
+    'cpf' : 1,
     'email' : 1,
     'password' : 0,
     'photo' : 1,
     'type' : 1,
     'company' : 1,
     'addresses' : 1,
-    'phone' : 1,
     'about' : 1
 });
 
