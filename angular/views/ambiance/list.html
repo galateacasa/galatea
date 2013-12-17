@@ -7,7 +7,7 @@
     </nav>
 </section>
 <div class="overlay upload-page-popup" style="display: block;" ng-show="ambiance" ng-click="ambiance = null"></div>
-<section class="pop-block-extended" style="top: 50px; display: block;" ng-show="ambiance">
+<section class="pop-block-extended" style="display: block; position: fixed; top : 50px" ng-show="ambiance">
     <a class="close-button" ng-click="ambiance = null">Fechar</a>
     <h2>
         {{ambiance.name}}
@@ -35,7 +35,7 @@
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
         <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">
             <h2>
-                <a class="ambiance-info" ng-href="#/inspire-me/{{ambiance.slug}}" ambiance-id="100"> {{ambiance.name}} </a>
+                <a class="ambiance-info" ng-click="loadAmbiance(ambiance)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </a>
             </h2>
             <span class="star">
                 <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>

@@ -34,5 +34,10 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
     if ($routeParams.ambianceId) {
         $scope.ambiance = ambiance.get({'ambianceId' : $routeParams.ambianceId});
     }
+
+    $scope.loadAmbiance = function (ambiance) {
+        $scope.ambiance = ambiance;
+    }
+
     $scope.ambiances = ambiance.query();
 });
