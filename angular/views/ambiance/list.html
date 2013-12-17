@@ -22,7 +22,7 @@
             <div class="content">
                 <ul>
                     <li ng-repeat="product in ambiance.products">
-                        <a ng-href="#/produto/{{product.slug}}" target="_blank">
+                        <a ng-href="#/produto/{{product.slug}}?ambiente={{ambiance.slug}}" target="_blank">
                             <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_100_100.jpg')}}">
                         </a>
                     </li>
