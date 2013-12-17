@@ -36,23 +36,19 @@
                 <td>
                     <p>
                         <strong>Material:</strong>
-                        <span ng-repeat="material in item.product.materials" ng-show="material._id === item.material">
-                            {{material.material}}
-                        </span>
+                        {{item.material.material}}
                         <br>
                         <strong>Medida:</strong>
-                        <span ng-repeat="measure in item.product.measures" ng-show="measure._id === item.measure">
-                            {{measure.width}}cm x {{measure.heigth}}cm x {{measure.depth}}cm
-                        </span>
+                        {{item.measure.width}}cm x {{item.measure.heigth}}cm x {{item.measure.depth}}cm
                         <br>
                     </p>
                 </td>
-                <td>R${{item.price}}</td>
+                <td>R${{item.product.price + item.measure.priceIncrease + item.material.priceIncrease}}</td>
                 <td>
                     <input class="quantity-pro" type="text" ng-model="item.quantity" name="qty[af65596ae3145c455be83cfe4fdc6bc4]">
                     <button class="link-btn blue float-r bold-text" type="submit" style="padding: 4px 10px" ng-click="changeQuantity(item)">ok</button>
                 </td>
-                <td>R${{item.price * item.quantity}}</td>
+                <td>R${{(item.product.price + item.measure.priceIncrease + item.material.priceIncrease) * item.quantity}}</td>
                 <td>
                     <span class="remove-link" ng-click="removeItem(item)">excluir</span>
                 </td>

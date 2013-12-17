@@ -11,12 +11,20 @@ angular.module('galatea', ['ngRoute', 'ngCookies', 'galatea.controllers.institut
     });
 
     $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController'});
-}).run(function ($rootScope, $cookieStore, user, category) {
+}).run(function ($rootScope, user, category) {
     'use strict';
 
     $rootScope.categories = category.query();
-    $rootScope.cart = $cookieStore.get('cart') || [];
     $rootScope.user = user.get({'userId' : 'me'});
+}).controller('MiniCartController', function ($rootScope, $scope, $cookieStore) {
+    'use strict';
+
+    $scope.emptyCart = function () {
+        $rootScope.cart = [];
+        $cookieStore.put('cart', $rootScope.cart);
+    };
+
+    $rootScope.cart = $cookieStore.get('cart') || [];
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';
 

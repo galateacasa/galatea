@@ -99,7 +99,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="compras">
+                        <div class="compras" ng-controller="MiniCartController">
                             <dfn>COMPRAS</dfn>
                             <span>0</span>
                             <div class="drop-down-cart">
@@ -113,7 +113,7 @@
                                     </li>
                                 </ul>
                                 <a class="button float-r" href="#/carrinho-de-compras">Ver Carrinho</a>
-                                <a class="button button-red float-r" href="#/limpar-carrinho">Limpar Carrinho</a>
+                                <button class="button button-red float-r" ng-click="emptyCart();">Limpar Carrinho</button>
                             </div>
                         </div>
                     </section>

@@ -4,28 +4,13 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
     'use strict';
 
     $routeProvider.when('/carrinho-de-compras', {'templateUrl' : 'views/order/cart.html', 'controller' : 'CartListController'});
-}).controller('CartListController', function ($rootScope, $scope, $cookieStore, $location, product) {
+}).controller('CartListController', function ($rootScope, $scope, $cookieStore) {
     'use strict';
 
-    var i;
-
-    $scope.cart = [];
-    $scope.total = 0;
-    $scope.deliveryDate = new Date();
-
-    $scope.changeQuantity = function (cartItem) {
-        for (var i = 0; i < $rootScope.cart.length; i += 1) {
-            if ($rootScope.cart[i].product === cartItem.product.slug) {
-                $rootScope.cart[i].quantity = cartItem.quantity;
-            }
-        }
+    $scope.changeQuantity = function () {
         $cookieStore.put('cart', $rootScope.cart);
-
-        $scope.cart = [];
-        $scope.total = 0;
-        for (i = 0; i < $rootScope.cart.length; i += 1) {
-            $scope.loadProduct($rootScope.cart[i]);
-        }
+        $scope.calculateTotal();
+        $scope.calculateDeliveryDate();
     };
 
     $scope.removeItem = function (cartItem) {
@@ -35,51 +20,28 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
             }
         }
         $cookieStore.put('cart', $rootScope.cart);
+        $scope.calculateTotal();
+        $scope.calculateDeliveryDate();
+    };
 
-        $scope.cart = [];
+    $scope.calculateTotal = function () {
         $scope.total = 0;
-        for (i = 0; i < $rootScope.cart.length; i += 1) {
-            $scope.loadProduct($rootScope.cart[i]);
+        for (var i = 0; i < $rootScope.cart.length; i += 1) {
+            $scope.total += (($rootScope.cart[i].product.price || 0) + ($rootScope.cart[i].measure.priceIncrease || 0) + ($rootScope.cart[i].material.priceIncrease || 0)) * $rootScope.cart[i].quantity;
         }
     };
 
-    $scope.loadProduct = function (cartItem) {
-        product.get({'productId' : cartItem.product}, function (product) {
-            var price, date, i;
-
-            price = product.price || 0;
-            date  = new Date();
-
-            date.setDate(date.getDate() + product.deadline);
-
-            if (date > $scope.deliveryDate) {
-                $scope.deliveryDate = date;
+    $scope.calculateDeliveryDate = function () {
+        var deadline = 0;
+        for (var i = 0; i < $rootScope.cart.length; i += 1) {
+            if ($rootScope.cart[i].product.deadline > deadline) {
+                deadline = $rootScope.cart[i].product.deadline;
             }
-
-            for (i = 0; i < product.measures.length; i += 1) {
-                if (product.measures[i]._id === cartItem.measure && product.measures[i].priceIncrease) {
-                    price += product.measures[i].priceIncrease;
-                }
-            }
-
-            for (i = 0; i < product.materials.length; i += 1) {
-                if (product.materials[i]._id === cartItem.material && product.materials[i].priceIncrease) {
-                    price += product.materials[i].priceIncrease;
-                }
-            }
-
-            $scope.cart.push({
-                product : product,
-                quantity : cartItem.quantity,
-                material : cartItem.material,
-                measure : cartItem.measure,
-                price : price
-            });
-            $scope.total += price * cartItem.quantity;
-        });
+        }
+        $scope.deliveryDate = new Date();
+        $scope.deliveryDate.setDate($scope.deliveryDate.getDate() + deadline);
     };
 
-    for (i = 0; i < $rootScope.cart.length; i += 1) {
-        $scope.loadProduct($rootScope.cart[i]);
-    }
+    $scope.calculateTotal();
+    $scope.calculateDeliveryDate();
 });

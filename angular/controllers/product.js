@@ -66,9 +66,26 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
 
     $scope.addToCart = function () {
         $rootScope.cart.push({
-            product : $scope.cart.product.slug,
-            material : $scope.cart.material._id,
-            measure : $scope.cart.measure._id,
+            product : {
+                '_id' : $scope.cart.product._id,
+                'name' : $scope.cart.product.name,
+                'slug' : $scope.cart.product.slug,
+                'price' : $scope.cart.product.price,
+                'deadline' : $scope.cart.product.deadline,
+                'images' : $scope.cart.product.images
+            },
+            material : {
+                '_id' : $scope.cart.material._id,
+                'material' : $scope.cart.material.material,
+                'priceIncrease' : $scope.cart.material.priceIncrease
+            },
+            measure : {
+                '_id' : $scope.cart.measure._id,
+                'width' : $scope.cart.measure.width,
+                'height' : $scope.cart.measure.height,
+                'depth' : $scope.cart.measure.depth,
+                'priceIncrease' : $scope.cart.measure.priceIncrease
+            },
             quantity : $scope.cart.quantity
         });
         $cookieStore.put('cart', $rootScope.cart);

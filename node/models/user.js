@@ -83,26 +83,7 @@ schema = new mongoose.Schema({
         'number' : {
             'type' : String
         }
-    },
-    'cart' : [{
-        'product' : {
-            'type' : objectId,
-            'ref' : 'Product',
-            'required' : true
-        },
-        'material' : {
-            'type' : objectId,
-            'required' : true
-        },
-        'measure' : {
-            'type' : objectId,
-            'required' : true
-        },
-        'quantity' : {
-            'type' : Number,
-            'required' : true
-        }
-    }]
+    }
 },{
     'collection' : 'users'
 });
@@ -125,7 +106,6 @@ schema.plugin(require('mongoose-json-select'), {
     'company' : 1,
     'addresses' : 1,
     'phone' : 1,
-    'cart' : 1,
     'about' : 1
 });
 
