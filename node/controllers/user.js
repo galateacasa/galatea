@@ -1,9 +1,10 @@
-var mongoose, server, cloudinary, auth, User;
+var mongoose, server, cloudinary, auth, crypto, User;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
 cloudinary = require('cloudinary');
 auth       = require('../modules/auth');
+crypto     = require('crypto');
 User       = mongoose.model('User');
 
 server.post('/users', function (request, response) {
@@ -16,7 +17,7 @@ server.post('/users', function (request, response) {
         'surname' : request.param('surname'),
         'cpf' : request.param('cpf'),
         'email' : request.param('email'),
-        'password' : request.param('password'),
+        'password' : crypto.createHash('md5').update(request.param('password')).digest('hex'),
         'photo' : request.param('photo'),
         'type' : request.param('type'),
         'company' : request.param('company'),
@@ -98,7 +99,7 @@ server.post('/users/:userId', auth.authenticate, function (request, response) {
 server.post('/users/me/login', function (request, response) {
     'use strict';
 
-    User.findOne({email : request.param('email'), password : request.param('password')}, function (error, user) {
+    User.findOne({email : request.param('email'), password : crypto.createHash('md5').update(request.param('password')).digest('hex')}, function (error, user) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(401, new Error('invalid username or password')); }
 
