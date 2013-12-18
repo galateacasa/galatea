@@ -21,14 +21,14 @@
                         </span>
                         </h3>
                     </figcaption>
-                    <img width="940" height="420" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{product.images[0].replace('.jpg', '_940_420.jpg')}}">
+                    <img width="940" height="420" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{selectedImage.replace('.jpg', '_940_420.jpg')}}">
                 </figure>
             </li>
         </ul>
     </div>
     <div class="add-img-small extra-btm-space">
         <ul id="thumb_holder" class="product">
-            <li class="grid_2 alpha" ng-repeat="image in product.images">
+            <li class="grid_2 alpha" ng-repeat="image in product.images" ng-click="changeImage(image)" style="cursor:pointer">
                 <img width="140" height="62" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{image.replace('.jpg', '_140_62.jpg')}}">
             </li>
         </ul>

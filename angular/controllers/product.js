@@ -92,6 +92,12 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
         $location.path('/carrinho-de-compras');
     };
 
-    $scope.product = product.get({'productId' : $routeParams.productId});
+    $scope.changeImage = function (image) {
+        $scope.selectedImage = image;
+    };
+
+    $scope.product = product.get({'productId' : $routeParams.productId}, function () {
+        $scope.selectedImage = $scope.product.images[0];
+    });
     $scope.cart = {quantity : 1, product : $scope.product};
 });
