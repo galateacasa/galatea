@@ -9,6 +9,14 @@
                 </select>
                 <a class="button" href="#/minha-conta">Novo endereço</a>
             </div>
+             <div style="margin-top: 40px;">
+                <label id="success_msg" style="color: #33bef2" ng-show="order.address._id">
+                    finalize a compra! seu endereço é coberto pela nossa logística
+                </label>
+                <label id="error_msg" style="color: #ef0011;" ng-hide="order.address._id">
+                    sentimos muito, mas ainda não entregamos no seu endereço
+                </label>
+            </div>
         </div>
     </section>
 </section>

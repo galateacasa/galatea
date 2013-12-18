@@ -36,11 +36,6 @@ schema = new mongoose.Schema({
         'type' : Boolean,
         'default' : false
     },
-    'type' : {
-        'type' : String,
-        'required' : true,
-        'enum' : ['decorator', 'supplier', 'client', 'designer']
-    },
     'company' : {
         'name' : {
             'type' : String
