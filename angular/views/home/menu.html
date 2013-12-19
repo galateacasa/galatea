@@ -1,0 +1,13 @@
+<nav class="grid_12 nav-main" style="display:block;">
+    <ul>
+        <li ng-repeat="category in categories">
+            <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
+        </li>
+        <li>
+            <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
+        </li>
+    </ul>
+    <form ng-submit="search()">
+        <input id="search" type="text" placeholder="Buscar" name="search">
+    </form>
+</nav>

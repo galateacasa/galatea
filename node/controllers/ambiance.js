@@ -31,10 +31,16 @@ server.get('/ambiances', function (request, response, next) {
 
     var query;
 
+    query = {
+        status : 'active'
+    };
+
     if (request.param('featured')) {
-        query = {featured : true, status : 'active'};
-    } else {
-        query = {status : 'active'};
+        query.featured = true;
+    }
+
+    if (request.param('category')) {
+        query.category = request.param('category');
     }
 
     Ambiance.find(query).populate('user').populate('products').exec(function (error, ambiances) {

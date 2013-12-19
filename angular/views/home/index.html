@@ -138,21 +138,6 @@
             </section>
         </header>
     </section>
-    <div class="container_12">
-        <nav class="grid_12 nav-main">
-            <ul>
-                <li ng-repeat="category in categories">
-                    <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
-                </li>
-                <li>
-                    <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
-                </li>
-            </ul>
-            <form ng-submit="search()">
-                <input id="search" type="text" placeholder="Buscar" name="search">
-            </form>
-        </nav>
-    </div>
     <section ng-view class="container_12"></section>
     <footer class="footer-main">
         <section class="container_12">

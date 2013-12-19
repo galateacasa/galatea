@@ -5,6 +5,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
 
     $routeProvider.when('/criar-ambiente', {'templateUrl' : 'views/ambiance/create.html', 'controller' : 'AmbianceCreateController'});
     $routeProvider.when('/inspire-me/:ambianceId?', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
+    $routeProvider.when('/inspire-me/categorias/:categoryId', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
 }).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $fileUploader, ambiance, category) {
     'use strict';
 
@@ -28,7 +29,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
             $scope.uploader.uploadAll();
         });
     };
-}).controller('AmbianceListController', function ($scope, $routeParams, ambiance) {
+}).controller('AmbianceListController', function ($rootScope, $scope, $routeParams, ambiance) {
     'use strict';
 
     if ($routeParams.ambianceId) {
@@ -39,5 +40,9 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
         $scope.ambiance = ambiance;
     };
 
-    $scope.ambiances = ambiance.query();
+    if ($routeParams.categoryId) {
+        $scope.ambiances = ambiance.query({'category' : $routeParams.categoryId});
+    } else {
+        $scope.ambiances = ambiance.query();
+    }
 });
