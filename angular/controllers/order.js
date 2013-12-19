@@ -15,7 +15,7 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
 
     $scope.removeItem = function (cartItem) {
         for (var i = 0; i < $rootScope.cart.length; i += 1) {
-            if ($rootScope.cart[i].product === cartItem.product.slug) {
+            if ($rootScope.cart[i] === cartItem) {
                 $rootScope.cart.splice(i, 1);
             }
         }
