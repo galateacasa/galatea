@@ -39,7 +39,7 @@
         <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
     </h2>
     <figure class="main-image">
-        <img ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/ambiances/{{ambiance.image}}">
+        <img ng-src="{{ambiance.image}}">
     </figure>
     <section class="vertical-slider">
         <h2>Produtos neste ambiente</h2>
@@ -67,7 +67,7 @@
             </span>
             <figure class="ambiance-image">
                 <a href="#">
-                    <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/ambiances/{{ambiance.image}}">
+                    <img alt="" ng-src="{{ambiance.image.replace('upload/', 'upload/c_scale,w_280/')}}">
                 </a>
             </figure>
             <figure class="ambiance-user">
@@ -78,7 +78,7 @@
                     </mark>
                 </figcaption>
                 <a ng-href="#/perfil/{{ambiance.user._id}}">
-                    <img alt="" src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/users/{{ambiance.user.photo}}">
+                    <img alt="" src="{{ambiance.user.photo}}">
                 </a>
             </figure>
         </div>

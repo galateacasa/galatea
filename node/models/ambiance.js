@@ -10,8 +10,7 @@ schema = new mongoose.Schema({
         'required' : true
     },
     'slug' : {
-        'type' : String,
-        'required' : true
+        'type' : String
     },
     'user' : {
         'type' : objectId,
@@ -31,7 +30,7 @@ schema = new mongoose.Schema({
     },
     'status' : {
         'type' : String,
-        'enum' : ['pending', 'voting', 'selling'],
+        'enum' : ['active', 'inactive'],
         'default' : 'pending'
     },
     'votes' : [{

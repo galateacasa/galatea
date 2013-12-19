@@ -23,3 +23,12 @@ server.post('/contacts', function (request, response) {
         response.send(201, contact);
     });
 });
+
+server.get('/contacts/:contactId', function (request, response, next) {
+    'use strict';
+
+    Contact.findById(request.params.contactId, function (error, contact) {
+        if (error) { return next(error); }
+        response.send(201, contact);
+    });
+});
