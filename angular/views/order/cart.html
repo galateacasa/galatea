@@ -39,7 +39,7 @@
                 </td>
                 <td>
                     <a href="#/produto/{{item.product.slug}}">
-                        <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
+                        <img alt="" ng-src="{{item.product.images[0].replace('upload/', 'upload/c_scale,w_120/')}}" width="120" heigth="60">
                     </a>
                 </td>
                 <td>

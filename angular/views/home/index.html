@@ -120,11 +120,11 @@
                     <div class="compras" ng-controller="MiniCartController">
                         <dfn>COMPRAS</dfn>
                         <span>{{cart.length}}</span>
-                        <div class="drop-down-cart">
+                        <div class="drop-down-cart" ng-show="cart.length > 0">
                             <ul>
                                 <li ng-repeat="item in cart">
                                     <figure>
-                                        <img alt="" ng-src="http://galateacasa-sp.s3-website-sa-east-1.amazonaws.com/images/items/{{item.product.images[0]}}" width="120" heigth="60">
+                                        <img alt="" ng-src="{{item.product.images[0].replace('upload/', 'upload/c_scale,w_120/')}}" width="120" heigth="60">
                                     </figure>
                                     <small class="desc"> (x{{item.quantity}}) {{item.product.name}} </small>
                                     <small class="price">{{(item.product.price + item.material.priceIncrease + item.measure.priceIncrease) * item.quantity | currency:'R$'}} </small>
