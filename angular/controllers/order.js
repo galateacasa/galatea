@@ -4,6 +4,15 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
     'use strict';
 
     $routeProvider.when('/carrinho-de-compras', {'templateUrl' : 'views/order/cart.html', 'controller' : 'CartListController'});
+}).controller('MiniCartController', function ($rootScope, $scope, $cookieStore) {
+    'use strict';
+
+    $scope.emptyCart = function () {
+        $rootScope.cart = [];
+        $cookieStore.put('cart', $rootScope.cart);
+    };
+
+    $rootScope.cart = $cookieStore.get('cart') || [];
 }).controller('CartListController', function ($rootScope, $scope, $cookieStore) {
     'use strict';
 

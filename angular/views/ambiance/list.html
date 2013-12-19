@@ -1,28 +1,6 @@
-<nav class="grid_12">
-    <ul class="nav-organize">
-        <li>organizar por:</li>
-        <li class="sub-nav">
-            <a class="sort-link">CATEGORIAS</a>
-            <ul>
-                <li ng-repeat="category in categories">
-                    <a class="padd-first" ng-href="#/inspire-me/categorias/{{category._id}}">{{category.name}}</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a class="padd-first" ng-href="#/inspire-me">TUDO</a>
-        </li>
-        <li>
-            <a class="padd-first" ng-href="#/inspire-me">SEGUINDO</a>
-        </li>
-        <li>
-            <a class="padd-first" ng-href="#/inspire-me">MINHAS</a>
-        </li>
-        <li>
-            <a class="padd-first" ng-href="#/inspire-me">POPULARES</a>
-        </li>
-    </ul>
-</nav>
+
+<ng-include src="'/views/ambiance/create.html'"></ng-include>
+<ng-include src="'/views/ambiance/menu.html'" ng-show="ambiance"></ng-include>
 <section class="grid_12">
     <nav class="brydcrumb">
         <ul>
@@ -31,31 +9,7 @@
         </ul>
     </nav>
 </section>
-<div class="overlay upload-page-popup" style="display: block;" ng-show="ambiance" ng-click="ambiance = null"></div>
-<section class="pop-block-extended" style="display: block; position: fixed; top : 50px" ng-show="ambiance">
-    <a class="close-button" ng-click="ambiance = null">Fechar</a>
-    <h2>
-        {{ambiance.name}}
-        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
-    </h2>
-    <figure class="main-image">
-        <img ng-src="{{ambiance.image}}">
-    </figure>
-    <section class="vertical-slider">
-        <h2>Produtos neste ambiente</h2>
-        <div id="ambiance-vertical-slider">
-            <div class="content">
-                <ul>
-                    <li ng-repeat="product in ambiance.products">
-                        <a ng-href="#/produto/{{product.slug}}?ambiente={{ambiance.slug}}" target="_blank">
-                            <img alt="" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_100/')}}">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-</section>
+<ng-include src="'/views/ambiance/details.html'" ng-show="ambiance"></ng-include>
 <section class="upload-image container_12">
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
         <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">

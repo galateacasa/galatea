@@ -1,0 +1,25 @@
+<div class="overlay upload-page-popup" style="display: block;" ng-click="ambiance = null"></div>
+<section class="pop-block-extended" style="display: block; position: fixed; top : 50px">
+    <a class="close-button" ng-click="ambiance = null">Fechar</a>
+    <h2>
+        {{ambiance.name}}
+        <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+    </h2>
+    <figure class="main-image">
+        <img ng-src="{{ambiance.image}}">
+    </figure>
+    <section class="vertical-slider">
+        <h2>Produtos neste ambiente</h2>
+        <div id="ambiance-vertical-slider">
+            <div class="content">
+                <ul>
+                    <li ng-repeat="product in ambiance.products">
+                        <a ng-href="#/produto/{{product.slug}}?ambiente={{ambiance.slug}}" target="_blank">
+                            <img alt="" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_100/')}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>

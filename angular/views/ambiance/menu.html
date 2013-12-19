@@ -1,0 +1,25 @@
+<nav class="grid_12">
+    <ul class="nav-organize">
+        <li>organizar por:</li>
+        <li class="sub-nav">
+            <a class="sort-link">CATEGORIAS</a>
+            <ul>
+                <li ng-repeat="category in categories">
+                    <a class="padd-first" ng-href="#/inspire-me/categorias/{{category._id}}">{{category.name}}</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="padd-first" ng-href="#/inspire-me">TUDO</a>
+        </li>
+        <li>
+            <a class="padd-first" ng-href="#/inspire-me">SEGUINDO</a>
+        </li>
+        <li>
+            <a class="padd-first" ng-href="#/inspire-me">MINHAS</a>
+        </li>
+        <li>
+            <a class="padd-first" ng-href="#/inspire-me">POPULARES</a>
+        </li>
+    </ul>
+</nav>

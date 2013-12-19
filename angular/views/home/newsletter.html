@@ -1,0 +1,18 @@
+<div id="captacao" style="top: 70px; opacity: 1;" ng-show="popUp" ng-controller="NewsletterController">
+    <a id="fecha" class="fecha" ng-click="close()">×</a>
+    <div class="logo">
+        <img title="Galatea" alt="Galatea" src="/images/captacao/logo.jpg">
+    </div>
+    <h2>
+        A Galatea Evoluiu. Mais criativa. Mais interativa.
+        <br>
+        E você está no centro de tudo. Faça parte!
+    </h2>
+    <h3>Fique em contato. Móveis exclusivos, design de ponta, dicas de decoração e os projetos vencedores de cada mês no seu email!</h3>
+    <form ng-submit="save()">
+        <input id="email" type="text" placeholder="e-mail">
+        <input id="button" class="envia_newsletter" type="submit" value="OK">
+    </form>
+    <img alt="" src="/images/captacao/mesa_captacao.jpg">
+</div>
+<div id="overlay" class="overlay" style="display: block;" ng-click="close()" ng-show="popUp" ng-controller="NewsletterController"></div>

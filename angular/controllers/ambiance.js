@@ -3,17 +3,16 @@
 angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
     'use strict';
 
-    $routeProvider.when('/criar-ambiente', {'templateUrl' : 'views/ambiance/create.html', 'controller' : 'AmbianceCreateController'});
     $routeProvider.when('/inspire-me/:ambianceId?', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
     $routeProvider.when('/inspire-me/categorias/:categoryId', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
 }).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $fileUploader, ambiance, category) {
     'use strict';
 
-    $scope.ambiance = new ambiance({products : []});
+    $scope.newAmbiance = new ambiance({products : []});
     $scope.categories = category.query();
     $scope.uploader = $fileUploader.create({'method' : 'put'});
     $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'ambiances/' + $scope.ambiance.ambianceId + '/images';
+        item.url = 'ambiances/' + $scope.newAmbiance._id + '/images';
     });
     $scope.uploader.bind('completeall', function () {
         $scope.success = 'Ambiente enviado com sucesso';
@@ -21,11 +20,11 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 
     });
 
     $scope.addProduct = function () {
-        $scope.ambiance.products.push({});
+        $scope.newAmbiance.products.push({});
     };
 
     $scope.save = function () {
-        $scope.ambiance.$save(function () {
+        $scope.newAmbiance.$save(function () {
             $scope.uploader.uploadAll();
         });
     };
