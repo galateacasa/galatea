@@ -1,47 +1,46 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.ambiance', ['ngRoute', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources']).config(function ($routeProvider) {
     'use strict';
 
-    $routeProvider.when('/inspire-me/:ambianceId?', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
-    $routeProvider.when('/inspire-me/categorias/:categoryId', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController'});
-}).controller('AmbianceCreateController', function ($rootScope, $scope, $location, $fileUploader, ambiance, category) {
+    $routeProvider.when('/inspire-me', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController', 'reloadOnSearch' : false});
+    $routeProvider.when('/inspire-me/categorias/:categoryId', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController', 'reloadOnSearch' : false});
+}).run(function ($rootScope, $idialog, $location) {
     'use strict';
 
-    $scope.newAmbiance = new ambiance({products : []});
+    $rootScope.openAmbiance = function (ambiance) {
+        $idialog('views/ambiance/details.html', {query : {'ambiente' : ambiance}});
+    };
+
+    if ($location.search().ambiente) {
+        $rootScope.openAmbiance($location.search().ambiente);
+    }
+}).controller('AmbianceCreateController', function ($scope, ambiance, category) {
+    'use strict';
+
+    $scope.ambiance = new ambiance({products : []});
     $scope.categories = category.query();
-    $scope.uploader = $fileUploader.create({'method' : 'put'});
-    $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'ambiances/' + $scope.newAmbiance._id + '/images';
-    });
-    $scope.uploader.bind('completeall', function () {
-        $scope.success = 'Ambiente enviado com sucesso';
-        $location.path('/');
-    });
 
     $scope.addProduct = function () {
-        $scope.newAmbiance.products.push({});
+        $scope.ambiance.products.push({});
     };
 
     $scope.save = function () {
-        $scope.newAmbiance.$save(function () {
-            $scope.uploader.uploadAll();
+        $scope.ambiance.$save(function () {
+            $scope.success = 'Ambiente enviado com sucesso';
+            $scope.hide();
         });
     };
-}).controller('AmbianceListController', function ($rootScope, $scope, $routeParams, ambiance) {
+}).controller('AmbianceListController', function ($scope, $routeParams, ambiance) {
     'use strict';
-
-    if ($routeParams.ambianceId) {
-        $scope.ambiance = ambiance.get({'ambianceId' : $routeParams.ambianceId});
-    }
-
-    $scope.loadAmbiance = function (ambiance) {
-        $scope.ambiance = ambiance;
-    };
 
     if ($routeParams.categoryId) {
         $scope.ambiances = ambiance.query({'category' : $routeParams.categoryId});
     } else {
         $scope.ambiances = ambiance.query();
     }
+}).controller('AmbianceDetailsController', function ($scope, $location, ambiance) {
+    'use strict';
+
+    $scope.ambiance = ambiance.get({'ambianceId' : $location.search().ambiente});
 });

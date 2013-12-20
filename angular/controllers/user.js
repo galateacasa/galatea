@@ -1,6 +1,6 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFileUpload', 'facebook', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 'resources']).config(function ($routeProvider) {
     'use strict';
 
     $routeProvider.when('/entrar', {'templateUrl' : 'views/user/login.html'});
@@ -56,18 +56,10 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
             $location.path('/');
         });
     };
-}).controller('UserSignupController', function ($scope, $location, $fileUploader, user, country, state, city, expertise) {
+}).controller('UserSignupController', function ($scope, $location, user, country, state, city, expertise) {
     'use strict';
 
     $scope.user = new user({type : 'designer', addresses : [{}]});
-    $scope.uploader = $fileUploader.create({'method' : 'put'});
-    $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'users/' + $scope.user.userId + '/photo';
-    });
-    $scope.uploader.bind('completeall', function () {
-        $scope.success = 'Obrigado! Para finalizar o cadastro, verifique o email de confirmação que enviamos para você.';
-        $location.path('/');
-    });
 
     $scope.countries = country.query();
     $scope.expertises = expertise.query();
@@ -82,7 +74,8 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'angularFile
 
     $scope.save = function () {
         $scope.user.$save(function () {
-            $scope.uploader.uploadAll();
+            $scope.success = 'Obrigado! Para finalizar o cadastro, verifique o email de confirmação que enviamos para você.';
+            $location.path('/');
         });
     };
 }).controller('UserAccountController', function ($rootScope, $scope, $location, user, country, state, city) {

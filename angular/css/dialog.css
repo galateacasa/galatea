@@ -1,5 +1,5 @@
 /** iDialog windows **/
-.idialog {position:fixed; left:50%; top:50%; z-index:10000; background:#fff; min-width:400px; max-width:1000px; min-height:200px;}
+.idialog {position:fixed; left:50%; top:50%; z-index:10000; min-width:400px; max-width:1000px; min-height:200px;}
     .idialog > .close-btn {display:none;}
     .idialog > .w {padding:16px 20px;}
 

@@ -1,6 +1,10 @@
-var Express, server;
+var Express, server, cloudinary, config;
 
-Express  = require('express');
+Express    = require('express');
+cloudinary = require('cloudinary');
+config     = require('../config');
+
+cloudinary.config(config.cloudinary);
 
 if (!server) {
     server   = new Express();
@@ -14,6 +18,14 @@ if (!server) {
     server.get('/', function (request, response) {
         'use strict';
         response.sendfile(__dirname.replace('node/modules','angular') + '/views/home/index.html');
+    });
+
+    server.post('/images', require('connect-multiparty')(), function (request, response) {
+        'use strict';
+
+        cloudinary.uploader.upload(request.files.file.path, function(result) {
+            response.send(200, result.url);
+        });
     });
 }
 

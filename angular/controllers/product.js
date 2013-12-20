@@ -1,13 +1,13 @@
 /* global angular:false
  */
-angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularFileUpload', 'resources']).config(function ($routeProvider) {
+angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resources']).config(function ($routeProvider) {
     'use strict';
 
     $routeProvider.when('/criar-projeto', {'templateUrl' : 'views/product/create.html', 'controller' : 'ProductCreateController'});
     $routeProvider.when('/categoria/:categoryId/:subCategoryId?', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
     $routeProvider.when('/projeto/:projectId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
     $routeProvider.when('/produto/:productId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
-}).controller('ProductCreateController', function ($rootScope, $scope, $location, $fileUploader, product, category) {
+}).controller('ProductCreateController', function ($rootScope, $scope, $location, product, category) {
     'use strict';
 
     $scope.product = new product({categories : [], measures : [], materials : []});
@@ -20,14 +20,6 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
                 $scope.categories.push(categories[i].subcategories[j]);
             }
         }
-    });
-    $scope.uploader = $fileUploader.create({'method' : 'post'});
-    $scope.uploader.bind('beforeupload', function (event, item) {
-        item.url = 'products/' + $scope.product._id + '/images';
-    });
-    $scope.uploader.bind('completeall', function () {
-        $scope.success = 'Produto enviado com sucesso';
-        $location.path('/');
     });
 
     $scope.addCategory = function () {
@@ -47,7 +39,8 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'angularF
             return category._id;
         });
         $scope.product.$save(function () {
-            $scope.uploader.uploadAll();
+            $scope.success = 'Produto enviado com sucesso';
+            $location.path('/');
         });
     };
 }).controller('ProductListController', function ($scope, $routeParams, product, category) {

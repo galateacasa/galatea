@@ -1,8 +1,7 @@
-var mongoose, server, cloudinary, auth, crypto, User;
+var mongoose, server, auth, crypto, User;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
-cloudinary = require('cloudinary');
 auth       = require('../modules/auth');
 crypto     = require('crypto');
 User       = mongoose.model('User');
@@ -27,23 +26,6 @@ server.post('/users', function (request, response) {
     user.save(function (error) {
         if (error) { return response.send(400, error); }
         response.send(201, user);
-    });
-});
-
-server.put('/users/:userId/photo', require('connect-multiparty')(), function (request, response) {
-    'use strict';
-
-    User.findById(request.params.userId, function (error, user) {
-        if (error) { return response.send(400, error); }
-        if (!user) { return response.send(404, new Error('user not found')); }
-
-        cloudinary.uploader.upload(request.files.file.path, function(result) {
-            user.photo = result.url;
-            user.save(function (error) {
-                if (error) { return response.send(400, error); }
-                response.send(200, user);
-            });
-        });
     });
 });
 

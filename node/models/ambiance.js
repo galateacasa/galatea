@@ -31,7 +31,7 @@ schema = new mongoose.Schema({
     'status' : {
         'type' : String,
         'enum' : ['active', 'inactive'],
-        'default' : 'pending'
+        'default' : 'active'
     },
     'votes' : [{
         'type' : objectId,

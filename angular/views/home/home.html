@@ -1,5 +1,4 @@
 <ng-include src="'/views/home/menu.html'"></ng-include>
-<ng-include src="'/views/ambiance/details.html'" ng-show="ambiance"></ng-include>
 <div id="homeContent">
     <div class="container_12">
         <section class="product-top grid_12" ng-repeat="ambiance in featured">
@@ -26,12 +25,12 @@
             <section class="grid_6 omega">
                 <section class="product-top-right">
                     <h3>
-                        <a class="ambiance-info" ng-click="loadAmbiance(ambiance)" style="cursor : pointer;"> {{ambiance.name}} </a>
+                        <span class="ambiance-info" style="cursor : pointer;" ng-click="openAmbiance(ambiance.slug)"> {{ambiance.name}} </span>
                     </h3>
                     <figure>
-                        <a class="ambiance-info" ng-click="loadAmbiance(ambiance)">
+                        <span class="ambiance-info" ng-click="openAmbiance(ambiance.slug)">
                             <img ng-src="{{ambiance.image.replace('upload/', 'upload/c_scale,w_460/')}}">
-                        </a>
+                        </span>
                     </figure>
                     <div class="fig-sm">
                         <figure>

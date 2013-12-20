@@ -1,12 +1,9 @@
-var server, mongoose, config, fs, cloudinary;
+var server, mongoose, config, fs;
 
 config     = require('./config');
 mongoose   = require('mongoose');
 server     = require('./modules/server');
 fs         = require('fs');
-cloudinary = require('cloudinary');
-
-cloudinary.config(config.cloudinary);
 
 fs.readdir(__dirname + '/models', function (error, files) {
     'use strict';

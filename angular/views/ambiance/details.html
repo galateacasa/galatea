@@ -1,6 +1,4 @@
-<div class="overlay upload-page-popup" style="display: block;" ng-click="ambiance = null"></div>
-<section class="pop-block-extended" style="display: block; position: fixed; top : 50px">
-    <a class="close-button" ng-click="ambiance = null">Fechar</a>
+<section class="pop-block-extended" style="display: block" ng-controller="AmbianceDetailsController">
     <h2>
         {{ambiance.name}}
         <a href="http://www.galateacasa.com.br/index.php/perfil/estudio-galatea">{{ambiance.user.name}} {{ambiance.user.surname}}</a>

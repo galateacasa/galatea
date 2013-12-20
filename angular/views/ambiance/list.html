@@ -1,5 +1,3 @@
-
-<ng-include src="'/views/ambiance/create.html'"></ng-include>
 <ng-include src="'/views/ambiance/menu.html'" ng-show="ambiance"></ng-include>
 <section class="grid_12">
     <nav class="brydcrumb">
@@ -9,20 +7,19 @@
         </ul>
     </nav>
 </section>
-<ng-include src="'/views/ambiance/details.html'" ng-show="ambiance"></ng-include>
 <section class="upload-image container_12">
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
         <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">
             <h2>
-                <a class="ambiance-info" ng-click="loadAmbiance(ambiance)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </a>
+                <span class="ambiance-info" ng-click="openAmbiance(ambiance.slug)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </span>
             </h2>
             <span class="star">
                 <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>
             </span>
             <figure class="ambiance-image">
-                <a href="#">
+                <span ng-click="openAmbiance(ambiance.slug)">
                     <img alt="" ng-src="{{ambiance.image.replace('upload/', 'upload/c_scale,w_280/')}}">
-                </a>
+                </span>
             </figure>
             <figure class="ambiance-user">
                 <figcaption>

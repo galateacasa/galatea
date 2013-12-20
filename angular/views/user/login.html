@@ -37,16 +37,12 @@
 					<div class="up-image-box">
 						<figure class="upload-frame">
 							<figcaption>foto</figcaption>
-							<span id="user_drop_image" class="frame">
-								Arraste a imagem para esta área
-							</span>
-							<small id="user_drop_image_response">&nbsp;</small>
+							<small><img ng-src="{{user.photo}}"></small>
 						</figure>
 						<div class="file-submit file-upload-inline">
 							<div class="customfile">
 								<span class="customfile-button" aria-hidden="true">Selecione</span>
-								<span class="customfile-feedback" aria-hidden="true">Nenhum arquivo selecionado</span>
-								<input type="file" ng-file-select id="user_image" class="file-upload-styled customfile-input" style="left: -230px;"></div>
+								<input type="file" file url="/images" model="user.photo" id="user_image" class="file-upload-styled customfile-input" style="left: -230px;"></div>
 							</div>
 						</div>
 						<div class="login-forms grid_6 omega">

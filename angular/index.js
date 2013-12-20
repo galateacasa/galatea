@@ -1,5 +1,5 @@
 /*global angular:false*/
-angular.module('galatea', ['ngRoute', 'idialog', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
+angular.module('galatea', ['ngRoute', 'idialog', 'fileUpload', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
     'use strict';
 
     $facebookProvider.init({
@@ -10,7 +10,7 @@ angular.module('galatea', ['ngRoute', 'idialog', 'galatea.controllers.institutio
         xfbml : true
     });
 
-    $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController'});
+    $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController', 'reloadOnSearch' : false});
 }).run(function ($rootScope, $window, user, category) {
     'use strict';
 
@@ -26,10 +26,6 @@ angular.module('galatea', ['ngRoute', 'idialog', 'galatea.controllers.institutio
     $rootScope.user = user.get({'userId' : 'me'});
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';
-
-    $scope.loadAmbiance = function (ambiance) {
-        $scope.ambiance = ambiance;
-    };
 
     $scope.featured = ambiance.query({'featured' : true});
 });

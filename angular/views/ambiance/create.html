@@ -1,4 +1,4 @@
-<section ng-controller="AmbianceCreateController">
+<section class="pop-block" style="display: block" ng-controller="AmbianceCreateController">
     <form ng-submit="save()">
         <div>
             <h2 class="pop-title">
@@ -7,40 +7,32 @@
             </h2>
             <div class="wrap-content">
                 <section class="pop-small-block">
-                    <h3>Arraste uma imagem para o quadrado ou...</h3>
                     <section class="msg-box">
                         <h3>Pr&#233;-visualiza&#231;&#227;o da imagem:</h3>
                         <div id="upload-response" class="grid_12">
-                            <span id="ambiance_dropbox" class="ambiance_dropbox" >
-                                Arraste a imagem para esta &#225;rea
-                                <br>
-                                (Tamanho m&#225;ximo 2mb)
-                            </span>
-                            <span id="ambiance-upload-message"></span>
+                            <img ng-src="{{ambiance.image}}">
                         </div>
                     </section>
                 </section>
                 <section class="pop-small-block omega last">
-                    <h3>insira o endere&#231;o da web:</h3>
-                    <div class="inpt-out">
-                        <input id="ambiance-image-url" type="text" class="search-area" placeholder="http://sitedaimage.com.br/nome-da-image.jpg">
-                        <input id="ambiance-save-image-url" type="button" value="OK" class="submit-btn">
-                    </div>
                     <ul class="long-forms">
                         <li>
+                            <div class="legend">Image:</div>
+                            <input id="ambiance-image-url" type="file" class="search-area" file url="/images" model="ambiance.image">
+                        </li>
+                        <li>
                             <div class="legend">T&#237;tulo:</div>
-                            <input id="ambiance-title" type="text" class="search-area">
+                            <input type="text" class="search-area" ng-model="ambiance.name">
                         </li>
                         <li>
                             <div class="legend">Categoria:</div>
                             <div class="report-box">
-                                <select id="ambiance-category-main" class="ambiance-styled">
+                                <select ng-model="ambiance.category" id="ambiance-category-main" class="ambiance-styled" ng-options="category._id as category.name for category in categories">
                                 </select>
                             </div>
                         </li>
                         <li>
                             <button id="ambiance-save" type="submit" class="button float-r">publicar</button>
-                            <button type="button" id="add-products-btn" class="button button-gray float-r">anexar produtos</button>
                             <p class="ambiance-terms">
                                 Clicando em PUBLICAR, voc&#234; estar&#225; concordando <br> com os <a target="_blank">Termos do site</a>  e com nossa pol&#237;tica de <a target="_blank">Termos do site</a>
                                 <a href="http://new.galateacasa.com.br/site/about/index/terms" target="_blank">direito de imagem</a>
@@ -67,10 +59,6 @@
                          <!-- /search result -->
                      </ul>
                  </div>
-                 <div class="arrows">
-                    <a href="#" class="previous">&nbsp;</a>
-                    <a href="#" class="next">&nbsp;</a>
-                </div>
             </div>
         </section>
         <h2 class="pop-title">produtos anexados</h2>
@@ -78,10 +66,6 @@
             <div id="ambiance-slider-attached" class="horizontal-slider-container">
                 <div id="ambiance-attached-products" class="horizontal-slider-content">
                     <ul id="products-added" class="horizontal-slider add-ambiance"><!-- /search result --></ul>
-                </div>
-                <div class="arrows">
-                    <a href="#" class="previous">&nbsp;</a>
-                    <a href="#" class="next">&nbsp;</a>
                 </div>
             </div>
         </section>
