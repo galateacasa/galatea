@@ -22,7 +22,7 @@
                             <em class="imp">&nbsp;</em>
                             <input type="text" placeholder="cpf" ng-model="user.cpf" class="cpf">
                         </div>
-                        <input type="file" name="file" id="user-edit-custom-file" class="file-upload-styled" />
+                        <input type="file" name="file" id="user-edit-custom-file" class="file-upload-styled" file url="/images" model="user.photo"/>
                         <textarea class="msg" ng-model="user.about" rows="4"></textarea>
                     </section>
                     <section ng-show="user.type==='supplier'">
