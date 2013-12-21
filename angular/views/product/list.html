@@ -48,7 +48,7 @@
     </section>
     <section class="category-container">
         <ul class="category">
-            <li ng-repeat="product in products" class="product">
+            <li ng-repeat="product in products | filter:query" class="product">
                 <div class="product-image">
                     <figure>
                         <a ng-href="#/produto/{{product.slug}}">

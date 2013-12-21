@@ -11,7 +11,7 @@ angular.module('galatea', ['ngRoute', 'idialog', 'fileUpload', 'galatea.controll
     });
 
     $routeProvider.when('/', {'templateUrl' : 'views/home/home.html', 'controller' : 'HomeController', 'reloadOnSearch' : false});
-}).run(function ($rootScope, $window, user, category) {
+}).run(function ($rootScope, $location, $window) {
     'use strict';
 
     $rootScope.$on('$routeChangeSuccess', function () {
@@ -21,9 +21,6 @@ angular.module('galatea', ['ngRoute', 'idialog', 'fileUpload', 'galatea.controll
     $rootScope.goToTop = function () {
         $window.scrollTo(0,0);
     };
-
-    $rootScope.categories = category.query();
-    $rootScope.user = user.get({'userId' : 'me'});
 }).controller('HomeController', function ($scope, ambiance) {
     'use strict';
 

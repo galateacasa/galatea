@@ -7,6 +7,38 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
     $routeProvider.when('/categoria/:categoryId/:subCategoryId?', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
     $routeProvider.when('/projeto/:projectId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
     $routeProvider.when('/produto/:productId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
+    $routeProvider.when('/produtos', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController', 'reloadOnSearch' : false});
+}).controller('ProductSearchController', function ($scope, $location, category) {
+    'use strict';
+
+    $scope.categories = category.query();
+    $scope.query = $location.search().busca;
+
+    $scope.search = function () {
+        if ($location.path() !== '/produtos') {
+            $location.path('/produtos');
+        }
+        $location.search('busca', $scope.query);
+    };
+}).controller('ProductListController', function ($rootScope, $scope, $routeParams, $location, product, category) {
+    'use strict';
+
+    $scope.query = $location.search().busca;
+
+    if ($routeParams.subCategoryId) {
+        $scope.category = category.get({'categoryId' : $routeParams.categoryId});
+        $scope.subcategory = category.get({'categoryId' : $routeParams.subCategoryId});
+        $scope.products = product.query({'categoryId' : $routeParams.subCategoryId});
+    } else if ($routeParams.categoryId) {
+        $scope.category = category.get({'categoryId' : $routeParams.categoryId});
+        $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+    } else {
+        $scope.products = product.query();
+    }
+
+    $scope.$on('$locationChangeSuccess', function () {
+        $scope.query = $location.search().busca;
+    });
 }).controller('ProductCreateController', function ($rootScope, $scope, $location, product, subcategory) {
     'use strict';
 
@@ -41,17 +73,6 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
             $location.path('/');
         });
     };
-}).controller('ProductListController', function ($scope, $routeParams, product, category) {
-    'use strict';
-
-    $scope.category = category.get({'categoryId' : $routeParams.categoryId});
-    $scope.subcategory = category.get({'categoryId' : $routeParams.subCategoryId});
-
-    if ($routeParams.subCategoryId) {
-        $scope.products = product.query({'categoryId' : $routeParams.subCategoryId});
-    } else {
-        $scope.products = product.query({'categoryId' : $routeParams.categoryId});
-    }
 }).controller('ProductDetailsController', function ($rootScope, $scope, $routeParams, $location, $cookieStore, product) {
     'use strict';
 

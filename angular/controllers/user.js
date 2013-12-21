@@ -9,6 +9,10 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
     $routeProvider.when('/minha-conta', {'templateUrl' : 'views/user/account.html', 'controller' : 'UserAccountController'});
     $routeProvider.when('/meus-creditos', {'templateUrl' : 'views/user/credits.html'});
     $routeProvider.when('/perfil/:userId?', {'templateUrl' : 'views/user/profile.html', 'controller' : 'UserProfileController'});
+}).run(function ($rootScope, user) {
+    'use strict';
+
+    $rootScope.user = user.get({'userId' : 'me'});
 }).controller('UserProfileController', function ($scope, $routeParams, user) {
     'use strict';
 

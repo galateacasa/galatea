@@ -1,4 +1,4 @@
-<nav class="grid_12 nav-main" style="display:block;">
+<nav class="grid_12 nav-main" style="display:block;" ng-controller="ProductSearchController">
     <ul>
         <li ng-repeat="category in categories">
             <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
@@ -7,7 +7,5 @@
             <a class="padd-first" ng-href="#/categoria/novidades">vote</a>
         </li>
     </ul>
-    <form ng-submit="search()">
-        <input id="search" type="text" placeholder="Buscar" name="search">
-    </form>
+    <input type="text" placeholder="Buscar" ng-change="search()" ng-model="query">
 </nav>
