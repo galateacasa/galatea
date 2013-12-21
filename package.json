@@ -16,7 +16,7 @@
     "mongoose-json-select": "0.2.1",
     "redis":"0.9.1",
     "forky": "0.0.2",
-    "ng-resource": "0.0.8",
+    "ng-resource": "0.0.9",
     "node-mandrill": "1.0.1",
     "cloudinary": "1.0.6",
     "handlebars": "1.1.2",

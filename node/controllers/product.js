@@ -1,10 +1,11 @@
-var mongoose, server, auth, Category, Product;
+var mongoose, server, auth, Category, Product, Ambiance;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
 auth       = require('../modules/auth');
 Category   = mongoose.model('Category');
 Product    = mongoose.model('Product');
+Ambiance   = mongoose.model('Ambiance');
 
 server.post('/products', auth.authenticate, function (request, response) {
     'use strict';
