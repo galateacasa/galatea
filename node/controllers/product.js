@@ -30,12 +30,33 @@ server.get('/products', function (request, response, next) {
     'use strict';
 
     Category.findOne({slug : request.param('categoryId')}, function (error, parentCategory) {
-        Category.find({parent : parentCategory._id}, function (error, categories) {
+        var query;
+
+        if (error) { return next(error); }
+
+        if (parentCategory) {
+            query = {parent : parentCategory._id};
+        } else {
+            query = {slug : request.param('categoryId')};
+        }
+
+        Category.find(query, function (error, categories) {
+            var query;
+
             if (error) { return next(error); }
-            categories.push(parentCategory);
-            Product.find({'status' : 'selling', 'categories' : {'$in' : categories.map(function (category) {
-                return category._id;
-            })}}).populate('user').populate('categories').exec(function (error, ambiances) {
+
+            query = {'status' : 'selling'};
+
+            if (request.param('name')) {
+                query.name = new RegExp(request.param('name', ''), 'i');
+            }
+            if (request.param('categoryId')) {
+                categories.push(parentCategory);
+                query.categories = {'$in' : categories.map(function (category) {
+                    return category._id;
+                })};
+            }
+            Product.find(query).populate('user').populate('categories').exec(function (error, ambiances) {
                 if (error) { return next(error); }
                 response.send(200, ambiances);
             });

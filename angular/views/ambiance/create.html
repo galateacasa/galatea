@@ -1,9 +1,8 @@
-<section class="pop-block" style="display: block" ng-controller="AmbianceCreateController">
+<section class="pop-block-extended" style="display: block" ng-controller="AmbianceCreateController">
     <form ng-submit="save()">
         <div>
             <h2 class="pop-title">
                 Enviar Ambiente
-                <a href="javascript:void(0)" class="close-btn">&nbsp;</a>
             </h2>
             <div class="wrap-content">
                 <section class="pop-small-block">
@@ -48,7 +47,7 @@
                 <h3 class="extra-lt-space">Anexe produtos do site relacionados a esse ambiente</h3>
                 <section class="pro-search">
                     <span class="long-forms">
-                        <input id="search-ambiance" type="text" class="search-area" placeholder="Palavra-chave do produto buscado">
+                        <input type="text" class="search-area" placeholder="Palavra-chave do produto buscado" ng-model="search">
                     </span>
                 </section>
             </header>
@@ -56,16 +55,23 @@
                 <div id="ambiance-slider-search" class="horizontal-slider-container">
                     <div id="search-result" class="horizontal-slider-content">
                         <ul class="horizontal-slider add-ambiance">
-                         <!-- /search result -->
-                     </ul>
-                 </div>
-            </div>
-        </section>
+                            <li ng-repeat="product in products | filter:search | orderBy:'name'">
+                                <img alt="" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_200/')}}" ng-click="addProduct(product)">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
         <h2 class="pop-title">produtos anexados</h2>
         <section class="slider">
-            <div id="ambiance-slider-attached" class="horizontal-slider-container">
-                <div id="ambiance-attached-products" class="horizontal-slider-content">
-                    <ul id="products-added" class="horizontal-slider add-ambiance"><!-- /search result --></ul>
+            <div class="horizontal-slider-container">
+                <div class="horizontal-slider-content">
+                    <ul class="horizontal-slider add-ambiance">
+                        <li ng-repeat="product in ambiance.products">
+                            <img alt="" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_200/')}}" ng-click="removeProduct(product)">
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>

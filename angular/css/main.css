@@ -3878,8 +3878,8 @@ li.border {
 }
 /* Content */
 .horizontal-slider-content {
-  width: 940px;
-  overflow: hidden;
+  width: 640px;
+  overflow: auto;
 }
 
 /* @end */

@@ -15,17 +15,35 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources
     if ($location.search().ambiente) {
         $rootScope.openAmbiance($location.search().ambiente);
     }
-}).controller('AmbianceCreateController', function ($scope, ambiance, category) {
+}).controller('AmbianceCreateController', function ($scope, product, ambiance, category) {
     'use strict';
 
     $scope.ambiance = new ambiance({products : []});
+    $scope.products = product.query();
     $scope.categories = category.query();
 
-    $scope.addProduct = function () {
-        $scope.ambiance.products.push({});
+    $scope.addProduct = function (product) {
+        $scope.ambiance.products.push(product);
+        for (var i = 0; i < $scope.products.length; i += 1) {
+            if ($scope.products[i] === product) {
+                $scope.products.splice(i,1);
+            }
+        }
+    };
+
+    $scope.removeProduct = function (product) {
+        $scope.products.push(product);
+        for (var i = 0; i < $scope.ambiance.products.length; i += 1) {
+            if ($scope.ambiance.products[i] === product) {
+                $scope.ambiance.products.splice(i,1);
+            }
+        }
     };
 
     $scope.save = function () {
+        $scope.ambiance.products = $scope.ambiance.products.map(function (product) {
+            return product._id;
+        });
         $scope.ambiance.$save(function () {
             $scope.success = 'Ambiente enviado com sucesso';
             $scope.hide();
