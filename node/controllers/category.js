@@ -25,3 +25,21 @@ server.get('/categories/:categoryId', function (request, response, next) {
         });
     });
 });
+
+server.get('/subcategories', function (request, response, next) {
+    'use strict';
+
+    Category.find({parent : {$exists : true}}, function (error, categories) {
+        if (error) { return next(error); }
+        response.send(200, categories);
+    });
+});
+
+server.get('/subcategories/:subcategoriesId', function (request, response, next) {
+    'use strict';
+
+    Category.findOne({slug : request.params.subcategoriesId}, function (error, category) {
+        if (error) { return next(error); }
+        response.send(200, category);
+    });
+});

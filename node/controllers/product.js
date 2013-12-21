@@ -16,7 +16,8 @@ server.post('/products', auth.authenticate, function (request, response) {
         'user' : request.userId,
         'categories' : request.param('categories'),
         'measures' : request.param('measures'),
-        'materials' : request.param('materials')
+        'materials' : request.param('materials'),
+        'images' : request.param('images')
     });
 
     product.save(function (error) {

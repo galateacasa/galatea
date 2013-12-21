@@ -7,20 +7,15 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
     $routeProvider.when('/categoria/:categoryId/:subCategoryId?', {'templateUrl' : 'views/product/list.html', 'controller' : 'ProductListController'});
     $routeProvider.when('/projeto/:projectId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
     $routeProvider.when('/produto/:productId', {'templateUrl' : 'views/product/details.html', 'controller' : 'ProductDetailsController'});
-}).controller('ProductCreateController', function ($rootScope, $scope, $location, product, category) {
+}).controller('ProductCreateController', function ($rootScope, $scope, $location, product, subcategory) {
     'use strict';
 
-    $scope.product = new product({categories : [], measures : [], materials : []});
-    category.query(function (categories) {
-        var i, j;
+    $scope.product = new product({categories : [], measures : [], materials : [], images : []});
+    $scope.subcategories = subcategory.query();
 
-        $scope.categories = [];
-        for (i = 0; i < categories.length; i += 1) {
-            for (j = 0; j < categories[i].subcategories.length; j += 1) {
-                $scope.categories.push(categories[i].subcategories[j]);
-            }
-        }
-    });
+    $scope.addImage = function () {
+        $scope.product.images.push({});
+    };
 
     $scope.addCategory = function () {
         $scope.product.categories.push({});
@@ -37,6 +32,9 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
     $scope.save = function () {
         $scope.product.categories = $scope.product.categories.map(function (category) {
             return category._id;
+        });
+        $scope.product.images = $scope.product.images.map(function (image) {
+            return image.url;
         });
         $scope.product.$save(function () {
             $scope.success = 'Produto enviado com sucesso';

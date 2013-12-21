@@ -1,70 +1,84 @@
 <ng-include src="'/views/home/menu.html'"></ng-include>
 <form ng-submit="save()">
-    <h2>
-        Enviar Projeto
-    </h2>
-    <div>
-        <div>
-            <input type="file" ng-file-select multiple>
+    <section class="container_12">
+        <section class="grid_12">
+            <div>
+                <h2>
+                    inscrição de projetos<a href="#/institucional/manual-de-boas-praticas" class="read-more" target="_blank">leia o manual de boas práticas</a>
+                </h2>
+                <span class="block">
+                    <input type="text" class="search-area no-bg custom-textbox float-l" placeholder="Nome do projeto"  ng-model="product.name">
+                </span>
+            </div>
+        </section>
+    </section>
+    <section class="container_12">
+        <div class="grid_12" ng-repeat="image in product.images">
+            <input type="file" name="file" id="principal_img" class="file-upload-styled" file url="/images" model="image.url">
+            <img ng-src="{{image.url}}">
         </div>
-    </div>
-    <div>
-        <span>
-            <label>Título</label>
-            <input type="text" ng-model="product.name">
-        </span>
-    </div>
-    <h2>
-        Categorias
-    </h2>
-    <div ng-repeat="category in product.categories">
-        <span>
-            <label>Categoria</label>
-            <select ng-model="category._id" ng-options="subcategory._id as subcategory.name for subcategory in categories"></select>
-        </span>
-    </div>
-    <div ng-click="addCategory()">
-        Adicionar categoria
-    </div>
-    <h2>
-        Medidas
-    </h2>
-    <div ng-repeat="measure in product.measures">
-        <div>
-            <span>
-                <label>Largura</label>
-                <input type="text" ng-model="measure.width">
+        <div ng-click="addImage()">
+            + adicione foto
+        </div>
+    </section>
+    <section class="container_12">
+        <section class="grid_6">
+            <h2>Sobre o projeto</h2>
+            <section class="grid_4 alpha">
+                <div class="legend">Categoria:</div>
+                <div class="category-select-box">
+                    <select ng-model="category._id" ng-options="subcategory._id as subcategory.name for subcategory in subcategories" ng-repeat="category in product.categories"></select>
+                </div>
+                <div ng-click="addCategory()">
+                    + adicione categoria
+                </div>
+            </section>
+            <span class="block">
+                <div class="msg-box">
+                    <textarea id="" cols="40" rows="5" placeholder="Digite algumas palavras sobre o projeto" class='msg' ng-model="product.description"></textarea>
+                </div>
             </span>
+        </section>
+        <section class="grid_6 omega alpha" id="info-block">
+            <h2>Informações técnicas</h2>
+            <div class="info-area grid_6 omega alpha extra-btm-space">
+                <div id="measure">
+                    <span>Medidas</span>
+                    <ul ng-repeat="measure in product.measures">
+                        <li class="pi-info">
+                            <label class="first">Altura</label>
+                            <input type="text" class="search-area no-bg custom-textbox float-l" placeholder="cm"  ng-model="measure.height">
+                        </li>
+                        <li class="pi-info">
+                            <label>Largura</label>
+                            <input type="text" class="search-area no-bg custom-textbox float-l" placeholder="cm"  ng-model="measure.width">
+                        </li>
+                        <li class="pi-info">
+                            <label>Profundidade</label>
+                            <input type="text" class="search-area no-bg custom-textbox float-l" placeholder="cm" ng-model="measure.depth">
+                        </li>
+                    </ul>
+                </div>
+                <div data-add="#measure" class="add-more link-btn blue float-r"  ng-click="addMeasure()">+ adicione nova medida</div>
+            </div>
+            <div class="info-area grid_6 omega alpha extra-btm-space">
+                <div id="material" >
+                    <label>Acabamento</label>
+                    <input type="text" ng-model="material.material" ng-repeat="material in product.materials" class="search-area v-large no-bg custom-textbox float-l">
+                </div>
+                <div data-add="#material" class="add-more link-btn blue float-r" ng-click="addMaterial()">
+                    + adicione novo acabamento
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="container_12">
+        <div class="prefix_7 grid_4 terms-con" style="position: relative; right: 40px;">
+            <br>
+            Clicando em PUBLICAR, voc&#234; estar&#225; concordando <br> com os <a target="_blank">Termos do site</a>  e com nossa pol&#237;tica de <a target="_blank">Termos do site</a> <a href="http://new.galateacasa.com.br/site/about/index/terms" target="_blank">direito de imagem</a>
         </div>
-        <div>
-            <span>
-                <label>Profundidade</label>
-                <input type="text" ng-model="measure.depth">
-            </span>
+        <div class="grid_1">
+            <button class="button" type="submit" style="position: relative; right: 50px;">PUBLICAR</button>
         </div>
-        <div>
-            <span>
-                <label>Altura</label>
-                <input type="text" ng-model="measure.height">
-            </span>
-        </div>
-    </div>
-    <div ng-click="addMeasure()">
-        Adicionar medida
-    </div>
-    <h2>
-        Materiais
-    </h2>
-    <div ng-repeat="material in product.materials">
-        <div>
-            <span>
-                <label>Material</label>
-                <input type="text" ng-model="material.material">
-            </span>
-        </div>
-    </div>
-    <div ng-click="addMaterial()">
-        Adicionar material
-    </div>
-    <input type="submit" value="enviar">
+    </section>
 </form>
