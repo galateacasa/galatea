@@ -137,8 +137,27 @@ textarea, select {
 }
 
 select {
-  border: none;
+	font: 1em 'Source Sans Pro', sans-serif;
+	color:#555;
+	border:1px solid #ccc;
+
+	background: url(http://www.galateacasa.com.br/images/s-arrow-down.png) 98% 15px no-repeat;
+	padding: 10px;
+	margin: 0;
+	
+	outline:none;
+	appearance:none;
+	cursor:pointer;
+	display: inline-block;
+	-webkit-border-radius: 0px;
+	   -moz-border-radius: 0px;
+	        border-radius: 0px;
+	-webkit-appearance:none;
+	   -moz-appearance:none;
 }
+
+		
+
 
 hr {
   clear: both;
@@ -918,15 +937,8 @@ footer input[type=submit] {
 .user-type select {
 	margin: 0 7px 20px;
 
-	-webkit-appearance: none;
-
 	color: #23adf4;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 1em;
-	background: url(../../images/arrow-down.png) right 30px no-repeat #f0f2ef;
-	border: 1px solid #ccc;
-	padding: 10px;
-	border-radius: 0;
+	background-color: #f0f2ef;
 }
 
 .tabbing h2 { font-weight: 400; }
