@@ -15,7 +15,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources
     if ($location.search().ambiente) {
         $rootScope.openAmbiance($location.search().ambiente);
     }
-}).controller('AmbianceCreateController', function ($scope, product, ambiance, category) {
+}).controller('AmbianceCreateController', function ($scope, $location, product, ambiance, category) {
     'use strict';
 
     $scope.ambiance = new ambiance({products : []});
@@ -47,6 +47,7 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources
         $scope.ambiance.$save(function () {
             $scope.success = 'Ambiente enviado com sucesso';
             $scope.hide();
+            $location.path('/inspire-me');
         });
     };
 }).controller('AmbianceListController', function ($scope, $routeParams, ambiance,category) {
