@@ -49,9 +49,10 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources
             $scope.hide();
         });
     };
-}).controller('AmbianceListController', function ($scope, $routeParams, ambiance) {
+}).controller('AmbianceListController', function ($scope, $routeParams, ambiance,category) {
     'use strict';
 
+    $scope.categories = category.query();
     if ($routeParams.categoryId) {
         $scope.ambiances = ambiance.query({'category' : $routeParams.categoryId});
     } else {
