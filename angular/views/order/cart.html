@@ -5,7 +5,7 @@
         <div class="delivery_address_select" ng-show="user._id">
             <label id="select-address" for="">selecione um endereço de entrega</label>
             <div>
-                <select ng-model="order.address" class="styled" ng-model="category._id" ng-options="address as address.zipcode for address in user.addresses">
+                <select ng-model="order.address" class="styled" ng-model="category._id" ng-options="address as address.zipcode for address in user.addresses | filter:{country : '52aa3e59e243ab7de88347a6'}">
                     <option value=""> -- Selecione -- </option>
                 </select>
                 <a class="button" href="#/minha-conta">Novo endereço</a>
