@@ -8,8 +8,10 @@
         </li>
     </ul>
     <div class="form">
-		<input type="text" id="search" placeholder="Buscar" ng-change="search()" ng-model="query">
-		<input type="submit" id="enviar" value="">
+        <form ng-submit="search()">
+    		<input type="text" id="search" placeholder="Buscar" ng-model="query">
+    		<input type="submit" id="enviar" value="buscar">
+        </form>
 	</div>
 
 </nav>
