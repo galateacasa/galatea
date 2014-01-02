@@ -5,16 +5,12 @@ angular.module('galatea.controllers.ambiance', ['ngRoute', 'idialog', 'resources
 
     $routeProvider.when('/inspire-me', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController', 'reloadOnSearch' : false});
     $routeProvider.when('/inspire-me/categorias/:categoryId', {'templateUrl' : 'views/ambiance/list.html', 'controller' : 'AmbianceListController', 'reloadOnSearch' : false});
-}).run(function ($rootScope, $idialog, $location) {
+}).run(function ($rootScope, $idialog) {
     'use strict';
 
     $rootScope.openAmbiance = function (ambiance) {
         $idialog('views/ambiance/details.html', {query : {'ambiente' : ambiance}});
     };
-
-    if ($location.search().ambiente) {
-        $rootScope.openAmbiance($location.search().ambiente);
-    }
 }).controller('AmbianceCreateController', function ($scope, $location, product, ambiance, category) {
     'use strict';
 
