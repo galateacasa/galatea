@@ -44,7 +44,7 @@ server.put('/users/:userId/email-confirmation', auth.authenticate, function (req
     });
 });
 
-server.get('/users/:userId', auth.authenticate, function (request, response) {
+server.get('/users/:userId', function (request, response) {
     'use strict';
 
     User.findById(request.params.userId === 'me' ? request.userId : request.params.userId).exec(function (error, user) {
