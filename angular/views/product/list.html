@@ -74,7 +74,7 @@
                     <h3>
                         <span style="word-wrap: break-word;" itemprop="name">{{product.name}}</span>
                     </h3>
-                    <div class="white-box">
+                    <div class="white-box" ng-show="product.price">
                         <div class="rate-new-container">
                             <span class="rate-new">{{(product.price) * 1.07 | currency:'R$'}}</span>
                         </div>

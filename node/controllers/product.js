@@ -46,7 +46,7 @@ server.get('/products', function (request, response, next) {
 
             if (error) { return next(error); }
 
-            query = {'status' : 'selling'};
+            query = {};
 
             if (request.param('name')) {
                 query.name = new RegExp(request.param('name', ''), 'i');
@@ -56,6 +56,11 @@ server.get('/products', function (request, response, next) {
                 query.categories = {'$in' : categories.map(function (category) {
                     return category._id;
                 })};
+            }
+            if (request.param('voting')) {
+                query.status = 'voting';
+            } else {
+                query.status = 'selling';
             }
             Product.find(query).populate('user').populate('categories').exec(function (error, ambiances) {
                 if (error) { return next(error); }

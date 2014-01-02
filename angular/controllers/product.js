@@ -30,8 +30,12 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
         $scope.subcategory = category.get({'categoryId' : $routeParams.subCategoryId});
         $scope.products = product.query({'categoryId' : $routeParams.subCategoryId});
     } else if ($routeParams.categoryId) {
-        $scope.category = category.get({'categoryId' : $routeParams.categoryId});
-        $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+        if ($routeParams.categoryId === 'novidades') {
+            $scope.products = product.query({'voting' : true});
+        } else {
+            $scope.category = category.get({'categoryId' : $routeParams.categoryId});
+            $scope.products = product.query({'categoryId' : $routeParams.categoryId});
+        }
     } else {
         $scope.products = product.query();
     }
