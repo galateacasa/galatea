@@ -25,6 +25,10 @@ schema = new mongoose.Schema({
     'image' : {
         'type' : String
     },
+    'date' : {
+        'type' : Date,
+        'default' : Date.now
+    },
     'featured' : {
         'type' : Boolean
     },
@@ -54,6 +58,7 @@ schema.plugin(require('mongoose-json-select'), {
     'user' : 1,
     'category' : 1,
     'image' : 1,
+    'date' : 1,
     'status' : 1,
     'votes' : 1,
     'products' : 1

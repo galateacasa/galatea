@@ -13,7 +13,7 @@
 </section>
 <section class="upload-image container_12">
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
-        <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances">
+        <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances | orderBy:'date':reverse">
             <h2>
                 <span class="ambiance-info" ng-click="openAmbiance(ambiance.slug)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </span>
             </h2>
