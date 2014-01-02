@@ -2,9 +2,15 @@
 <section class="grid_12">
     <nav class="brydcrumb">
         <ul>
-            <li> Home </li>
-            <li> {{product.categories[0].name}} </li>
-            <li class="last"> {{product.name}} </li>
+            <li>
+                <a ng-href="#/">Home</a>
+            </li>
+            <li>
+                <a ng-href="#/categoria/{{product.categories[0].slug}}">{{product.categories[0].name}}</a>
+            </li>
+            <li class="last">
+                <a ng-href="#/produto/{{product.slug}}">{{product.name}}</a>
+            </li>
         </ul>
     </nav>
 </section>

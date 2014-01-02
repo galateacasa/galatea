@@ -2,9 +2,15 @@
 <section class="grid_12">
     <nav class="brydcrumb">
         <ul>
-            <li> Home </li>
-            <li ng-class="{last : !subcategory.name}"> {{category.name}} </li>
-            <li class="last" ng-show="subcategory.name"> {{subcategory.name}} </li>
+            <li>
+                <a ng-href="#/">Home</a>
+            </li>
+            <li ng-class="{last : !subcategory.name}">
+                <a ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
+            </li>
+            <li class="last" ng-show="subcategory.name">
+                <a ng-href="#/categoria/{{category.slug}}/{{subcategory.slug}}">{{subcategory.name}}</a>
+            </li>
         </ul>
     </nav>
 </section>
