@@ -1,9 +1,10 @@
-var mongoose, server, auth, Ambiance;
+var mongoose, server, auth, Ambiance, User;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
 auth       = require('../modules/auth');
 Ambiance   = mongoose.model('Ambiance');
+User       = mongoose.model('User');
 
 server.post('/ambiances', auth.authenticate, function (request, response) {
     'use strict';
@@ -44,7 +45,10 @@ server.get('/ambiances', function (request, response, next) {
 
     Ambiance.find(query).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
         if (error) { return next(error); }
-        response.send(200, ambiances);
+        User.populate(ambiances, {path : 'products.user'}, function (error, ambiances) {
+            if (error) { return next(error); }
+            response.send(200, ambiances);
+        });
     });
 });
 
