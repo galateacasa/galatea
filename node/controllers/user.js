@@ -44,23 +44,32 @@ server.put('/users/:userId/email-confirmation', auth.authenticate, function (req
     });
 });
 
-server.get('/users/:userId', function (request, response) {
+server.get('/users/me', auth.authenticate, function (request, response) {
     'use strict';
 
-    User.findById(request.params.userId === 'me' ? request.userId : request.params.userId).exec(function (error, user) {
+    User.findById(request.userId).exec(function (error, user) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(404, new Error('user not found')); }
         response.send(200, user);
     });
 });
 
-server.post('/users/:userId', auth.authenticate, function (request, response) {
+server.get('/users/:userId', function (request, response) {
+    'use strict';
+
+    User.findById(request.params.userId).exec(function (error, user) {
+        if (error) { return response.send(400, error); }
+        if (!user) { return response.send(404, new Error('user not found')); }
+        response.send(200, user);
+    });
+});
+
+server.put('/users/:userId', auth.authenticate, function (request, response) {
     'use strict';
 
     User.findById(request.params.userId === 'me' ? request.userId : request.params.userId).exec(function (error, user) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(404, new Error('user not found')); }
-
 
         user.name = request.param('name');
         user.surname = request.param('surname');

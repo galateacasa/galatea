@@ -36,6 +36,9 @@ fs.readdir(__dirname + '/controllers', function (error, files) {
             state : {'countryId' : '@country', 'stateId' : '@_id'},
             city : {'countryId' : '@country', 'stateId' : '@state', 'cityId' : '@_id'},
             expertise : {'expertiseId' : '@_id'}
+        },
+        actions : {
+            'user' : {'update' : {'method' : 'PUT'}}
         }
     });
     server.listen(config.host.port, function () {

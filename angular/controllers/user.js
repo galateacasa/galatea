@@ -85,9 +85,7 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
 }).controller('UserAccountController', function ($rootScope, $scope, $location, user, country, state, city) {
     'use strict';
 
-    $scope.user = user.get({'userId' : 'me'}, function (user) {
-        console.log(user);
-    });
+    $scope.user = user.get({'userId' : $rootScope.user._id});
     $scope.countries = country.query();
 
     $scope.addAddress = function () {
@@ -111,7 +109,7 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
     };
 
     $scope.save = function (goToCart) {
-        $scope.user.$save();
+        $scope.user.$update();
         $rootScope.user = $scope.user;
         if (goToCart) {
             $location.path('/carrinho-de-compras');
