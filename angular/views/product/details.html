@@ -41,8 +41,8 @@
         </ul>
     </div>
 </section>
-<section class="container_12 extra-btm-space" ng-show="product.price">
-    <form ng-submit="addToCart()">
+<section class="container_12 extra-btm-space">
+    <form ng-submit="addToCart()" ng-show="product.price">
         <section class="grid_12 add-to-cart-container product-page">
             <div class="report-box custom-select msr" style="width: 157px; margin-right: 15px;">
                 <h2>Medidas (L x A x P)</h2>
@@ -94,7 +94,7 @@
         <p class="extra-btm-space">{{product.description}}</p>
         <br>
         <br>
-        <h2 class="extra-btm-space extra-top-space"> Prazo de entrega: {{product.deadline}} dias </h2>
+        <h2 class="extra-btm-space extra-top-space" ng-show="product.deadline"> Prazo de entrega: {{product.deadline}} dias </h2>
     </section>
     <section class="grid_6 omega extra-top-space">
         <section class="grid_6 omega alpha extra-btm-space">
