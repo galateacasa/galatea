@@ -19,6 +19,9 @@ schema = new mongoose.Schema({
     'image' : {
         'type' : String
     },
+    'order' : {
+        'type' : Number
+    },
     'link' : {
         'type' : String
     }
@@ -31,6 +34,7 @@ schema.plugin(require('mongoose-json-select'), {
     'name' : 1,
     'slug' : 1,
     'image' : 1,
+    'order' : 1,
     'link' : 1
 });
 

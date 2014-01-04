@@ -21,7 +21,7 @@ server.get('/categories/:categoryId', function (request, response, next) {
         Category.find({parent : category._id}, function (error, categories) {
             if (error) { return next(error); }
 
-            response.send(200, {name : category.name, slug : category.slug, _id : category._id, image : category.image, subcategories : categories, link : category.link});
+            response.send(200, {name : category.name, slug : category.slug, _id : category._id, image : category.image, subcategories : categories, link : category.link, order : category.order});
         });
     });
 });

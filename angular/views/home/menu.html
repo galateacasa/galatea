@@ -1,6 +1,6 @@
 <nav class="grid_12 nav-main" style="display:block;" ng-controller="ProductSearchController">
     <ul>
-        <li ng-repeat="category in categories">
+        <li ng-repeat="category in categories | orderBy:'order'">
             <a class="padd-first" ng-href="#/categoria/{{category.slug}}">{{category.name}}</a>
         </li>
         <li>
