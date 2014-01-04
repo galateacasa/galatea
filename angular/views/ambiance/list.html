@@ -15,7 +15,7 @@
     <div id="ambiance-objects" class="masonry" style="position: relative; height: 4093px;">
         <div class="ambiance-object masonry-brick" ng-repeat="ambiance in ambiances | orderBy:'date':reverse">
             <h2>
-                <span class="ambiance-info" ng-click="openAmbiance(ambiance.slug)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </span>
+                <a class="ambiance-info" ng-click="openAmbiance(ambiance.slug)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </a>
             </h2>
             <span class="star">
                 <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>
