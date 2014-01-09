@@ -144,7 +144,7 @@ select {
 	background: url(http://www.galateacasa.com.br/images/s-arrow-down.png) 98% 15px no-repeat;
 	padding: 10px;
 	margin: 0;
-	
+
 	outline:none;
 	appearance:none;
 	cursor:pointer;
@@ -156,7 +156,7 @@ select {
 	   -moz-appearance:none;
 }
 
-		
+
 
 
 hr {
@@ -3890,7 +3890,6 @@ li.border {
 }
 /* Content */
 .horizontal-slider-content {
-  width: 640px;
   overflow: auto;
 }
 
