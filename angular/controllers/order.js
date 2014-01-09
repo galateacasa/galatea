@@ -13,7 +13,7 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
     };
 
     $rootScope.cart = $cookieStore.get('cart') || [];
-}).controller('CartListController', function ($rootScope, $scope, $cookieStore) {
+}).controller('CartListController', function ($rootScope, $scope, $window, $cookieStore, order) {
     'use strict';
 
     $scope.changeQuantity = function () {
@@ -51,6 +51,18 @@ angular.module('galatea.controllers.cart', ['ngRoute', 'ngCookies', 'resources']
         $scope.deliveryDate.setDate($scope.deliveryDate.getDate() + deadline);
     };
 
+    $scope.buy = function () {
+        $scope.order.user = $rootScope.user._id;
+        $scope.order.items = $rootScope.cart.map(function (item) {
+            return {product : item.product._id, measure : item.measure._id, material : item.material._id, quantity : item.quantity};
+        });
+        $scope.order.$save(function (order) {
+            console.log(order);
+            $window.location.href = 'http://pagseguro.uol.com.br/v2/checkout/payment.html?code=' + order.code;
+        });
+    };
+
+    $scope.order = new order({});
     $scope.calculateTotal();
     $scope.calculateDeliveryDate();
 });

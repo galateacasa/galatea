@@ -29,6 +29,7 @@ fs.readdir(__dirname + '/controllers', function (error, files) {
     require('ng-resource')(server, {
         paramDefaults : {
             user : {'userId' : '@_id'},
+            order : {'userId' : '@user'},
             ambiance : {'ambianceId' : '@_id'},
             product : {'productId' : '@_id'},
             category : {'categoryId' : '@_id'},

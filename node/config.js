@@ -11,5 +11,6 @@ module.exports = {
         'cloud_name' : cloudinary[2],
         'api_key' : cloudinary[0],
         'api_secret' : cloudinary[1]
-    }
+    },
+    pagseguro : {email : 'luiz@galateacasa.com.br', key : 'F980F0BE911C44CEB2256AD78AAA632F'}
 };

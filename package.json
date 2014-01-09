@@ -20,6 +20,7 @@
     "node-mandrill": "1.0.1",
     "cloudinary": "1.0.6",
     "handlebars": "1.1.2",
-    "connect-multiparty": "1.0.1"
+    "connect-multiparty": "1.0.1",
+    "pagseguro": "0.0.5"
   }
 }

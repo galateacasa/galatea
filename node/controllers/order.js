@@ -12,13 +12,16 @@ server.post('/users/:userId/orders', auth.authenticate, function (request, respo
 
     order = new Order({
         'user' : request.params.userId,
-        'items' : request.param('items'),
-        'deliveryDate' : request.param('measures')
+        'items' : request.param('items', [])
     });
 
     order.save(function (error) {
         if (error) { return response.send(400, error); }
-        response.send(201, order);
+
+        order.pagseguro(function (error) {
+            if (error) { return response.send(400, error); }
+            response.send(201, order);
+        });
     });
 });
 
