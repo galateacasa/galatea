@@ -81,7 +81,7 @@
     <div class="shopping-cart-buttons">
         <a class="button button-gray float-r" href="#/entrar" ng-hide="user._id">Entre para finalizar a compra</a>
         <a class="button float-r" ng-show="order.address" ng-click="buy()"> Finalizar </a>
-        <a class="button float-r" ng-show="user._id && !order.address"> troque o endereço </a>
+        <a class="button float-r" ng-show="user._id && !order.address" ng-click="goToTop()"> troque o endereço </a>
         <a class="button button-gray float-r" href="#/">Seguir comprando</a>
     </div>
 </section>
