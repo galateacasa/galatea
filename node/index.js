@@ -39,7 +39,8 @@ fs.readdir(__dirname + '/controllers', function (error, files) {
             expertise : {'expertiseId' : '@_id'}
         },
         actions : {
-            'user' : {'update' : {'method' : 'PUT'}}
+            'user' : {'update' : {'method' : 'PUT'}},
+            'product' : {}
         }
     });
     server.listen(config.host.port, function () {

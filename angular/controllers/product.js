@@ -115,5 +115,8 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
     $scope.product = product.get({'productId' : $routeParams.productId}, function () {
         $scope.selectedImage = $scope.product.images[0];
     });
+    $scope.simillars = product.similar({productId : $routeParams.productId});
+    $scope.ambiances = product.usedAmbiance({productId : $routeParams.productId});
+    $scope.similarStyle = product.similarStyle({productId : $routeParams.productId});
     $scope.cart = {quantity : 1, product : $scope.product};
 });

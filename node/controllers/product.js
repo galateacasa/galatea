@@ -62,9 +62,9 @@ server.get('/products', function (request, response, next) {
             } else {
                 query.status = 'selling';
             }
-            Product.find(query).populate('user').populate('categories').exec(function (error, ambiances) {
+            Product.find(query).populate('user').populate('categories').exec(function (error, products) {
                 if (error) { return next(error); }
-                response.send(200, ambiances);
+                response.send(200, products);
             });
         });
     });
@@ -76,5 +76,46 @@ server.get('/products/:productId', function (request, response, next) {
     Product.findOne({slug : request.params.productId}).populate('user').populate('categories').exec(function (error, product) {
         if (error) { return next(error); }
         response.send(200, product);
+    });
+});
+
+server.get('/products/:productId/similars', function (request, response, next) {
+    'use strict';
+
+    Product.findOne({slug : request.params.productId}).exec(function (error, product) {
+        if (error) { return next(error); }
+
+        Product.find({'categories' : {'$in' : product.categories}}).populate('user').populate('categories').exec(function (error, products) {
+            if (error) { return next(error); }
+            response.send(200, products);
+        });
+    });
+});
+
+server.get('/products/:productId/used-ambiances', function (request, response, next) {
+    'use strict';
+
+    Product.findOne({slug : request.params.productId}).exec(function (error, product) {
+        if (error) { return next(error); }
+
+        Ambiance.find({'products' : product._id}).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
+            if (error) { return next(error); }
+            response.send(200, ambiances);
+        });
+    });
+});
+
+server.get('/products/:productId/similar-styles', function (request, response, next) {
+    'use strict';
+
+    Product.findOne({slug : request.params.productId}).exec(function (error, product) {
+        if (error) { return next(error); }
+
+        Ambiance.find({'products' : product._id}).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
+            if (error) { return next(error); }
+            response.send(200, ambiances.reduce(function (products, ambiance) {
+                return products.concat(ambiance.products);
+            }, []));
+        });
     });
 });

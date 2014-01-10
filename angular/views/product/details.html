@@ -126,16 +126,27 @@
 <div class="full-slider">
     <section class="container_12">
         <header class="grid_12">
-            <h2>Produtos com o mesmo estilo</h2>
+            <h2>Produtos similares</h2>
         </header>
         <section class="grid_12">
             <div id="disponibility-ambiances" class="horizontal-slider-container">
                 <div class="horizontal-slider-content">
                     <ul id="carousel-ambiance-star" class="horizontal-slider">
-                        <li class="product"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
+                        <li class="product" ng-repeat="simillar in simillars">
+                            <h3>
+                                <a ng-href="#/produto/{{simillar.slug}}">{{simillar.name}}</a>
+                            </h3>
+                            <figure>
+                                <a ng-href="#/produto/{{simillar.slug}}">
+                                    <img width="200" height="180" ng-src="{{simillar.images[0].replace('upload/', 'upload/c_scale,w_200,h_180/')}}">
+                                </a>
+                            </figure>
+                            <div class="white-box">
+                                <div class="rate-new-container">
+                                    <span class="rate">{{(simillar.price) * 1.07 | currency:'R$'}}</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -143,16 +154,27 @@
         <div class="overlay upload-page-popup"></div>
         <section class="pop-block-extended"></section>
         <header class="grid_12">
-            <h2>Produtos similares</h2>
+            <h2>Produtos com o mesmo estilo</h2>
         </header>
         <section class="grid_12">
             <div id="disponibility-ambiances" class="horizontal-slider-container">
                 <div class="horizontal-slider-content">
                     <ul id="carousel-ambiance-star" class="horizontal-slider">
-                        <li class="product"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
+                        <li class="product" ng-repeat="simillar in similarStyle">
+                            <h3>
+                                <a ng-href="#/produto/{{simillar.slug}}">{{simillar.name}}</a>
+                            </h3>
+                            <figure>
+                                <a ng-href="#/produto/{{simillar.slug}}">
+                                    <img width="200" height="180" ng-src="{{simillar.images[0].replace('upload/', 'upload/c_scale,w_200,h_180/')}}">
+                                </a>
+                            </figure>
+                            <div class="white-box">
+                                <div class="rate-new-container">
+                                    <span class="rate">{{(simillar.price) * 1.07 | currency:'R$'}}</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -166,10 +188,29 @@
             <div id="related-ambiances" class="horizontal-slider-container">
                 <div class="horizontal-slider-content">
                     <ul class="horizontal-slider">
-                        <li class="ambiance"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
+                        <li class="ambiance" ng-repeat="ambiance in ambiances">
+                            <h3>
+                                <a>{{ambiance.name}}</a>
+                            </h3>
+                            <figure>
+                                <a class="ambiance-info" href="48">
+                                <img alt="" ng-src="{{ambiance.image.replace('upload/', 'upload/c_scale,w_218,h_137/')}}">
+                            </a>
+                            </figure>
+                            <div class="white-box">
+                                <figure>
+                                    <figcaption>
+                                        <a href="http://new.galateacasa.com.br/site/users/profile/27">{{ambiance.user.name}} {{ambiance.user.surname}}</a>
+                                        <mark>
+                                            <a href="http://new.galateacasa.com.br/site/categories/show/23">{{ambiance.category.name}}</a>
+                                        </mark>
+                                    </figcaption>
+                                    <a ng-href="#/perfil/{{ambiance.user._id}}">
+                                        <img alt="" src="{{ambiance.user.photo}}">
+                                    </a>
+                                </figure>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
