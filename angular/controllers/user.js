@@ -85,9 +85,6 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
 }).controller('UserAccountController', function ($rootScope, $scope, $location, user, country, state, city) {
     'use strict';
 
-    $scope.user = user.get({'userId' : $rootScope.user._id});
-    $scope.countries = country.query();
-
     $scope.addAddress = function () {
         $scope.user.addresses.push({});
     };
@@ -117,4 +114,14 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
             $location.path('/');
         }
     };
+
+    $scope.user = user.get({'userId' : $rootScope.user._id}, function () {
+        if ($scope.user.addresses[0].country) {
+            $scope.loadStates($scope.user.addresses[0]);
+        }
+        if ($scope.user.addresses[0].state) {
+            $scope.loadCities($scope.user.addresses[0]);
+        }
+    });
+    $scope.countries = country.query();
 });
