@@ -1,4 +1,4 @@
-var mongoose, config, schema, objectId, Pagseguro;
+var mongoose, config, schema, itemSchema, objectId, Pagseguro;
 
 mongoose  = require('mongoose');
 objectId  = mongoose.Schema.Types.ObjectId;
@@ -11,7 +11,7 @@ schema = new mongoose.Schema({
         'ref' : 'User',
         'required' : true
     },
-    'items' : [{
+    'items' : [itemSchema = new mongoose.Schema({
         'product' : {
             'type' : objectId,
             'ref' : 'Product',
@@ -29,7 +29,7 @@ schema = new mongoose.Schema({
             'type' : Number,
             'required' : true
         }
-    }],
+    })],
     'deliveryDate' : {
         'type' : Date
     },
@@ -61,10 +61,21 @@ schema.methods.pagseguro = function (callback) {
         pagseguro.reference(this._id);
 
         order.items.forEach(function (item) {
+            var price;
+
+            price  = item.product.price;
+            price += item.product.measures.filter(function (measure) {
+                return measure._id.toString() === item.measure.toString();
+            }).pop().priceIncrease;
+            price += item.product.materials.filter(function (material) {
+                return material._id.toString() === item.material.toString();
+            }).pop().priceIncrease;
+            price *= 1.07;
+
             pagseguro.addItem({
                 'id' : item.product._id.toString(),
                 'description' : item.product.name,
-                'amount' : '5230.00',
+                'amount' : price.toFixed(2),
                 'quantity' : item.quantity
             });
         });
