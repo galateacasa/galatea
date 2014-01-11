@@ -17,9 +17,6 @@
             <h2>
                 <a class="ambiance-info" ng-click="openAmbiance(ambiance.slug)" ambiance-id="100" style="cursor : pointer;"> {{ambiance.name}} </a>
             </h2>
-            <span class="star">
-                <a id="ambiances_vote_100" class="item_vote " data-vote-id="100" data-vote-type="ambiances" href="#"> </a>
-            </span>
             <figure class="ambiance-image">
                 <span ng-click="openAmbiance(ambiance.slug)">
                     <img alt="" ng-src="{{ambiance.image.replace('upload/', 'upload/c_scale,w_280/')}}">

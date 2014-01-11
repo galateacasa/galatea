@@ -1,5 +1,5 @@
 <ng-include src="'/views/home/menu.html'"></ng-include>
-<section id="delivery_address" class="container_12">
+<section class="container_12">
     <section class="grid_12 mycart border-hrz">
         <h2 class="float-l">Meu Carrinho</h2>
         <div class="delivery_address_select" ng-show="user._id">
@@ -11,10 +11,10 @@
                 <a class="button" href="#/minha-conta">Novo endereço</a>
             </div>
              <div style="margin-top: 40px;">
-                <label id="success_msg" style="color: #33bef2" ng-show="order.address._id">
+                <label style="color: #33bef2" ng-show="order.address._id">
                     finalize a compra! seu endereço é coberto pela nossa logística
                 </label>
-                <label id="error_msg" style="color: #ef0011;" ng-hide="order.address._id">
+                <label style="color: #ef0011;" ng-hide="order.address._id">
                     sentimos muito, mas ainda não entregamos no seu endereço
                 </label>
             </div>

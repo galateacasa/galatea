@@ -14,7 +14,7 @@
     </section>
     <section class="container_12">
         <div class="grid_12" ng-repeat="image in product.images">
-            <input type="file" name="file" id="principal_img" class="file-upload-styled" file url="/images" model="image.url">
+            <input type="file" name="file" class="file-upload-styled" file url="/images" model="image.url">
             <img ng-src="{{image.url}}">
         </div>
         <div ng-click="addImage()">
@@ -42,7 +42,7 @@
         <section class="grid_6 omega alpha" id="info-block">
             <h2>Informações técnicas</h2>
             <div class="info-area grid_6 omega alpha extra-btm-space">
-                <div id="measure">
+                <div>
                     <span>Medidas</span>
                     <ul ng-repeat="measure in product.measures">
                         <li class="pi-info">
@@ -62,7 +62,7 @@
                 <div data-add="#measure" class="add-more link-btn blue float-r"  ng-click="addMeasure()">+ adicione nova medida</div>
             </div>
             <div class="info-area grid_6 omega alpha extra-btm-space">
-                <div id="material" >
+                <div>
                     <label>Acabamento</label>
                     <input type="text" ng-model="material.material" ng-repeat="material in product.materials" class="search-area v-large no-bg custom-textbox float-l">
                 </div>

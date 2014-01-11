@@ -75,6 +75,7 @@ server.get('/products/:productId', function (request, response, next) {
 
     Product.findOne({slug : request.params.productId}).populate('user').populate('categories').exec(function (error, product) {
         if (error) { return next(error); }
+        if (!product) { return response.send(404, new Error('product not found')); }
         response.send(200, product);
     });
 });
@@ -84,6 +85,7 @@ server.get('/products/:productId/similars', function (request, response, next) {
 
     Product.findOne({slug : request.params.productId}).exec(function (error, product) {
         if (error) { return next(error); }
+        if (!product) { return response.send(404, new Error('product not found')); }
 
         Product.find({'categories' : {'$in' : product.categories}}).populate('user').populate('categories').exec(function (error, products) {
             if (error) { return next(error); }
@@ -97,6 +99,7 @@ server.get('/products/:productId/used-ambiances', function (request, response, n
 
     Product.findOne({slug : request.params.productId}).exec(function (error, product) {
         if (error) { return next(error); }
+        if (!product) { return response.send(404, new Error('product not found')); }
 
         Ambiance.find({'products' : product._id}).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
             if (error) { return next(error); }
@@ -110,12 +113,28 @@ server.get('/products/:productId/similar-styles', function (request, response, n
 
     Product.findOne({slug : request.params.productId}).exec(function (error, product) {
         if (error) { return next(error); }
+        if (!product) { return response.send(404, new Error('product not found')); }
 
         Ambiance.find({'products' : product._id}).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
             if (error) { return next(error); }
             response.send(200, ambiances.reduce(function (products, ambiance) {
                 return products.concat(ambiance.products);
             }, []));
+        });
+    });
+});
+
+server.post('/products/:productId/vote', auth.authenticate, function (request, response, next) {
+    'use strict';
+
+    Product.findOne({slug : request.params.productId}).exec(function (error, product) {
+        if (error) { return next(error); }
+        if (!product) { return response.send(404, new Error('product not found')); }
+
+        product.votes.push(request.userId);
+        product.save(function (error) {
+            if (error) { return next(error); }
+            response.send(200, product);
         });
     });
 });
