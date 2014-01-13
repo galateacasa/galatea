@@ -31,7 +31,7 @@ fs.readdir(__dirname + '/controllers', function (error, files) {
             user : {'userId' : '@_id'},
             order : {'userId' : '@user'},
             ambiance : {'ambianceId' : '@_id'},
-            product : {'productId' : '@_id'},
+            product : {'productId' : '@slug'},
             category : {'categoryId' : '@_id'},
             country : {'countryId' : '@_id'},
             state : {'countryId' : '@country', 'stateId' : '@_id'},

@@ -23,7 +23,7 @@
                         <h3>
                             {{product.name}}
                             <a ng-href="#/perfil/{{product.user._id}}">Por: {{product.user.name}} {{product.user.surname}}</a>
-                            <a class="item_vote star_blu"> </a>
+                            <star product="product" user="user"></star>
                         </h3>
                     </figcaption>
                     <img width="940" height="420" ng-src="{{selectedImage}}">

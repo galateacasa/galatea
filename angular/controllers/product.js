@@ -119,4 +119,42 @@ angular.module('galatea.controllers.product', ['ngRoute', 'ngCookies', 'resource
     $scope.ambiances = product.usedAmbiance({productId : $routeParams.productId});
     $scope.similarStyle = product.similarStyle({productId : $routeParams.productId});
     $scope.cart = {quantity : 1, product : $scope.product};
+}).directive('star', function () {
+    'use strict';
+
+    return {
+        restrict: 'E',
+        scope : {
+            product : '=',
+            user : '='
+        },
+        link : function (scope) {
+
+            scope.vote = function () {
+                scope.product.$vote(function () {
+                    scope.isVoted();
+                });
+            };
+
+            scope.isVoted = function () {
+                scope.voted = false;
+                if (!scope.user) { return; }
+
+                for (var i = 0; i < scope.product.votes.length; i += 1) {
+                    if (scope.product.votes[i] === scope.user._id) {
+                        scope.voted = true;
+                    }
+                }
+            };
+
+            if (scope.product.votes) {
+                scope.isVoted();
+            } else {
+                scope.product.$promise.then(function () {
+                    scope.isVoted();
+                });
+            }
+        },
+        templateUrl: '/views/product/star.html'
+    };
 });

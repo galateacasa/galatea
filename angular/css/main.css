@@ -315,6 +315,7 @@ button:active, .button:active, input[type=submit]:active {
   width: 22px;
   height: 20px;
   background: url('../../images/star_gray.png') no-repeat 0 center;
+  cursor: pointer;
   position: absolute;
   right: 0;
   top: 20px;
