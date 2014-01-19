@@ -1,10 +1,12 @@
-var mongoose, server, auth, crypto, User;
+var mongoose, server, auth, crypto, User, Product, Ambiance;
 
 mongoose   = require('mongoose');
 server     = require('../modules/server');
 auth       = require('../modules/auth');
 crypto     = require('crypto');
 User       = mongoose.model('User');
+Product    = mongoose.model('Product');
+Ambiance   = mongoose.model('Ambiance');
 
 server.post('/users', function (request, response) {
     'use strict';
@@ -61,6 +63,33 @@ server.get('/users/:userId', function (request, response) {
         if (error) { return response.send(400, error); }
         if (!user) { return response.send(404, new Error('user not found')); }
         response.send(200, user);
+    });
+});
+
+server.get('/users/:userId/favorite-ambiances', auth.authenticate, function (request, response) {
+    'use strict';
+
+    Ambiance.find({votes : request.params.userId === 'me' ? request.userId : request.params.userId}).populate('user').populate('category').populate('products').exec(function (error, ambiances) {
+        if (error) { return response.send(400, error); }
+        response.send(200, ambiances);
+    });
+});
+
+server.get('/users/:userId/favorite-products', auth.authenticate, function (request, response) {
+    'use strict';
+
+    Product.find({votes : request.params.userId === 'me' ? request.userId : request.params.userId, status : 'selling'}).populate('user').populate('categories').exec(function (error, products) {
+        if (error) { return response.send(400, error); }
+        response.send(200, products);
+    });
+});
+
+server.get('/users/:userId/favorite-projects', auth.authenticate, function (request, response) {
+    'use strict';
+
+    Product.find({votes : request.params.userId === 'me' ? request.userId : request.params.userId, status : 'voting'}).populate('user').populate('categories').exec(function (error, products) {
+        if (error) { return response.send(400, error); }
+        response.send(200, products);
     });
 });
 

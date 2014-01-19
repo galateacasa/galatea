@@ -37,16 +37,27 @@
         <br>
         <br>
         <h2 id="product" class="profile-tab">
-            <a class="filter activate" href="#carousel-product-starred" data-section="product" data-show="carousel-product-starred" data-hide="carousel-product-mine">produtos Preferidos</a>
-            <a class="filter border" href="#carousel-product-mine" data-section="product" data-show="carousel-product-mine" data-hide="carousel-product-starred">Meus produtos</a>
+            <a class="filter activate">produtos Preferidos</a>
         </h2>
         <section id="carousel-product-starred">
             <div class="horizontal-slider-container">
                 <div class="horizontal-slider-content">
                     <ul id="carousel-product-star" class="horizontal-slider">
-                        <li class="empty"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
+                        <li class="product" ng-repeat="product in favoriteProduct">
+                            <h3>
+                                <a ng-href="#/produto/{{product.slug}}">{{product.name}}</a>
+                            </h3>
+                            <figure>
+                                <a ng-href="#/produto/{{product.slug}}">
+                                    <img width="200" height="180" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_200,h_180/')}}">
+                                </a>
+                            </figure>
+                            <div class="white-box">
+                                <div class="rate-new-container">
+                                    <span class="rate">{{(product.price) * 1.07 | currency:'R$'}}</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -56,16 +67,27 @@
         <br>
         <br>
         <h2 id="product" class="profile-tab">
-            <a class="filter activate" href="#carousel-product-starred" data-section="product" data-show="carousel-product-starred" data-hide="carousel-product-mine">projetos Preferidos</a>
-            <a class="filter border" href="#carousel-product-mine" data-section="product" data-show="carousel-product-mine" data-hide="carousel-product-starred">Meus projetos</a>
+            <a class="filter activate">projetos Preferidos</a>
         </h2>
         <section id="carousel-product-starred">
             <div class="horizontal-slider-container">
                 <div class="horizontal-slider-content">
                     <ul id="carousel-product-star" class="horizontal-slider">
-                        <li class="empty"></li>
-                        <li class="empty"></li>
-                        <li class="empty"></li>
+                        <li class="product" ng-repeat="product in favoriteProject">
+                            <h3>
+                                <a ng-href="#/produto/{{product.slug}}">{{product.name}}</a>
+                            </h3>
+                            <figure>
+                                <a ng-href="#/produto/{{product.slug}}">
+                                    <img width="200" height="180" ng-src="{{product.images[0].replace('upload/', 'upload/c_scale,w_200,h_180/')}}">
+                                </a>
+                            </figure>
+                            <div class="white-box">
+                                <div class="rate-new-container">
+                                    <span class="rate">{{(product.price) * 1.07 | currency:'R$'}}</span>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -75,8 +97,7 @@
         <br>
         <br>
         <h2 id="product" class="profile-tab">
-            <a class="filter activate" href="#carousel-product-starred" data-section="product" data-show="carousel-product-starred" data-hide="carousel-product-mine">ambientes Preferidos</a>
-            <a class="filter border" href="#carousel-product-mine" data-section="product" data-show="carousel-product-mine" data-hide="carousel-product-starred">Meus ambientes</a>
+            <a class="filter activate">ambientes Preferidos</a>
         </h2>
         <section id="carousel-product-starred">
             <div class="horizontal-slider-container">

@@ -16,11 +16,10 @@ angular.module('galatea.controllers.user', ['ngCookies', 'ngRoute', 'facebook', 
 }).controller('UserProfileController', function ($scope, $routeParams, user) {
     'use strict';
 
-    if ($routeParams.userId) {
-        $scope.user = user.get({userId : $routeParams.userId});
-    } else {
-        $scope.user = user.get({userId : 'me'});
-    }
+    $scope.user = user.get({userId : $routeParams.userId ? $routeParams.userId : 'me'});
+    $scope.favoriteAmbiance = user.favoriteAmbiance({userId : $routeParams.userId ? $routeParams.userId : 'me'});
+    $scope.favoriteProduct = user.favoriteProduct({userId : $routeParams.userId ? $routeParams.userId : 'me'});
+    $scope.favoriteProject = user.favoriteProject({userId : $routeParams.userId ? $routeParams.userId : 'me'});
 }).controller('UserEmailConfirmationController', function ($rootScope, $scope, $cookies, $location, user) {
     'use strict';
 
