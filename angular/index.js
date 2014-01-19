@@ -1,5 +1,5 @@
 /*global angular:false*/
-angular.module('galatea', ['ngRoute', 'idialog', 'fileUpload', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
+angular.module('galatea', ['ngRoute', 'idialog', 'fileUpload', 'galatea.controllers.campaing', 'galatea.controllers.institutional', 'galatea.controllers.newsletter', 'galatea.controllers.user', 'galatea.controllers.ambiance', 'galatea.controllers.product', 'galatea.controllers.cart', 'resources', 'facebook']).config(function ($facebookProvider, $routeProvider) {
     'use strict';
 
     $facebookProvider.init({
